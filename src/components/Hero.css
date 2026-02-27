@@ -1,0 +1,146 @@
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  height: auto;
+  padding: clamp(6rem, 15vh, 10rem) 1rem;
+  background-color: #000;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-section > *:not(.hero-video) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  text-align: center;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 90%;
+}
+
+.hero-heading {
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-weight: 800;
+  letter-spacing: 0.025em;
+  background: linear-gradient(to bottom right, white, #909090);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+.hero-main-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.hero-services {
+  margin-top: 1.5rem;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.services-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.services-text {
+  border: 1px solid white;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  font-size: clamp(0.875rem, 2vw, 2.25rem);
+  text-align: center;
+  font-weight: 500;
+  width: 100%;
+  max-width: 80rem;
+  color: white;
+  line-height: 1.4;
+}
+
+.hero-cta {
+  margin-top: 2rem;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.cta-button {
+  border: 2px solid white;
+  color: white;
+  padding: 0.875rem 1.5rem;
+  border-radius: 9999px;
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  display: block;
+}
+
+.cta-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.hero-footer {
+  position: relative;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 1.25rem 0;
+}
+
+.footer-spacer {
+  margin-bottom: 1.5rem;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .hero-section {
+    padding: clamp(8rem, 20vh, 12rem) 2rem;
+  }
+
+  .cta-buttons {
+    flex-direction: row;
+  }
+
+  .cta-button {
+    width: auto;
+    padding: 1rem 2rem;
+  }
+
+  .hero-title {
+    max-width: 100%;
+  }
+
+  .services-text {
+    padding: 1rem 1.5rem;
+  }
+}
