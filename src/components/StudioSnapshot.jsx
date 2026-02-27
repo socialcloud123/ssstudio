@@ -98,7 +98,7 @@ function StudioSnapshot() {
         <div className="section-title in-service">STUDIO SNAPSHOT.</div>
         
         <p className="service-hero-heading">
-          Studio500 is a premium, production-ready studio<br />
+          Nearby Studio is a premium, production-ready studio<br />
           floor designed for brands, creators, agencies, and film <br />
           teams who need a reliable space with smooth <br />
           workflows from pre-production to final delivery.

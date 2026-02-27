@@ -25,7 +25,7 @@ function CompanyInfo() {
 
           <div className="company-description">
             <p>
-              <strong>Studio500</strong> is a proud vertical of <strong>Sripada Studios Pvt. Ltd., Bengaluru</strong> — a creative conglomerate built on Originality, Think Bold, and Service-Oriented execution.
+              <strong>Nearby Studio</strong> is a proud vertical of <strong>Sripada Studios Pvt. Ltd., Bengaluru</strong> — a creative conglomerate built on Originality, Think Bold, and Service-Oriented execution.
             </p>
 
             <p>

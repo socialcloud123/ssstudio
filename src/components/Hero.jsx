@@ -62,7 +62,7 @@ function Hero() {
 
       <section className="hero-title">
         <h1 className="hero-heading">
-          <span className="hero-main-title">STUDIO 500</span>
+          <span className="hero-main-title">NEARBY STUDIO</span>
           <br />
           <span>End-to-End Production</span>
           <br />

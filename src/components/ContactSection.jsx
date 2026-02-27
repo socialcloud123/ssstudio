@@ -33,7 +33,7 @@ export default function ContactSection() {
           className="contact-heading"
         >
           Ready to shoot at <br />
-          <span className="highlight">Studio500?</span> <i className="italic-text">Let's Connect</i>
+          <span className="highlight">Nearby Studio</span> <i className="italic-text">Let's Connect</i>
         </motion.h2>
 
         {/* Subtext */}

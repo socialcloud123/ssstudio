@@ -9,7 +9,7 @@ function WhyStudio() {
     },
     {
       title: 'Creator + Brand Friendly',
-      description: 'Whether you\'re a solo creator or a full crew—Studio500 adapts to your scale.'
+      description: 'Whether you\'re a solo creator or a full crew—Nearby Studio adapts to your scale.'
     },
     {
       title: 'Production-First Infrastructure',
@@ -27,7 +27,7 @@ function WhyStudio() {
 
   return (
     <section className="why-studio-section">
-      <h2 className="why-title">WHY STUDIO 500?</h2>
+      <h2 className="why-title">WHY Nearby Studio?</h2>
 
       <div className="features-grid">
         {features.map((feature, index) => (
