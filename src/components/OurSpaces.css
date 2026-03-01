@@ -18,7 +18,7 @@
   font-size: clamp(1.25rem, 4vw, 2rem);
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #FFA500;
+  color: #00c2a8;
   text-transform: uppercase;
   text-align: left;
   line-height: 1.2;
@@ -28,7 +28,7 @@
   font-size: clamp(1.5rem, 5vw, 3rem);
   line-height: 1.2;
   font-weight: 600;
-  color: #4ECDC4;
+  color: rgba(245, 245, 243, 0.9);
   text-align: left;
   margin: 0;
   width: 100%;
@@ -72,7 +72,7 @@
 .section-title.in-set {
   font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 700;
-  color: #FFA500;
+  color: #00c2a8;
   margin-bottom: 1rem;
 }
 
@@ -103,14 +103,14 @@
 .link-hover {
   position: relative;
   overflow: hidden;
-  border: 2px solid #FFA500;
+  border: 2px solid #009580;
   border-radius: 50px;
   padding: 0.875rem 2rem;
-  background-color: #FFA500;
+  background-color: #00c2a8;
 }
 
 .button-text {
-  color: #000;
+  color: #fff;
   font-weight: 700;
   font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
@@ -119,7 +119,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #FFA500;
+  background-color: #00c2a8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,7 +128,7 @@
 
 .arrow-icon {
   font-size: 1.25em;
-  color: #000;
+  color: #fff;
   font-weight: bold;
 }
 

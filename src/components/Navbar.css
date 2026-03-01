@@ -1,0 +1,52 @@
+/* Navbar positioned over hero */
+.navbar {
+  position: absolute;   /* makes it sit over hero */
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 40px;
+
+  /* Glass Effect */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border-radius: 70px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo */
+.navbar-logo img {
+  height: 50px;
+  cursor: pointer;
+}
+
+/* Links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 35px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  color: #ffffff;
+  opacity: 0.8;
+}

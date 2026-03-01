@@ -6,22 +6,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background-color: #2B7A78;
+  background: linear-gradient(to bottom right, #0F0F12, #1F1F22);
   color: white;
 }
 
 .abs-gallery-grid {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 0%;
+  right: 0;
+  width: 50%;
   height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   gap: 0;
   pointer-events: auto;
-  z-index: 0;
+  z-index: 5;
 }
 
 .hover-gallery-image-wrapper {
@@ -64,7 +64,7 @@
   font-weight: 700;
   margin-bottom: 1.5rem;
   letter-spacing: 0.05em;
-  color: #FFA500;
+  color: #00c2a8;
 }
 
 .service-hero-heading {
@@ -72,14 +72,15 @@
   line-height: 1.6;
   margin-bottom: 2rem;
   font-weight: 400;
-  color: #fff;
+  color: #f5f5f3;
+  text-align: justify;
 }
 
 .studio-details {
   margin-top: 2rem;
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   line-height: 1.8;
-  color: #E3E3E3;
+  color: #f5f5f3;
 }
 
 .studio-intro {
@@ -100,21 +101,22 @@
 
 .primary-btn.in-service {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   display: inline-block;
   margin-top: 2rem;
   margin-left: 0;
   text-decoration: none;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .link-hover {
   position: relative;
   overflow: hidden;
-  border: 2px solid #FFA500;
+  border: 2px solid #009580;
   border-radius: 50px;
   padding: 0.875rem 2rem;
-  background-color: #FFA500;
+  background-color: #00c2a8;
 }
 
 .link-inner {
@@ -132,7 +134,7 @@
   justify-content: center;
   transform: translateY(100%);
   transition: transform 0.3s ease;
-  background-color: #FF8C00;
+  background-color: #00c2a8;
 }
 
 .link-hover:hover .link-inner {
@@ -143,14 +145,14 @@
   transform: translateY(0);
 }
 
-.link-inner.yellow .button-text {
-  color: #000;
+.link-inner .button-text {
+  color: #fff;
   font-weight: 700;
   font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 
-.link-inner-hover.yellow .button-text {
-  color: #000;
+.link-inner-hover .button-text {
+  color: #fff;
   font-weight: 700;
   font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
@@ -162,7 +164,7 @@
   }
 
   .abs-gallery-grid {
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
   }
 

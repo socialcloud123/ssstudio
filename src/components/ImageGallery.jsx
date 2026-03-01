@@ -57,7 +57,7 @@ export default function ImageGallery() {
   return (
     <section 
       ref={containerRef} 
-      style={{ position: 'relative', height: '400vh', backgroundColor: '#2c6f73' }}
+      style={{ position: 'relative', height: '400vh', backgroundColor: '#0F0F12' }}
     >
       <div 
         style={{ 
@@ -117,7 +117,7 @@ export default function ImageGallery() {
             }}
           >
             <h2 style={{ 
-              color: 'white', 
+              color: '#F5F5F3', 
               fontSize: isMobile ? 'clamp(1.5rem, 8vw, 3rem)' : '4rem',
               fontWeight: 800, 
               textAlign: 'center',

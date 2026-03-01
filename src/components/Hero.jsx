@@ -16,7 +16,7 @@ function Hero() {
     // Try to play after a short delay
     const playVideo = async () => {
       try {
-        video.muted = true // Force mute
+        video.muted = true
         await video.play()
         console.log('✅ Video playing successfully')
       } catch (error) {
@@ -49,7 +49,7 @@ function Hero() {
         muted 
         loop 
         playsInline 
-        className="hero-video"
+        className="hero-video h-[90%] w-[90%] object-cover"
         preload="auto"
         webkit-playsinline="true"
         onLoadedData={() => console.log("📺 Video data loaded")}
@@ -60,39 +60,7 @@ function Hero() {
         Your browser does not support the video tag.
       </video>
 
-      <section className="hero-title">
-        <h1 className="hero-heading">
-          <span className="hero-main-title">NEARBY STUDIO</span>
-          <br />
-          <span>End-to-End Production</span>
-          <br />
-          <span>A Studio Floor in the Heart of Namma Bengaluru</span>
-        </h1>
-      </section>
-
-      <section className="hero-services">
-        <div className="services-container">
-          <p className="services-text">
-            Podcasts • Product Photoshoots • Model Photography • Content Creations • Green Screen Shoots • Ad Films • Product Films • Fashion • Reels & Social • OTT Promos and many more.
-          </p>
         </div>
-      </section>
-
-      <section className="hero-cta">
-        <div className="cta-buttons">
-          <a href="#book" className="cta-button">
-            Book a Studio Visit
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="cta-button">
-            Check Availability (WhatsApp)
-          </a>
-        </div>
-      </section>
-
-      <section className="hero-footer">
-        <div className="footer-spacer"></div>
-      </section>
-    </div>
   )
 }
 

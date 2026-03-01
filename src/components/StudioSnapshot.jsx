@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import './StudioSnapshot.css'
+import SplashCursor from './SplashCursor';
 
 function StudioSnapshot() {
   const galleryImages = [
@@ -81,6 +82,7 @@ function StudioSnapshot() {
 
   return (
     <section className="service-hero-section" ref={sectionRef}>
+      <SplashCursor />
       <div className="abs-gallery-grid">
         {galleryImages.map((img, index) => (
           <div key={index} className="hover-gallery-image-wrapper">
@@ -95,7 +97,7 @@ function StudioSnapshot() {
       </div>
 
       <div className="service-hero-con">
-        <div className="section-title in-service">STUDIO SNAPSHOT.</div>
+        <div className="section-title in-service">STUDIO SNAPSHOT</div>
         
         <p className="service-hero-heading">
           Nearby Studio is a premium, production-ready studio<br />
@@ -104,7 +106,7 @@ function StudioSnapshot() {
           workflows from pre-production to final delivery.
         </p>
 
-        <div className="studio-details">
+        <div className="studio-details max-w-[90%]">
           <p className="studio-intro">
             A production-ready space built for creators, brands, and teams who need speed + quality.
           </p>
@@ -120,10 +122,10 @@ function StudioSnapshot() {
 
       <a href="#" className="primary-btn in-service" target="_blank" rel="noopener noreferrer">
         <div className="link-hover">
-          <div className="link-inner yellow">
+          <div className="link-inner">
             <div className="button-text">Get Started</div>
           </div>
-          <div className="link-inner-hover yellow">
+          <div className="link-inner-hover">
             <div className="button-text">Get Started</div>
           </div>
         </div>
