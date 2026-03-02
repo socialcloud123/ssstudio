@@ -4,22 +4,22 @@ import SplashCursor from './SplashCursor';
 
 const StudioSnapshot = memo(() => {
   const galleryImages = [
-    '/Snapshots/nearbystudio _ Pitch.png',
-    '/Snapshots/nearbystudio _ Pitch (1).png',
-    '/Snapshots/nearbystudio _ Pitch (2).png',
-    '/Snapshots/nearbystudio _ Pitch (3).png',
-    '/Snapshots/nearbystudio _ Pitch (4).png',
-    '/Snapshots/nearbystudio _ Pitch (5).png',
-    '/Snapshots/nearbystudio _ Pitch (6).png',
-    '/Snapshots/nearbystudio _ Pitch (7).png',
-    '/Snapshots/nearbystudio _ Pitch (8).png',
-    '/Snapshots/nearbystudio _ Pitch (9).png',
-    '/Snapshots/nearbystudio _ Pitch (10).png',
-    '/Snapshots/nearbystudio _ Pitch (11).png',
-    '/Snapshots/nearbystudio _ Pitch (12).png',
-    '/Snapshots/nearbystudio _ Pitch (13).png',
-    '/Snapshots/SSD_9842.jpg',
-    '/Snapshots/SSD_9851.jpg',
+    '/Snapshots/Content.png',
+    '/Snapshots/Desktop.png',
+    '/Snapshots/Desktop (1).png',
+    '/Snapshots/Green_screen.png',
+    '/Snapshots/Model.png',
+    '/Snapshots/Model (1).png',
+    '/Snapshots/Model (2).png',
+    '/Snapshots/Podcast.png',
+    '/Snapshots/Podcast (1).png',
+    '/Snapshots/Product.png',
+    '/Snapshots/Product (1).png',
+    '/Snapshots/Studio.png',
+    '/Snapshots/Studio (1).png',
+    '/Snapshots/Studio (2).png',
+    '/Snapshots/Studio (3).png',
+    '/Snapshots/Studio_setup.png',
   ]
   const sectionRef = useRef(null)
 
