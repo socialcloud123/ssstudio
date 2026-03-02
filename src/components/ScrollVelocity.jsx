@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState } from 'react';
+import { useRef, useLayoutEffect, useState, memo } from 'react';
 import {
   motion,
   useScroll,
@@ -19,14 +19,14 @@ function useElementWidth(ref) {
       }
     }
     updateWidth();
-    window.addEventListener('resize', updateWidth);
+    window.addEventListener('resize', updateWidth, { passive: true });
     return () => window.removeEventListener('resize', updateWidth);
   }, [ref]);
 
   return width;
 }
 
-export const ScrollVelocity = ({
+export const ScrollVelocity = memo(({
   scrollContainerRef,
   texts = [],
   velocity = 100,
@@ -140,6 +140,8 @@ export const ScrollVelocity = ({
       ))}
     </section>
   );
-};
+});
+
+ScrollVelocity.displayName = 'ScrollVelocity';
 
 export default ScrollVelocity;

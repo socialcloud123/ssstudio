@@ -1,35 +1,48 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import './App.css';
 
+// Critical components - load immediately
 import Navbar from './components/Navbar';
 import Hero_1 from './components/Hero_1';
-import Hero from './components/Hero';
-import StudioSnapshot from './components/StudioSnapshot';
-import Services from './components/Services';
-import OurSpaces from './components/OurSpaces';
-import WhyStudio from './components/WhyStudio';
-import ImageGallery from './components/ImageGallery';
-import CompanyInfo from './components/CompanyInfo';
-import ContactSection from './components/ContactSection';
-import ContactForm from './components/ContactForm';
-import Podcast from "./components/Podcast";
-import Studios from "./components/Studios";
-import FashionShoot from "./components/FashionShoot";
+
+// Lazy load below-the-fold components
+const Hero = lazy(() => import('./components/Hero'));
+const StudioSnapshot = lazy(() => import('./components/StudioSnapshot'));
+const Services = lazy(() => import('./components/Services'));
+const OurSpaces = lazy(() => import('./components/OurSpaces'));
+const WhyStudio = lazy(() => import('./components/WhyStudio'));
+const ImageGallery = lazy(() => import('./components/ImageGallery'));
+const CompanyInfo = lazy(() => import('./components/CompanyInfo'));
+const ContactSection = lazy(() => import('./components/ContactSection'));
+const ContactForm = lazy(() => import('./components/ContactForm'));
+const Podcast = lazy(() => import("./components/Podcast"));
+const Studios = lazy(() => import("./components/Studios"));
+const FashionShoot = lazy(() => import("./components/FashionShoot"));
+
+// Loading fallback component
+const LoadingFallback = () => (
+  <div style={{ minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ color: '#00C2A8', fontSize: '1.2rem' }}>Loading...</div>
+  </div>
+);
 
 function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1333] via-[#0f0f1f] to-black">
       <Navbar />
       <Hero_1 />
-      <Hero />
-      <StudioSnapshot />
-      <Services />
-      <OurSpaces />
-      <WhyStudio />
-      <ImageGallery />
-      <CompanyInfo />
-      <ContactSection />
-      <ContactForm />
+      <Suspense fallback={<LoadingFallback />}>
+        <Hero />
+        <StudioSnapshot />
+        <Services />
+        <OurSpaces />
+        <WhyStudio />
+        <ImageGallery />
+        <CompanyInfo />
+        <ContactSection />
+        <ContactForm />
+      </Suspense>
     </div>
   );
 }
@@ -37,13 +50,15 @@ function HomePage() {
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/contactus" element={<ContactSection />} />
-        <Route path="/Podcast" element={<Podcast />} />
-        <Route path="/Studios" element={<Studios />} />
-        <Route path="/FashionShoot" element={<FashionShoot />} />
-      </Routes>
+      <Suspense fallback={<LoadingFallback />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/contactus" element={<ContactSection />} />
+          <Route path="/Podcast" element={<Podcast />} />
+          <Route path="/Studios" element={<Studios />} />
+          <Route path="/FashionShoot" element={<FashionShoot />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }

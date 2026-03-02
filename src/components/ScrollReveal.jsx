@@ -1,10 +1,10 @@
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef, useMemo, memo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ScrollReveal = ({
+const ScrollReveal = memo(({
   children,
   scrollContainerRef,
   enableBlur = true,
@@ -56,7 +56,7 @@ const ScrollReveal = ({
 
     gsap.fromTo(
       wordElements,
-      { opacity: baseOpacity, willChange: 'opacity' },
+      { opacity: baseOpacity, willChange: 'opacity, filter' },
       {
         ease: 'none',
         opacity: 1,
@@ -84,8 +84,7 @@ const ScrollReveal = ({
             scroller,
             start: 'top bottom-=20%',
             end: wordAnimationEnd,
-            scrub: true,
-            markers: true
+            scrub: true
           }
         }
       );
@@ -101,6 +100,8 @@ const ScrollReveal = ({
       <p className={`text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] font-semibold ${textClassName}`}>{splitText}</p>
     </h2>
   );
-};
+});
+
+ScrollReveal.displayName = 'ScrollReveal';
 
 export default ScrollReveal;

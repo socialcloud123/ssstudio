@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, memo } from 'react'
 import './StudioSnapshot.css'
 import SplashCursor from './SplashCursor';
 
-function StudioSnapshot() {
+const StudioSnapshot = memo(() => {
   const galleryImages = [
     '/Snapshots/nearbystudio _ Pitch.png',
     '/Snapshots/nearbystudio _ Pitch (1).png',
@@ -74,6 +74,7 @@ function StudioSnapshot() {
               alt={`Studio gallery ${index + 1}`}
               className="hover-img" 
               loading="lazy"
+              decoding="async"
               src={img}
             />
           </div>
@@ -116,6 +117,8 @@ function StudioSnapshot() {
       </a>
     </section>
   )
-}
+})
+
+StudioSnapshot.displayName = 'StudioSnapshot'
 
 export default StudioSnapshot

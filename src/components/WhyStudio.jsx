@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import './WhyStudio.css'
 import { FaArrowRight } from 'react-icons/fa'
 
-function WhyStudio() {
+const WhyStudio = memo(() => {
   const features = [
     {
       title: 'Professional Workflow',
@@ -60,6 +60,8 @@ function WhyStudio() {
       </div>
     </section>
   )
-}
+})
+
+WhyStudio.displayName = 'WhyStudio'
 
 export default WhyStudio

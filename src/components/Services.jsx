@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import ScrollVelocity from './ScrollVelocity';
 
-export default function Services() {
+const Services = memo(() => {
   return (
     <div className="bg-gradient-to-br from-[#0F0F12] to-[#1F1F22] min-h-[20vh] flex items-center">
       <ScrollVelocity
@@ -13,4 +14,8 @@ export default function Services() {
       />
     </div>
   );
-}
+});
+
+Services.displayName = 'Services';
+
+export default Services;

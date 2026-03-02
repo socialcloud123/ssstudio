@@ -1,7 +1,7 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, memo, useMemo } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
-export default function ImageGallery() {
+const ImageGallery = memo(() => {
   const containerRef = useRef(null)
   const [isMobile, setIsMobile] = useState(false)
   
@@ -13,19 +13,18 @@ export default function ImageGallery() {
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
-    window.addEventListener('resize', checkMobile)
+    window.addEventListener('resize', checkMobile, { passive: true })
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const images = [
+  const images = useMemo(() => [
     { src: '/ImageGallery/Brown_Setup_1 1.png', id: '_4' },
     { src: '/ImageGallery/Brown_Setup_1 3.png', id: '_3' },
     { src: '/ImageGallery/Brown_Setup_1 5.png', id: '_2' },
-    // { src: '/ImageGallery/Brown_Setup_1 6.png', id: '_1' },
     { src: '/ImageGallery/nearby studio_pitch.png', id: '_1' },
-  ]
+  ], [])
 
-  const getPositionStyle = (id, index) => {
+  const getPositionStyle = useMemo(() => (id, index) => {
     const baseStyle = {
       position: 'absolute',
       borderRadius: '16px',
@@ -53,7 +52,7 @@ export default function ImageGallery() {
       case '_1': return { ...baseStyle, width: '45%', height: '40%', bottom: '5%', left: '50%', x: '-50%', zIndex: 20 }
       default: return baseStyle
     }
-  }
+  }, [isMobile])
 
   return (
     <section 
@@ -97,6 +96,8 @@ export default function ImageGallery() {
                 <img 
                   src={img.src} 
                   alt="Gallery" 
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
                 />
               </motion.div>
@@ -132,4 +133,8 @@ export default function ImageGallery() {
       </div>
     </section>
   )
-}
+})
+
+ImageGallery.displayName = 'ImageGallery'
+
+export default ImageGallery

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, memo, useCallback } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
 import SplashCursor from './SplashCursor';
 import ShinyText from './ShinyText';
@@ -42,7 +42,7 @@ const getAnchorAndDir = (origin, w, h) => {
     }
 };
 
-const LightRays = ({
+const LightRays = memo(({
     raysOrigin = 'top-center',
     raysColor = DEFAULT_COLOR,
     raysSpeed = 1,
@@ -271,19 +271,19 @@ void main() {
     ========================= */
 
     useEffect(() => {
+        if (!followMouse) return;
+
         const handleMouseMove = (e) => {
-            const rect = containerRef.current.getBoundingClientRect();
+            const rect = containerRef.current?.getBoundingClientRect();
+            if (!rect) return;
             mouseRef.current = {
                 x: (e.clientX - rect.left) / rect.width,
                 y: (e.clientY - rect.top) / rect.height,
             };
         };
 
-        if (followMouse) {
-            window.addEventListener('mousemove', handleMouseMove);
-            return () =>
-                window.removeEventListener('mousemove', handleMouseMove);
-        }
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [followMouse]);
 
     return (
@@ -292,13 +292,15 @@ void main() {
             className={`w-full h-full pointer-events-none overflow-hidden relative ${className}`}
         />
     );
-};
+});
+
+LightRays.displayName = 'LightRays';
 
 /* =========================
    Example Usage Wrapper
 ========================= */
 
-export default function App() {
+export default memo(function App() {
     return (
         <div
             style={{
@@ -374,4 +376,4 @@ export default function App() {
      
         </div>
     );
-}
+});

@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, memo, useCallback } from 'react'
 import './OurSpaces.css'
+import { throttle } from '../utils/performance'
 
-function OurSpaces() {
+const OurSpaces = memo(() => {
   const sectionRef = useRef(null)
 
   const spaces = [
@@ -44,7 +45,6 @@ function OurSpaces() {
         const rect = holder.getBoundingClientRect()
         const windowHeight = window.innerHeight
         
-        // Calculate scroll progress (0 to 1)
         const scrollProgress = Math.max(0, Math.min(1, 
           (windowHeight - rect.top) / (windowHeight * 0.8)
         ))
@@ -53,7 +53,6 @@ function OurSpaces() {
         const rightImg = holder.querySelector('.set-img-con.right')
 
         if (leftImg && rightImg) {
-          // Start from center and move outward
           const translateX = (1 - scrollProgress) * 40
           const rotate = (1 - scrollProgress) * -5
 
@@ -85,13 +84,16 @@ function OurSpaces() {
       })
     }
 
-    handleScroll() // Initial call
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('mousemove', handleMouseMove)
+    const throttledScroll = throttle(handleScroll, 16)
+    const throttledMouseMove = throttle(handleMouseMove, 16)
+
+    handleScroll()
+    window.addEventListener('scroll', throttledScroll, { passive: true })
+    window.addEventListener('mousemove', throttledMouseMove, { passive: true })
     
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('scroll', throttledScroll)
+      window.removeEventListener('mousemove', throttledMouseMove)
     }
   }, [])
 
@@ -112,6 +114,7 @@ function OurSpaces() {
                 alt={space.name} 
                 className="set-img" 
                 loading="lazy"
+                decoding="async"
                 src={space.leftImg}
               />
             </div>
@@ -127,6 +130,7 @@ function OurSpaces() {
                 alt={space.name} 
                 className="set-img" 
                 loading="lazy"
+                decoding="async"
                 src={space.rightImg}
               />
             </div>
@@ -135,6 +139,8 @@ function OurSpaces() {
       </div>
     </section>
   )
-}
+})
+
+OurSpaces.displayName = 'OurSpaces'
 
 export default OurSpaces
