@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from './Navbar'
+import ContactForm from './ContactForm'
 import './Podcast.css'
 
 export default function Podcast() {
@@ -189,6 +190,7 @@ export default function Podcast() {
         ))}
       </div>
     </section>
+      <ContactForm />
     </>
   )
 }

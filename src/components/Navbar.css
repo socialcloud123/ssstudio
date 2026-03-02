@@ -141,6 +141,10 @@
     display: flex;
   }
 
+  .navbar-links li::after {
+    display: none;
+  }
+
   .navbar-links {
     position: absolute;
     top: 115%;

@@ -37,7 +37,7 @@
 }
 
 .studios-tag {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Outfit', sans-serif;
   font-size: 10px;
   letter-spacing: 0.2em;
   color: #00c2a8;
@@ -150,7 +150,7 @@
   left: 1.25rem;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.3);
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Outfit', sans-serif;
 }
 
 .card-name {
@@ -166,14 +166,14 @@
   margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #252525;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Outfit', sans-serif;
 }
 
 .card-extra {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.4);
   margin-bottom: 1rem;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Outfit', sans-serif;
 }
 
 .card-meta {
@@ -189,7 +189,7 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 0.25rem;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Outfit', sans-serif;
 }
 
 .meta-value {
@@ -208,7 +208,7 @@
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.4);
   margin-bottom: 1rem;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Outfit', sans-serif;
 }
 
 .pricing-tiers {
@@ -232,7 +232,7 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 0.35rem;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Outfit', sans-serif;
 }
 
 .tier-price {
@@ -279,7 +279,7 @@
   margin-bottom: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Outfit', sans-serif;
 }
 
 .enquiry-btn {

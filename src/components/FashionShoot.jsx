@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import Navbar from './Navbar'
+import ContactForm from './ContactForm'
 import './FashionShoot.css'
 
 export default function FashionShoot() {
@@ -130,6 +131,7 @@ export default function FashionShoot() {
         Bring your own storage device to copy the data · All prices + GST · Sessions by appointment only
       </div>
     </section>
+      <ContactForm />
     </>
   )
 }

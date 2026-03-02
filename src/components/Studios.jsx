@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from './Navbar'
+import ContactForm from './ContactForm'
 import './Studios.css'
 
 export default function Studios() {
@@ -89,6 +90,7 @@ export default function Studios() {
         ))}
       </div>
     </section>
+      <ContactForm />
     </>
   )
 }
