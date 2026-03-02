@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import './App.css';
 
 import Navbar from './components/Navbar';
@@ -44,6 +45,7 @@ function App() {
         <Route path="/Studios" element={<Studios />} />
         <Route path="/FashionShoot" element={<FashionShoot />} />
       </Routes>
+      <SpeedInsights />
     </Router>
   );
 }
