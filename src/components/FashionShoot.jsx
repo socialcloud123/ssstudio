@@ -65,7 +65,7 @@ export default function FashionShoot() {
           transition={{ delay: 0.2 }}
           className="fashion-sub"
         >
-          Professional fashion photography for brands, designers & e-commerce. Half day and full day packages with 1 cameraman, edited images, and complete studio access. All prices + GST.
+          Professional fashion photography for brands, designers & e-commerce.<br /> Half day and full day packages with 1 cameraman, edited images, and complete studio access. All prices + GST.
         </motion.p>
       </div>
 
@@ -115,11 +115,11 @@ export default function FashionShoot() {
             {plan.badge && <span className="delivery-badge">{plan.badge}</span>}
             <a 
               className="enquiry-btn" 
-              href={`https://wa.me/919999999999?text=Hi%2C%20I%20am%20interested%20in%20the%20Fashion%20Shoot%20${plan.tag}%20%E2%80%94%20${plan.name}%20${plan.price}.%20Please%20share%20more%20details.`}
+              href={`https://wa.me/919980687439?text=Hi%2C%20I%20am%20interested%20in%20the%20Fashion%20Shoot%20${plan.tag}%20%E2%80%94%20${plan.name}%20${plan.price}.%20Please%20share%20more%20details.`}
               target="_blank" 
               rel="noopener noreferrer"
             >
-              Enquire on WhatsApp
+              ENQUIRE ON WHATSAPP
             </a>
           </motion.div>
         ))}

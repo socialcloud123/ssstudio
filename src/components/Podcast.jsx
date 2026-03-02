@@ -111,7 +111,7 @@ export default function Podcast() {
           whileInView={{ opacity: 1, y: 0 }}
           className="podcast-tag"
         >
-          Podcast Studio — Pricing 2024
+          Podcast Studio — Pricing 2026
         </motion.div>
         <motion.h1 
           initial={{ opacity: 0, y: 0 }}
@@ -179,11 +179,11 @@ export default function Podcast() {
             {pkg.delivery && <span className="delivery-badge">Delivery: {pkg.delivery}</span>}
             <a 
               className="enquiry-btn" 
-              href="https://wa.me/919999999999?text=Hi%2C%20I%20am%20interested%20in%20booking%20a%20studio%20session.%20Please%20share%20more%20details." 
+              href="https://wa.me/919980687439?text=Hi%2C%20I%20am%20interested%20in%20booking%20a%20studio%20session.%20Please%20share%20more%20details." 
               target="_blank" 
               rel="noopener noreferrer"
             >
-              Enquire on WhatsApp
+              ENQUIRE ON WHATSAPP
             </a>
           </motion.div>
         ))}

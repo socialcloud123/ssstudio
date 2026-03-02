@@ -35,7 +35,8 @@ export default function Studios() {
           Studio<br /><span>Packages</span>
         </motion.h1>
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.2 }} className="studios-sub">
-          600 sqft professional studio — 3 wall setup, no green mat. Without production, with 1–3 camera production, and greenscreen packages. All prices + GST.
+          600 sqft professional studio — 3 wall setup, no green mat.<br />
+           Without production, with 1–3 camera production, and greenscreen packages.   <br /> All prices + GST.
         </motion.p>
       </div>
 
@@ -81,8 +82,8 @@ export default function Studios() {
               ))}
             </ul>
             {pkg.badge && <span className="delivery-badge">{pkg.badge}</span>}
-            <a className="enquiry-btn" href={`https://wa.me/919999999999?text=Hi%2C%20I%20am%20interested%20in%20${pkg.name}%20${pkg.price}.%20Please%20share%20more%20details.`} target="_blank" rel="noopener noreferrer">
-              Enquire on WhatsApp
+            <a className="enquiry-btn" href={`https://wa.me/919980687439?text=Hi%2C%20I%20am%20interested%20in%20${pkg.name}%20${pkg.price}.%20Please%20share%20more%20details.`} target="_blank" rel="noopener noreferrer">
+              ENQUIRE ON WHATSAPP
             </a>
           </motion.div>
         ))}

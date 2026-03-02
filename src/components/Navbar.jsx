@@ -106,7 +106,7 @@ const Navbar = () => {
 
       {/* Links */}
       <ul className={`navbar-links ${open ? "show" : ""}`}>
-        <li className="active">
+        <li className={location.pathname === '/' ? 'active' : ''}>
           <Link to="/" onClick={() => setOpen(false)} onMouseEnter={() => handleEnter(0)} onMouseLeave={() => handleLeave(0)}>
             <span className="hover-circle" ref={el => circleRefs.current[0] = el}></span>
             <span className="label-stack">
@@ -115,7 +115,7 @@ const Navbar = () => {
             </span>
           </Link>
         </li>
-        <li>
+        <li className={location.pathname === '/Podcast' ? 'active' : ''}>
           <Link to="/Podcast" onClick={() => setOpen(false)} onMouseEnter={() => handleEnter(1)} onMouseLeave={() => handleLeave(1)}>
             <span className="hover-circle" ref={el => circleRefs.current[1] = el}></span>
             <span className="label-stack">
@@ -124,7 +124,7 @@ const Navbar = () => {
             </span>
           </Link>
         </li>
-        <li>
+        <li className={location.pathname === '/Studios' ? 'active' : ''}>
           <Link to="/Studios" onClick={() => setOpen(false)} onMouseEnter={() => handleEnter(2)} onMouseLeave={() => handleLeave(2)}>
             <span className="hover-circle" ref={el => circleRefs.current[2] = el}></span>
             <span className="label-stack">
@@ -133,7 +133,7 @@ const Navbar = () => {
             </span>
           </Link>
         </li>
-        <li>
+        <li className={location.pathname === '/FashionShoot' ? 'active' : ''}>
           <Link to="/FashionShoot" onClick={() => setOpen(false)} onMouseEnter={() => handleEnter(3)} onMouseLeave={() => handleLeave(3)}>
             <span className="hover-circle" ref={el => circleRefs.current[3] = el}></span>
             <span className="label-stack">
@@ -142,7 +142,7 @@ const Navbar = () => {
             </span>
           </Link>
         </li>
-        <li>
+        <li className={location.pathname === '/contactus' ? 'active' : ''}>
           <a href="#contact-form" onClick={handleContactClick} onMouseEnter={() => handleEnter(4)} onMouseLeave={() => handleLeave(4)}>
             <span className="hover-circle" ref={el => circleRefs.current[4] = el}></span>
             <span className="label-stack">
