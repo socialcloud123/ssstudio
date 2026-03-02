@@ -33,7 +33,6 @@ function WhyStudio() {
           <div className="feature-card heading-card">
             <h2 className="why-title">Why Nearby Studio?</h2>
           </div>
-          <div className="feature-card empty-card"></div>
           <div className="feature-card">
             <h3 className="feature-title">Professional Workflow</h3>
             <p className="feature-description">A space designed to keep shoots smooth: movement, lighting, flexibility, and quick transitions.</p>
@@ -48,16 +47,7 @@ function WhyStudio() {
             <p className="feature-description">A studio designed to reduce delays, handle professional setups, and keep your shoot running on schedule.</p>
           </div>
           <div className="feature-card arrow-card">
-  <div className="arrow-wrapper">
-    <FaArrowRight className="arrow-icon" />
-    <div className="arrow-text">
-      <h3 className="feature-title">See the Space</h3>
-      <p className="feature-description">
-        Explore how Nearby Studio transforms your production workflow.
-      </p>
-    </div>
-  </div>
-</div>
+          </div>
           <div className="feature-card">
             <h3 className="feature-title">Flexible Sets, Fast Turnarounds</h3>
             <p className="feature-description">Adaptable floor plans and support teams that help you execute multiple concepts in a single day.</p>

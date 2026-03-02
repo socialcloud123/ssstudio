@@ -1,7 +1,12 @@
+/* ============================= */
+/* WHY STUDIO SECTION */
+/* ============================= */
+
 .why-studio-section {
   padding: clamp(3rem, 8vh, 5rem) 1rem;
   background: linear-gradient(to bottom right, #0F0F12, #1F1F22);
   color: white;
+  min-height: 90vh;
 }
 
 .why-container {
@@ -10,12 +15,16 @@
 }
 
 .why-title {
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-size: clamp(3rem, 7vw, 4.5rem);
   font-weight: 700;
   color: #4ECDC4;
   letter-spacing: 0.05em;
   margin: 0;
 }
+
+/* ============================= */
+/* GRID */
+/* ============================= */
 
 .features-grid {
   display: grid;
@@ -23,14 +32,18 @@
   gap: 0;
 }
 
+/* ============================= */
+/* FEATURE CARDS */
+/* ============================= */
+
 .feature-card {
   background-color: rgba(255, 255, 255, 0.03);
-  border: none;
   border-radius: 12px;
   padding: 2rem 1.5rem;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
 }
 
+/* Alternating background */
 .feature-card:nth-child(odd):not(.empty-card):not(.heading-card):not(.arrow-card) {
   background-color: rgba(255, 255, 255, 0.03);
 }
@@ -39,26 +52,45 @@
   background-color: transparent;
 }
 
+/* Hover effect */
+.feature-card:hover:not(.empty-card):not(.heading-card):not(.arrow-card) {
+  background-color: rgba(255, 255, 255, 0.06);
+  transform: translateY(-5px);
+}
+
+/* ============================= */
+/* HEADING CARD */
+/* ============================= */
+
 .heading-card {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  background-color: transparent !important;
+  min-height: 200px;
 }
 
+/* ============================= */
+/* EMPTY CARD */
+/* ============================= */
+
 .empty-card {
-  background-color: transparent;
-  border: none;
+  background: transparent;
   display: none;
 }
+
+/* ============================= */
+/* ARROW CARD */
+/* ============================= */
 
 .arrow-card {
   display: none;
+  background-color: transparent !important;
 }
 
-.feature-card:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-  transform: translateY(-5px);
-}
+/* ============================= */
+/* TEXT STYLES */
+/* ============================= */
 
 .feature-title {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
@@ -69,13 +101,16 @@
 }
 
 .feature-description {
-  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
   line-height: 1.6;
   color: #E3E3E3;
   margin: 0;
 }
 
-/* Tablet */
+/* ============================= */
+/* TABLET */
+/* ============================= */
+
 @media (min-width: 768px) {
   .why-studio-section {
     padding: clamp(4rem, 10vh, 6rem) 2rem;
@@ -87,7 +122,10 @@
 
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0;
+  }
+
+  .heading-card {
+    grid-column: span 2;
   }
 
   .feature-card {
@@ -95,19 +133,21 @@
   }
 }
 
-/* Desktop */
+/* ============================= */
+/* DESKTOP */
+/* ============================= */
+
 @media (min-width: 1024px) {
   .why-studio-section {
     padding: clamp(5rem, 12vh, 7rem) 2rem;
   }
 
-  .empty-card {
-    display: block;
-  }
-
   .features-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+  }
+
+  .empty-card {
+    display: block;
   }
 
   .feature-card {
@@ -115,21 +155,6 @@
   }
 
   .arrow-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.05);
-    cursor: pointer;
-  }
-
-  .arrow-card:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-
-  .arrow-icon {
-    width: 60px;
-    height: 60px;
-    color: #4ECDC4;
-    transform: rotate(-45deg);
+    display: block;
   }
 }
