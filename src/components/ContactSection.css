@@ -38,7 +38,7 @@
 }
 
 .ghost-text h2 {
-  font-size: clamp(10vw, 20vw, 20vw);
+  font-size: clamp(10vw, 15vw, 15vw);
   font-weight: 700;
   color: white;
   white-space: nowrap;

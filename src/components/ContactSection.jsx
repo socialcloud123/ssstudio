@@ -10,7 +10,7 @@ export default function ContactSection() {
 
       {/* Top Ghost Text - Scrolling Left */}
       <div className="ghost-text ghost-text-top">
-        <h2>Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • </h2>
+        <h2>Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • </h2>
       </div>
 
       {/* Content Container */}
@@ -21,8 +21,8 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           className="contact-label"
         >
-          <span className="label-line" />
-          <span className="label-text">Booking / Contact</span>
+          <span className="label-line bg-[#00C2A8]" />
+          <span className="label-text text-[#00C2A8]">Booking / Contact</span>
         </motion.div>
 
         {/* Main Heading */}
@@ -43,7 +43,7 @@ export default function ContactSection() {
           transition={{ delay: 0.2 }}
           className="contact-subtext"
         >
-          Share your shoot date, duration, and requirements. We'll confirm availability and send the best-fit package.
+          Share your shoot date, duration, and requirements. <br />We'll confirm availability and send the best-fit package.
         </motion.p>
 
         {/* The CTA Button */}
@@ -67,7 +67,7 @@ export default function ContactSection() {
 
       {/* Bottom Ghost Text - Scrolling Right */}
       <div className="ghost-text ghost-text-bottom">
-        <h2>Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • </h2>
+        <h2>Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • </h2>
       </div>
     </section>
   )

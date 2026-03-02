@@ -18,10 +18,11 @@ export default function ImageGallery() {
   }, [])
 
   const images = [
-    { src: 'https://picsum.photos/800/600?random=41', id: '_4' },
-    { src: 'https://picsum.photos/800/600?random=42', id: '_3' },
-    { src: 'https://picsum.photos/800/600?random=43', id: '_2' },
-    { src: 'https://picsum.photos/800/600?random=44', id: '_1' },
+    { src: '/ImageGallery/Brown_Setup_1 1.png', id: '_4' },
+    { src: '/ImageGallery/Brown_Setup_1 3.png', id: '_3' },
+    { src: '/ImageGallery/Brown_Setup_1 5.png', id: '_2' },
+    // { src: '/ImageGallery/Brown_Setup_1 6.png', id: '_1' },
+    { src: '/ImageGallery/nearby studio_pitch.png', id: '_1' },
   ]
 
   const getPositionStyle = (id, index) => {

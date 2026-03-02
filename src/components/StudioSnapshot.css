@@ -29,6 +29,7 @@
   height: 100%;
   overflow: hidden;
   cursor: pointer;
+  border-radius: 8px;
 }
 
 .hover-img {
@@ -36,13 +37,15 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transform: scale(0.3);
-  transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+  transform: scale(1);
+  transform-origin: center center;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: block;
+  will-change: opacity, transform;
 }
 
 .hover-img.fade-out {
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .service-hero-con {

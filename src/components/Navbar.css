@@ -1,35 +1,31 @@
-/* Navbar positioned over hero */
+/* ================= NAVBAR ================= */
 .navbar {
-  position: absolute;   /* makes it sit over hero */
+  position: absolute;
   top: 5%;
   left: 50%;
   transform: translateX(-50%);
-  width: 70%;
+  width: 90%;
   z-index: 1000;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 40px;
+  padding: 12px 30px;
 
-  /* Glass Effect */
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 
   border-radius: 70px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 /* Logo */
 .navbar-logo img {
-  height: 50px;
-  cursor: pointer;
+  height: 45px;
 }
 
-/* Links */
+/* ================= DESKTOP LINKS ================= */
 .navbar-links {
   list-style: none;
   display: flex;
@@ -47,6 +43,84 @@
 }
 
 .navbar-links li a:hover {
-  color: #ffffff;
   opacity: 0.8;
+}
+
+/* ================= HAMBURGER ================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 2px;
+  background: white;
+  transition: 0.3s ease;
+}
+
+/* X animation */
+.hamburger.active span:first-child {
+  transform: rotate(45deg) translateY(6px);
+}
+
+.hamburger.active span:last-child {
+  transform: rotate(-45deg) translateY(-6px);
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-15px);
+    width: 95%;
+
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+
+    border-radius: 28px;
+
+    background: rgba(20, 20, 25, 0.85);  /* darker tint */
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+      0 25px 60px rgba(0, 0, 0, 0.5),
+      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+
+    opacity: 0;
+    transition: all 0.45s cubic-bezier(.23,1,.32,1);
+  }
+
+  .navbar-links.show {
+    max-height: 450px;
+    padding: 35px 0;
+
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .navbar-links li a {
+    font-size: 19px;
+    font-weight: 500;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    letter-spacing: 0.5px;
+  }
 }

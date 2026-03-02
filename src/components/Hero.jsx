@@ -49,14 +49,14 @@ function Hero() {
         muted 
         loop 
         playsInline 
-        className="hero-video h-[90%] w-[90%] object-cover"
+        className="hero-video object-contain"
         preload="auto"
         webkit-playsinline="true"
         onLoadedData={() => console.log("📺 Video data loaded")}
         onError={(e) => console.log("❌ Video error:", e.target.error)}
         onCanPlay={() => console.log("✅ Video can play")}
       >
-        <source src="/hero.mp4" type="video/mp4" />
+        <source src="/Nearby studio_Studio_tour.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 

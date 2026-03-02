@@ -1,0 +1,322 @@
+.studios-section {
+  background: linear-gradient(to bottom right, #0F0F12, #1F1F22);
+  padding: clamp(4rem, 10vh, 6rem) 2rem;
+  padding-top: 10rem;
+  color: #f5f5f3;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Watermark */
+.studios-section::after {
+  content: "STUDIOS";
+  position: absolute;
+  top: 17%;
+  right: 5%;
+  transform: translateY(-50%);
+  width: 70%;
+  text-align: right;
+  font-size: clamp(6rem, 10vw, 16rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.studios-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.studios-hero {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+}
+
+.studios-tag {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #00c2a8;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.studios-tag::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: #00c2a8;
+}
+
+.studios-hero h1 {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 700;
+  line-height: 0.9;
+  margin-bottom: 2rem;
+}
+
+.studios-hero h1 span {
+  color: #00c2a8;
+}
+
+.studios-sub {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: rgba(245, 245, 243, 0.8);
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+.studios-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  max-width: 1400px;
+  margin: 0 auto 3rem;
+  border: 1px solid #252525;
+}
+
+.studios-tab {
+  padding: 1.5rem;
+  background: #141414;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.studios-tab:hover {
+  background: #1a1a1a;
+}
+
+.studios-tab.active {
+  background: rgba(0, 194, 168, 0.1);
+  border-bottom: 2px solid #00c2a8;
+}
+
+.tab-letter {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #252525;
+  transition: color 0.3s;
+}
+
+.studios-tab.active .tab-letter,
+.studios-tab:hover .tab-letter {
+  color: #00c2a8;
+}
+
+.tab-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.studios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.studios-card {
+  background: linear-gradient(to top, #0f0f12, #1f1f22);
+  border: 1px solid #252525;
+  padding: 2.5rem 1.5rem 2rem;
+  position: relative;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.studios-card:hover {
+  border-color: #00c2a8;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.card-number {
+  position: absolute;
+  top: 1rem;
+  left: 1.25rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: 'Roboto Mono', monospace;
+}
+
+.card-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #f5f5f3;
+}
+
+.card-target {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #252525;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.card-extra {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.card-meta {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.meta-label {
+  display: block;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.meta-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.meta-price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #d4a43a;
+}
+
+.gst-note {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.pricing-tiers {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.tier-item {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #252525;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+}
+
+.tier-label {
+  display: block;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.35rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.tier-price {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #d4a43a;
+}
+
+.features {
+  list-style: none;
+  margin: 1.5rem 0;
+}
+
+.features li {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.75rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.features li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: rgba(0, 194, 168, 0.5);
+}
+
+.features li.highlight {
+  color: white;
+  font-weight: 500;
+}
+
+.delivery-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(26, 107, 58, 0.15);
+  border: 1px solid rgba(26, 107, 58, 0.35);
+  color: #5ecb8a;
+  font-size: 0.7rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.enquiry-btn {
+  display: block;
+  width: 100%;
+  margin-top: auto;
+  padding: 0.875rem;
+  background: transparent;
+  border: 1px solid #00c2a8;
+  color: #00c2a8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.enquiry-btn:hover {
+  background: #00c2a8;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  .studios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .studios-tabs {
+    grid-template-columns: 1fr;
+  }
+  
+  .studios-grid {
+    grid-template-columns: 1fr;
+  }
+}

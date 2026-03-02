@@ -1,19 +1,42 @@
 import React from 'react'
 import './CompanyInfo.css'
+import ColorBlends from './ColorBlends'
 
 function CompanyInfo() {
   return (
     <section className="company-info-section">
+
+      {/* Background Layer */}
+      <div className="company-bg">
+        <ColorBlends
+          colors={["#00c2a8", "#0f0f12", "#00433a"]}
+          rotation={105}
+          speed={0.1}
+          scale={1}
+          frequency={1}
+          warpStrength={1}
+          mouseInfluence={1}
+          parallax={4}
+          noise={0.1}
+          transparent
+          autoRotate={0}
+          color=""
+        />
+      </div>
+
       <div className="company-info-container">
         <div className="company-video-wrapper">
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
             className="company-video"
           >
-            <source src="/Sripada_Studios_Showreel_Filmmaking_Department_Bengaluru's_Start-up_Film_Production_house_360p.mp4" type="video/mp4" />
+            <source
+              src="/Sripada_Studios_Showreel_Filmmaking_Department_Bengaluru's_Start-up_Film_Production_house_360p.mp4"
+              type="video/mp4"
+            />
           </video>
         </div>
 
@@ -25,15 +48,22 @@ function CompanyInfo() {
 
           <div className="company-description">
             <p>
-              <strong>Nearby Studio</strong> is a proud vertical of <strong>Sripada Studios Pvt. Ltd., Bengaluru</strong> — a creative conglomerate built on Originality, Think Bold, and Service-Oriented execution.
+              <strong>Nearby Studio</strong> is a proud vertical of
+              <strong> Sripada Studios Pvt. Ltd., Bengaluru</strong> —
+              a creative conglomerate built on Originality, Think Bold,
+              and Service-Oriented execution.
             </p>
 
             <p>
-              As part of Sripada Studios, we bring a larger ecosystem of creative strategy, production excellence, and brand-building capabilities - ensuring every deliverable is aligned to quality and impact.
+              As part of Sripada Studios, we bring a larger ecosystem
+              of creative strategy, production excellence, and
+              brand-building capabilities - ensuring every deliverable
+              is aligned to quality and impact.
             </p>
           </div>
         </div>
       </div>
+
     </section>
   )
 }

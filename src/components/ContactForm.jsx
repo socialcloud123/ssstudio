@@ -3,19 +3,17 @@ import './ContactForm.css'
 
 export default function ContactForm() {
   return (
-    <section id="contact-form" className="contact-form-section">
+    <section id="contact-form" className="contact-form-section bg-[#0f0f12]">
       <div className="contact-form-container">
         {/* Left Side - Company Info */}
         <div className="contact-info">
-          <h2 className="contact-form-title">
-            Let's work <span className="highlight-text">together.</span>
+          <h2 className="contact-form-title text-[#f5f5f3]/80">
+            Let's work <span className="text-[#00C2A8]">together.</span>
           </h2>
-          <p className="contact-description">
-            I'm currently available for freelance projects and open to full-time opportunities. If you have a project that needs some creative touch, I'd love to hear about it.
-          </p>
+          
           <div className="contact-email">
             <span className="email-icon">✉</span>
-            <a href="mailto:studio500@sripadastudios.com">studio500@sripadastudios.com</a>
+            <a href="mailto:connect@nearbystudio.in">connect@nearbystudio.in</a>
           </div>
         </div>
 

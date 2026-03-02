@@ -9,29 +9,29 @@ function OurSpaces() {
       id: '01',
       name: 'Podcast Shoots',
       description: 'Multi-format podcast recording, talk shows, interviews, reels-friendly angles.',
-      leftImg: 'https://picsum.photos/800/600?random=33',
-      rightImg: 'https://picsum.photos/800/600?random=34'
+      leftImg: '/Snapshots/nearbystudio _ Pitch (3).png',
+      rightImg: '/Snapshots/nearbystudio _ Pitch (5).png'
     },
     {
       id: '02',
       name: 'Product Photoshoots',
       description: 'Clean product frames, ecommerce-ready shots, brand creatives.',
-      leftImg: 'https://picsum.photos/800/600?random=35',
-      rightImg: 'https://picsum.photos/800/600?random=36'
+      leftImg: '/Snapshots/nearbystudio _ Pitch (7).png',
+      rightImg: '/Snapshots/SVNI-6-300x400.png'
     },
     {
       id: '03',
       name: 'Model Photography',
       description: 'Fashion, portfolio shoots, campaign-ready imagery.',
-      leftImg: 'https://picsum.photos/800/600?random=37',
-      rightImg: 'https://picsum.photos/800/600?random=38'
+      leftImg: '/Snapshots/SSD_0039.jpg',
+      rightImg: '/Snapshots/SSD_9842.jpg'
     },
     {
       id: '04',
       name: 'Content Creation',
       description: 'Reels, YouTube, brand videos, educational content, creator formats.',
-      leftImg: 'https://picsum.photos/800/600?random=39',
-      rightImg: 'https://picsum.photos/800/600?random=40'
+      leftImg: '/Snapshots/nearbystudio _ Pitch (2).png',
+      rightImg: '/Snapshots/nearbystudio _ Pitch (8).png'
     }
   ]
 
@@ -117,8 +117,8 @@ function OurSpaces() {
             </div>
 
             <div className="set-text-con">
-              <div className="section-title home-horizontal-title in-set">{space.id}</div>
-              <div className="set-name">{space.name}</div>
+              {/* <div className="section-title home-horizontal-title in-set">{space.id}</div> */}
+              <div className="set-name text-[#00C2A8] text-[2.4rem]">{space.name}</div>
               <p className="set-description">{space.description}</p>
             </div>
 
