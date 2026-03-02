@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import Navbar from './components/Navbar';
 import Hero_1 from './components/Hero_1';
@@ -30,6 +31,7 @@ function HomePage() {
       <CompanyInfo />
       <ContactSection />
       <ContactForm />
+      <SpeedInsights />
     </div>
   );
 }
