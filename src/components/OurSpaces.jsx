@@ -100,10 +100,8 @@ const OurSpaces = memo(() => {
   return (
     <section className="sets-section" ref={sectionRef}>
       <div className="home-title-container">
+        <div className="eyebrow">Studio Blueprints</div>
         <div className="section-title home-horizontal-title left">Our Spaces</div>
-        <h2 className="section-heading white-title">
-          Our versatile studio spaces include everything you need for your next project, all in one location.
-        </h2>
       </div>
 
       <div className="sets-con">
@@ -120,9 +118,8 @@ const OurSpaces = memo(() => {
             </div>
 
             <div className="set-text-con">
-              {/* <div className="section-title home-horizontal-title in-set">{space.id}</div> */}
-              <div className="set-name text-[#00C2A8] text-[2.4rem]">{space.name}</div>
-              <p className="set-description">{space.description}</p>
+              <div className="set-name">{space.name}</div>
+              <div className="set-divider" />
             </div>
 
             <div className="set-img-con right">

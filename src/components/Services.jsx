@@ -1,18 +1,59 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import ScrollVelocity from './ScrollVelocity';
+import './Services.css';
 
 const Services = memo(() => {
-  return (
-    <div className="bg-gradient-to-br from-[#0F0F12] to-[#1F1F22] min-h-[20vh] flex items-center">
-      <ScrollVelocity
-        texts={[
-          '• Podcasts • Product Photoshoots • Model Photography • Content Creations • Green Screen Shoots',
-          '• Ad Films • Product Films • Fashion • Reels & Social • OTT Promos and many more'
-        ]}
-        velocity={100}
-        className="custom-scroll-text"
-      />
+  const primaryLine = useMemo(
+    () => [
+      'Photoshoots',
+      'Model Photography',
+      'Content Creation',
+      'Green Screen Shoots',
+      'Podcasts',
+      'Product Shoots'
+    ],
+    []
+  );
+
+  const secondaryLine = useMemo(
+    () => [
+      'Ad Films',
+      'Product Films',
+      'Fashion',
+      'Reels & Social',
+      'OTT Promos',
+      'Brand Promos'
+    ],
+    []
+  );
+
+  const renderLine = (items) => (
+    <div className="services-line">
+      {items.map((item, index) => (
+        <span className="services-tag" key={`${item}-${index}`}>
+          {item}
+        </span>
+      ))}
     </div>
+  );
+
+  return (
+    <section className="services-marquee">
+      <div className="services-marquee__glow services-marquee__glow--left" />
+      <div className="services-marquee__glow services-marquee__glow--right" />
+
+      <ScrollVelocity
+        texts={[renderLine(primaryLine), renderLine(secondaryLine)]}
+        velocity={90}
+        numCopies={5}
+        className="services-marquee__track"
+        parallaxClassName="services-parallax"
+        scrollerClassName="services-scroller"
+        textClassName="services-text"
+      />
+
+      <div className="services-marquee__overlay" />
+    </section>
   );
 });
 
