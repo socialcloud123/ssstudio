@@ -327,7 +327,7 @@ export default memo(function App() {
                 raysColor="#00C2A8"
                 raysSpeed={isMobile ? 0.8 : 1}
                 lightSpread={isMobile ? 0.35 : 0.5}
-                rayLength={isMobile ? 2 : 1}
+                rayLength={isMobile ? 3 : 1}
                 followMouse={!isMobile}
                 mouseInfluence={isMobile ? 0.4 : 0.4}
                 noiseAmount={0}
