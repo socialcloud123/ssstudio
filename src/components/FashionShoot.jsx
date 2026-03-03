@@ -15,10 +15,10 @@ export default function FashionShoot() {
       features: [
         { text: '1 Cameraman + Camera', highlight: true },
         { text: '15–25 Edited Images Inclusive', highlight: true },
-        { text: 'Edited + Original Photos' },
-        { text: 'Own Costume (Up to 2)' },
-        { text: 'AC Studio Indoor Setup' },
-        { text: 'Makeup Room & Changing Room' }
+        { text: 'Edited + Original Photos', highlight: true },
+        { text: 'Own Costume (Up to 2)', highlight: true },
+        { text: 'AC Studio Indoor Setup', highlight: true },
+        { text: 'Makeup Room & Changing Room', highlight: true }
       ]
     },
     {
@@ -31,10 +31,10 @@ export default function FashionShoot() {
       features: [
         { text: '1 Cameraman + Camera', highlight: true },
         { text: '30–40 Edited Images Inclusive', highlight: true },
-        { text: 'Edited + Original Photos' },
-        { text: 'Own Costume (Up to 4)' },
-        { text: 'AC Studio Indoor Setup' },
-        { text: 'Makeup Room & Changing Room' },
+        { text: 'Edited + Original Photos', highlight: true },
+        { text: 'Own Costume (Up to 4)', highlight: true },
+        { text: 'AC Studio Indoor Setup', highlight: true },
+        { text: 'Makeup Room & Changing Room', highlight: true },
         { text: 'Shoot Guidance with Catalogue for Poses', highlight: true }
       ],
       badge: 'Best Value — Full Day'
@@ -51,14 +51,14 @@ export default function FashionShoot() {
           whileInView={{ opacity: 1, y: 0 }}
           className="fashion-tag"
         >
-          Part D — Fashion Shoot Packages
+          Model Shoot — Pricing 2026
         </motion.div>
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          Fashion<br /><span>Shoot</span>
+          Model Shoot<br /><span>Packages</span>
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0 }}
@@ -66,7 +66,7 @@ export default function FashionShoot() {
           transition={{ delay: 0.2 }}
           className="fashion-sub"
         >
-          Professional fashion photography for brands, designers & e-commerce.<br /> Half day and full day packages with 1 cameraman, edited images, and complete studio access. All prices + GST.
+          Professional model photography for brands, designers & e-commerce.<br /> Half day and full day packages with 1 cameraman, edited images, and complete studio access. All prices + GST.
         </motion.p>
       </div>
 
@@ -76,7 +76,7 @@ export default function FashionShoot() {
         className="who-banner"
       >
         <span className="who-label">Who?</span>
-        <span className="who-value">Fashion Shoot — Brands / Designers / E-commerce</span>
+        <span className="who-value">Model Shoot — Brands / Designers / E-commerce</span>
       </motion.div>
 
       <div className="fashion-grid">
@@ -100,10 +100,9 @@ export default function FashionShoot() {
               </div>
               <div>
                 <span className="meta-label">Investment</span>
-                <span className="meta-price">{plan.price}</span>
+                <span className="meta-price">{plan.price} <span className="meta-gst-inline">+GST</span></span>
               </div>
             </div>
-            <div className="gst-note">+ GST</div>
             <div className="section-divider">
               <span className="divider-label">Includes</span>
               <span className="divider-line"></span>

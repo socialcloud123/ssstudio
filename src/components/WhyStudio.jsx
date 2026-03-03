@@ -23,7 +23,6 @@ const WhyStudio = memo(() => {
 
   const stats = [
     { value: '12 Hr', label: 'Access on request' },
-    { value: '10+', label: 'Pre-built looks' },
     { value: '600', label: 'Sq.ft production floor' },
     { value: 'On-Site', label: 'Crew support' }
   ]
@@ -33,7 +32,7 @@ const WhyStudio = memo(() => {
       <div className="why-premium-container">
         <div className="why-premium-grid">
           <div className="why-premium-content">
-            <span className="why-premium-tag">WHY NEARBY STUDIO</span>
+            <span className="why-premium-tag">Why nearbystudio</span>
 
             <h2 className="why-premium-title">
               Production-First.

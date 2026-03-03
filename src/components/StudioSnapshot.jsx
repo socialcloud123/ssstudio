@@ -87,7 +87,7 @@ const StudioSnapshot = memo(() => {
           
           <h2 className="service-hero-title">
             Production-ready studio floor
-            <br className="mobile-title-break" />
+            <br className="mobile-title-break" /> <span> </span>
             crafted for fast turnarounds.
           </h2>
 
@@ -98,7 +98,7 @@ const StudioSnapshot = memo(() => {
 
           <div className="studio-meta">
             <div className="detail-card">
-              <p className="detail-title">Why teams choose Nearby</p>
+              <p className="detail-title">Why teams choose nearby studio</p>
               <ul className="studio-points">
                 <li>Smooth handoff from pre-production to delivery.</li>
                 <li>Ready-to-roll lighting and acoustically tuned rooms.</li>

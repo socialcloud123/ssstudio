@@ -35,13 +35,14 @@ function CompanyInfo() {
 
           <div className="company-copy">
             <p>
-              Nearby Studio is a proud vertical of Sripada Studios Pvt. Ltd., Bengaluru - a creative conglomerate
-              built on originality, bold thinking, and service-oriented execution.
+              nearbystudio is a proud vertical of Sripada Studios Pvt. Ltd., Bengaluru<br /> <span> </span>
+              A creative conglomerate built on originality, bold thinking, <br /><span> </span> & service-oriented execution.
             </p>
 
             <p>
               As part of Sripada Studios, we operate within a larger ecosystem of creative strategy, production
-              excellence, and brand-building capabilities - ensuring every deliverable is aligned to quality and impact.
+              excellence, and brand-building capabilities<br /> <span> </span>
+              ensuring every deliverable is aligned to quality and impact.
             </p>
           </div>
         </div>

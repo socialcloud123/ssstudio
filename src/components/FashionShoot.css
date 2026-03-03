@@ -9,7 +9,7 @@
 
 /* Background Watermark */
 .fashion-section::after {
-  content: "FASHION";
+  content: "MODEL";
   position: absolute;
   top: 15%;
   right: 5%;
@@ -210,11 +210,13 @@
   color: #d4a43a;
 }
 
-.gst-note {
+.meta-gst-inline {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 1.25rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.06em;
+  font-weight: 500;
   font-family: 'Outfit', sans-serif;
+  vertical-align: middle;
 }
 
 .section-divider {
@@ -259,7 +261,7 @@
 }
 
 .features li.highlight {
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
 }
 

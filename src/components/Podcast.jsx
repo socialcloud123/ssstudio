@@ -21,7 +21,7 @@ export default function Podcast() {
       },
       {
         id: '01',
-        name: 'The Founders Room',
+        name: 'The Founders Room - 1',
         set: 'Set 1 — Part A',
         target: 'Founders & Startup Owners',
         duration: '2.5 hrs',
@@ -40,7 +40,7 @@ export default function Podcast() {
       },
       {
         id: '03',
-        name: 'The Social Podcast',
+        name: 'The Social Podcast - 1',
         set: 'Set 3 — Part A',
         target: 'Influencers & Content Creators',
         duration: '2.5 hrs',
@@ -61,7 +61,7 @@ export default function Podcast() {
     b: [
       {
         id: '05',
-        name: 'The Founders Room — 2',
+        name: 'The Founders Room - 2',
         set: 'Set 5 — Part B',
         target: 'Founders & Startup Owners',
         duration: '2.5 hrs',
@@ -102,6 +102,25 @@ export default function Podcast() {
     ]
   }
 
+  const allPackages = [...packages.a, ...packages.b, ...packages.c]
+
+  const tabConfig = [
+    { key: 'a', label: 'Custom' },
+    { key: 'b', label: 'Founders & Startup Owners' },
+    { key: 'c', label: 'Corporates Heads' },
+    { key: 'd', label: 'Influencers & Content Creators' },
+    { key: 'e', label: 'Brands' }
+  ]
+
+  const filteredPackages = allPackages.filter((pkg) => {
+    if (activePart === 'a') return pkg.custom
+    if (activePart === 'b') return pkg.target.includes('Founders & Startup Owners')
+    if (activePart === 'c') return pkg.target.includes('Corporate')
+    if (activePart === 'd') return pkg.target.includes('Influencers & Content Creators')
+    if (activePart === 'e') return pkg.target.includes('Brands')
+    return false
+  })
+
   return (
     <>
       <Navbar />
@@ -119,7 +138,7 @@ export default function Podcast() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          Studio<br /><span>Packages</span>
+          Podcast<br /><span>Packages</span>
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0 }}
@@ -132,24 +151,22 @@ export default function Podcast() {
       </div>
 
       <div className="section-tabs">
-        {['a', 'b', 'c'].map((part, i) => (
+        {tabConfig.map((tab) => (
           <div 
-            key={part}
-            className={`section-tab ${activePart === part ? 'active' : ''}`}
-            onClick={() => setActivePart(part)}
+            key={tab.key}
+            className={`section-tab ${activePart === tab.key ? 'active' : ''}`}
+            onClick={() => setActivePart(tab.key)}
           >
-            <span className="tab-letter">{part.toUpperCase()}</span>
+            <span className="tab-letter">{tab.key.toUpperCase()}</span>
             <div className="tab-meta">
-              <span className="tab-label">
-                {i === 0 ? 'Entry — Mid Tier' : i === 1 ? 'Mid — Pro Tier' : 'Corporate Series'}
-              </span>
+              <span className="tab-label">{tab.label}</span>
             </div>
           </div>
         ))}
       </div>
 
       <div className="packages-grid">
-        {packages[activePart].map((pkg, index) => (
+        {filteredPackages.map((pkg, index) => (
           <motion.div
             key={pkg.id}
             initial={{ opacity: 0, y: 20 }}
@@ -157,8 +174,6 @@ export default function Podcast() {
             transition={{ delay: index * 0.1 }}
             className={`package-card ${pkg.custom ? 'custom' : ''}`}
           >
-            <div className="card-number">{pkg.id}</div>
-            <div className="card-set">{pkg.set}</div>
             <h3 className="card-name">{pkg.name}</h3>
             <div className="card-target">{pkg.target}</div>
             <div className="card-meta">
