@@ -96,6 +96,10 @@
   color: #f6f7fb;
 }
 
+.mobile-title-break {
+  display: none;
+}
+
 .service-hero-heading {
   font-size: clamp(1.05rem, 2.4vw, 1.95rem);
   line-height: 1.65;
@@ -126,7 +130,7 @@
 }
 
 .detail-title {
-  font-weight: 700;
+  font-weight: 600;
   color: #e8f7f3;
   margin: 0 0 0.9rem;
   letter-spacing: 0.02em;
@@ -268,6 +272,10 @@
   line-height: 1.4;
 }
 
+.mobile-cta-break {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .abs-gallery-grid {
     right: -10%;
@@ -277,6 +285,10 @@
 
   .studio-meta {
     grid-template-columns: 1fr;
+  }
+
+  .mobile-title-break {
+    display: block;
   }
 }
 
@@ -297,14 +309,50 @@
   }
 
   .service-hero-title {
-    font-size: clamp(1.8rem, 7vw, 2.3rem);
+    font-size: clamp(1.2rem, 5vw, 1.9rem);
+    font-weight: 600;
+  }
+
+  .mobile-title-break {
+    display: block;
   }
 
   .service-hero-heading {
-    text-align: left;
+    text-align: justify;
+    font-size: 16px;
+  }
+
+  .detail-title {
+    font-size: 18px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-card:first-child .stat-number,
+  .stat-card:first-child .stat-label {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: baseline;
+  }
+
+  .stat-card:first-child .stat-number {
+    font-size: 1.5rem;
+    margin-right: 0.35rem;
+  }
+
+  .stat-card:first-child .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
   }
 
   .cta-row {
     align-items: flex-start;
+  }
+
+  .mobile-cta-break {
+    display: block;
   }
 }

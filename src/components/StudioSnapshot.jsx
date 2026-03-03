@@ -86,7 +86,9 @@ const StudioSnapshot = memo(() => {
           <div className="section-title in-service">STUDIO SNAPSHOT</div>
           
           <h2 className="service-hero-title">
-            Production-ready studio floor crafted for fast turnarounds.
+            Production-ready studio floor
+            <br className="mobile-title-break" />
+            crafted for fast turnarounds.
           </h2>
 
           <p className="service-hero-heading">
@@ -139,7 +141,11 @@ const StudioSnapshot = memo(() => {
                 </div>
               </div>
             </a>
-            <div className="cta-note">Share your shoot window—we reply with availability in minutes.</div>
+            <div className="cta-note">
+              Share your shoot window—
+              <br className="mobile-cta-break" />
+              we reply with availability in minutes.
+            </div>
           </div>
         </div>
       </div>

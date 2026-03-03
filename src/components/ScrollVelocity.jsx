@@ -109,8 +109,8 @@ export const ScrollVelocity = memo(({
     return (
       <div className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
         <motion.div
-          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-[2.5rem] font-bold tracking-[-0.02em] text-[#f5f5f3]/70 uppercase`}
-          style={{ x, ...scrollerStyle }}
+          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans font-bold tracking-[-0.02em] text-[#f5f5f3]/70 uppercase`}
+          style={{ x, fontSize: 'var(--scroll-velocity-font-size, 2.5rem)', ...scrollerStyle }}
         >
           {spans}
         </motion.div>

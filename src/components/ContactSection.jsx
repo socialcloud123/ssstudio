@@ -21,8 +21,8 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           className="contact-label"
         >
-          <span className="label-line bg-[#00C2A8]" />
-          <span className="label-text text-[#00C2A8]">Booking / Contact</span>
+          <span className="label-line" />
+          <span className="label-text">Booking / Contact</span>
         </motion.div>
 
         {/* Main Heading */}

@@ -80,6 +80,7 @@
 
 .company-copy {
   max-width: 620px;
+  text-align: justify;
 }
 
 .company-copy p {
@@ -141,6 +142,10 @@
   }
 
   .company-heading {
-    font-size: 40px;
+    font-size: 31px;
+  }
+
+  .company-highlight {
+    font-size: 1.65rem;
   }
 }

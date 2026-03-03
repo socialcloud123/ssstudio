@@ -92,11 +92,11 @@
 .label-line {
   width: 1rem;
   height: 1px;
-  background-color: #4ade80;
+  background-color: #00c2a8;
 }
 
 .label-text {
-  color: #4ade80;
+  color: #00c2a8;
   font-size: clamp(0.625rem, 2vw, 0.75rem);
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -157,6 +157,13 @@
   transform: rotate(45deg);
   border-right: 2px solid black;
   border-bottom: 2px solid black;
+}
+
+/* Mobile only */
+@media (max-width: 767px) {
+  .contact-section {
+    min-height: 80vh;
+  }
 }
 
 /* Tablet and up */
