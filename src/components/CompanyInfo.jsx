@@ -5,7 +5,6 @@ import ColorBlends from './ColorBlends'
 function CompanyInfo() {
   return (
     <section className="company-info-section">
-
       {/* Background Layer */}
       <div className="company-bg">
         <ColorBlends
@@ -25,45 +24,38 @@ function CompanyInfo() {
       </div>
 
       <div className="company-info-container">
+        <div className="company-left">
+          <div className="company-label">Proudly A Sub-Company Of</div>
+
+          <h2 className="company-heading">
+            <span className="company-highlight">Sripada Studios Pvt. Ltd.</span>
+          </h2>
+
+          <div className="company-divider" />
+
+          <div className="company-copy">
+            <p>
+              Nearby Studio is a proud vertical of Sripada Studios Pvt. Ltd., Bengaluru - a creative conglomerate
+              built on originality, bold thinking, and service-oriented execution.
+            </p>
+
+            <p>
+              As part of Sripada Studios, we operate within a larger ecosystem of creative strategy, production
+              excellence, and brand-building capabilities - ensuring every deliverable is aligned to quality and impact.
+            </p>
+          </div>
+        </div>
+
         <div className="company-video-wrapper">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="company-video"
-          >
+          <video autoPlay muted loop playsInline className="company-video">
             <source
               src="/Sripada_Studios_Showreel_Filmmaking_Department_Bengaluru's_Start-up_Film_Production_house_360p.mp4"
               type="video/mp4"
             />
           </video>
-        </div>
-
-        <div className="company-text-wrapper">
-          <h2 className="company-title">
-            PROUDLY A SUB-COMPANY OF<br />
-            <span className="company-name">SRIPADA STUDIOS PVT. LTD.</span>
-          </h2>
-
-          <div className="company-description">
-            <p>
-              <strong>Nearby Studio</strong> is a proud vertical of
-              <strong> Sripada Studios Pvt. Ltd., Bengaluru</strong> —
-              a creative conglomerate built on Originality, Think Bold,
-              and Service-Oriented execution.
-            </p>
-
-            <p>
-              As part of Sripada Studios, we bring a larger ecosystem
-              of creative strategy, production excellence, and
-              brand-building capabilities - ensuring every deliverable
-              is aligned to quality and impact.
-            </p>
-          </div>
+          <div className="company-play-overlay">▶</div>
         </div>
       </div>
-
     </section>
   )
 }
