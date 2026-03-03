@@ -301,13 +301,25 @@ LightRays.displayName = 'LightRays';
 ========================= */
 
 export default memo(function App() {
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(
+        () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+    );
 
     useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener('resize', checkMobile, { passive: true });
-        return () => window.removeEventListener('resize', checkMobile);
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
+        const handleChange = (event) => setIsMobile(event.matches);
+
+        // Keep state synced on mount too.
+        setIsMobile(mediaQuery.matches);
+
+        if (mediaQuery.addEventListener) {
+            mediaQuery.addEventListener('change', handleChange);
+            return () => mediaQuery.removeEventListener('change', handleChange);
+        }
+
+        // Safari fallback
+        mediaQuery.addListener(handleChange);
+        return () => mediaQuery.removeListener(handleChange);
     }, []);
 
     return (
