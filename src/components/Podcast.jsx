@@ -192,10 +192,10 @@ export default function Podcast() {
               ))}
             </ul>
             {pkg.custom && <span className="custom-badge">Fully Customisable</span>}
-            {pkg.delivery && <span className="delivery-badge">Delivery: {pkg.delivery}</span>}
+            <span className="delivery-badge">Delivery: 7 Days</span>
             <a 
               className="enquiry-btn" 
-              href="https://wa.me/919980687439?text=Hi%2C%20I%20am%20interested%20in%20booking%20a%20studio%20session.%20Please%20share%20more%20details." 
+              href="https://wa.me/916366623955?text=Hi%2C%20I%20am%20interested%20in%20booking%20a%20studio%20session.%20Please%20share%20more%20details." 
               target="_blank" 
               rel="noopener noreferrer"
             >

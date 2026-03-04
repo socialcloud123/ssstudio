@@ -83,7 +83,8 @@ export default function Studios() {
               ))}
             </ul>
             {pkg.badge && <span className="delivery-badge">{pkg.badge}</span>}
-            <a className="enquiry-btn" href={`https://wa.me/919980687439?text=Hi%2C%20I%20am%20interested%20in%20${pkg.name}%20${pkg.price}.%20Please%20share%20more%20details.`} target="_blank" rel="noopener noreferrer">
+            <span className="delivery-badge">Delivery: 7 Days</span>
+            <a className="enquiry-btn" href={`https://wa.me/916366623955?text=Hi%2C%20I%20am%20interested%20in%20${pkg.name}%20${pkg.price}.%20Please%20share%20more%20details.`} target="_blank" rel="noopener noreferrer">
               ENQUIRE ON WHATSAPP
             </a>
           </motion.div>

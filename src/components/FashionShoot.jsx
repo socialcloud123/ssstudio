@@ -113,9 +113,10 @@ export default function FashionShoot() {
               ))}
             </ul>
             {plan.badge && <span className="delivery-badge">{plan.badge}</span>}
+            <span className="delivery-badge">Delivery: 7 Days</span>
             <a 
               className="enquiry-btn" 
-              href={`https://wa.me/919980687439?text=Hi%2C%20I%20am%20interested%20in%20the%20Fashion%20Shoot%20${plan.tag}%20%E2%80%94%20${plan.name}%20${plan.price}.%20Please%20share%20more%20details.`}
+              href={`https://wa.me/916366623955?text=Hi%2C%20I%20am%20interested%20in%20the%20Fashion%20Shoot%20${plan.tag}%20%E2%80%94%20${plan.name}%20${plan.price}.%20Please%20share%20more%20details.`}
               target="_blank" 
               rel="noopener noreferrer"
             >

@@ -46,9 +46,19 @@ const WhyStudio = memo(() => {
             </p>
 
             <div className="why-premium-buttons">
-              <button className="why-premium-btn why-premium-btn-primary" type="button">
+              <a
+                href="#contact-form"
+                className="why-premium-btn why-premium-btn-primary"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('contact-form')?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                  })
+                }}
+              >
                 Book a Studio Tour
-              </button>
+              </a>
             </div>
           </div>
 
