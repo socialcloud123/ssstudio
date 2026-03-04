@@ -20,10 +20,10 @@ const AMENITIES = [
   'Tethering Cables',
   'Beauty Dish',
   'Wooden Chairs & Stools',
-  'Cloth backdrop (Dark & Light Green)',
+  'Cloth backdrop',
   'Epson L3110 Color Printer',
   '2 Strobe lights',
-  '(Elinchrom FRX 400 Standard kit)',
+  'Elinchrom FRX 400 Standard kit',
   'Product Shoot Table',
   '32” HD Smart TV',
   '6 LED Lights (Videography)',
@@ -263,6 +263,18 @@ const MobileImageGallery = memo(() => (
           </div>
         ))}
       </div>
+      <h2
+        style={{
+          margin: '2rem 0 1rem',
+          color: '#F5F5F3',
+          fontSize: 'clamp(1.75rem, 8vw, 2.5rem)',
+          fontWeight: 800,
+          textAlign: 'center',
+          lineHeight: 1.2,
+        }}
+      >
+        AMENITIES & FEATURES
+      </h2>
       <AmenitiesCards />
     </section>
   </>

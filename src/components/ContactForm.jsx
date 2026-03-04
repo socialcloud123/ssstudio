@@ -17,7 +17,7 @@ export default function ContactForm() {
             <div className="contact-card">
               <div className="contact-item">
                 <span className="label">EMAIL</span>
-                <a href="mailto:connect@nearbystudio.in">connect@nearbystudio.in</a>
+                <a href="mailto:photography@sripadastudios.in">photography@sripadastudios.in</a>
               </div>
 
               <div className="divider" />
@@ -32,7 +32,7 @@ export default function ContactForm() {
               <div className="contact-item">
                 <span className="label">ADDRESS</span>
                 <p>
-                  No:4/2, 1st Chord Rd
+                  No:4/2, 1st Chord Road
                   <br />
                   Rajajinagar Industrial Town
                   <br />
