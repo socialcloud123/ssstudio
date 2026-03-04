@@ -4,10 +4,10 @@
   background: linear-gradient(120deg, rgba(15, 16, 21, 0.94), rgba(10, 12, 18, 0.9));
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(0, 194, 168, 0.14);
-  margin-bottom: 24px;
+  margin: 0;
   padding: clamp(1.2rem, 3vw, 1.65rem) 0;
   isolation: isolate;
-  min-height: 82px;
+  min-height: 0;
 }
 
 .services-parallax {
@@ -109,6 +109,7 @@
 .scroll-velocity-root {
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
 .scroll-velocity-row + .scroll-velocity-row {

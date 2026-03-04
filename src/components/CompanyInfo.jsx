@@ -1,8 +1,37 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './CompanyInfo.css'
 import ColorBlends from './ColorBlends'
 
 function CompanyInfo() {
+  const videoRef = useRef(null)
+
+  const startTime = 3
+  const endTime = 5
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const handleLoaded = () => {
+      video.currentTime = startTime
+      video.play()
+    }
+
+    const handleTimeUpdate = () => {
+      if (video.currentTime >= endTime) {
+        video.currentTime = startTime
+      }
+    }
+
+    video.addEventListener('loadedmetadata', handleLoaded)
+    video.addEventListener('timeupdate', handleTimeUpdate)
+
+    return () => {
+      video.removeEventListener('loadedmetadata', handleLoaded)
+      video.removeEventListener('timeupdate', handleTimeUpdate)
+    }
+  }, [])
+
   return (
     <section className="company-info-section">
       {/* Background Layer */}
@@ -28,33 +57,41 @@ function CompanyInfo() {
           <div className="company-label">Proudly A Sub-Company Of</div>
 
           <h2 className="company-heading">
-            <span className="company-highlight">Sripada Studios Pvt. Ltd.</span>
+            <span className="company-highlight">
+              Sripada Studios Pvt. Ltd.
+            </span>
           </h2>
 
           <div className="company-divider" />
 
           <div className="company-copy">
             <p>
-              nearbystudio is a proud vertical of Sripada Studios Pvt. Ltd., Bengaluru<br /> <span> </span>
-              A creative conglomerate built on originality, bold thinking, <br /><span> </span> & service-oriented execution.
+              nearbystudio is a proud vertical of Sripada Studios Pvt. Ltd., Bengaluru<br />
+              A creative conglomerate built on originality, bold thinking,
+              & service-oriented execution.
             </p>
 
             <p>
-              As part of Sripada Studios, we operate within a larger ecosystem of creative strategy, production
-              excellence, and brand-building capabilities<br /> <span> </span>
+              As part of Sripada Studios, we operate within a larger ecosystem
+              of creative strategy, production excellence, and brand-building capabilities
               ensuring every deliverable is aligned to quality and impact.
             </p>
           </div>
         </div>
 
         <div className="company-video-wrapper">
-          <video autoPlay muted loop playsInline className="company-video">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            className="company-video"
+          >
             <source
-              src="/Sripada_Studios_Showreel_Filmmaking_Department_Bengaluru's_Start-up_Film_Production_house_360p.mp4"
+              src="/Nearby studio_Studio tour 1.mp4"
               type="video/mp4"
             />
           </video>
-          <div className="company-play-overlay">▶</div>
         </div>
       </div>
     </section>
