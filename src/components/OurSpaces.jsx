@@ -100,7 +100,6 @@ const OurSpaces = memo(() => {
   return (
     <section className="sets-section" ref={sectionRef}>
       <div className="home-title-container">
-        <div className="eyebrow">Studio Blueprints</div>
         <div className="section-title home-horizontal-title left">Our Spaces</div>
       </div>
 

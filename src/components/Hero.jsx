@@ -38,7 +38,7 @@ const Hero = memo(() => {
         preload="metadata"
         webkit-playsinline="true"
       >
-        <source src="/Nearby studio_Studio_tour.mp4" type="video/mp4" />
+        <source src="/Nearby studio_Studio tour 1.mp4" type="video/mp4" />
       </video>
     </div>
   )

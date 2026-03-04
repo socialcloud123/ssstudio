@@ -4,6 +4,7 @@
   background: linear-gradient(120deg, rgba(15, 16, 21, 0.94), rgba(10, 12, 18, 0.9));
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(0, 194, 168, 0.14);
+  margin-bottom: 24px;
   padding: clamp(1.2rem, 3vw, 1.65rem) 0;
   isolation: isolate;
   min-height: 82px;
@@ -20,6 +21,7 @@
 }
 
 .services-scroller {
+  --scroll-velocity-font-size: 2.5rem;
   gap: clamp(2rem, 3vw, 3rem);
   padding: 0 clamp(2rem, 6vw, 4rem);
   box-sizing: border-box;
@@ -70,6 +72,7 @@
 .services-marquee__track {
   display: inline-flex;
   align-items: center;
+  margin-right: clamp(1rem, 2.5vw, 1.75rem);
 }
 
 .services-marquee__glow {
@@ -103,7 +106,20 @@
   z-index: 1;
 }
 
+.scroll-velocity-root {
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-velocity-row + .scroll-velocity-row {
+  margin-top: 24px;
+}
+
 @media (max-width: 768px) {
+  .services-scroller {
+    --scroll-velocity-font-size: 1rem;
+  }
+
   .services-text {
     font-size: clamp(0.9rem, 3.4vw, 1.05rem);
     letter-spacing: 0.06em;

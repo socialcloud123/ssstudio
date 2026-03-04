@@ -10,7 +10,9 @@ export default function ContactSection() {
 
       {/* Top Ghost Text - Scrolling Left */}
       <div className="ghost-text ghost-text-top">
-        <h2>Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • </h2>
+        <h2 data-text="Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • ">
+          Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands • Brands • Agencies • Startups • Hospitality • Education • Product Companies • Film Teams • Personal Brands •
+        </h2>
       </div>
 
       {/* Content Container */}
@@ -21,8 +23,8 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           className="contact-label"
         >
-          <span className="label-line bg-[#00C2A8]" />
-          <span className="label-text text-[#00C2A8]">Booking / Contact</span>
+          <span className="label-line" />
+          <span className="label-text">Booking / Contact</span>
         </motion.div>
 
         {/* Main Heading */}
@@ -56,18 +58,18 @@ export default function ContactSection() {
               block: 'start'
             })
           }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
           className="cta-button"
         >
-          LET'S WORK TOGETHER
-          <div className="arrow-icon" />
+          <span className="cta-button-text">Let's Work Together</span>
+          <span className="arrow-icon" aria-hidden="true" />
         </motion.a>
       </div>
 
       {/* Bottom Ghost Text - Scrolling Right */}
       <div className="ghost-text ghost-text-bottom">
-        <h2>Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • </h2>
+        <h2 data-text="Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • ">
+          Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together • Let's work together •
+        </h2>
       </div>
     </section>
   )

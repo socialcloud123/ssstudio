@@ -97,7 +97,7 @@
 
 .section-tabs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 2px;
   max-width: 1400px;
   margin: 0 auto 3rem;

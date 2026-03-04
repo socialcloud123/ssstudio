@@ -1,138 +1,298 @@
-import { useRef, useState, useEffect, memo, useMemo } from 'react'
+import { useRef, useState, useEffect, memo } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
-const ImageGallery = memo(() => {
+const MOBILE_BREAKPOINT = 768
+
+const IMAGES = [
+  { src: '/ImageGallery/Brown_Setup_1 1.png', id: '_4' },
+  { src: '/ImageGallery/Brown_Setup_1 3.png', id: '_3' },
+  { src: '/ImageGallery/Brown_Setup_1 5.png', id: '_2' },
+  { src: '/ImageGallery/nearby studio_pitch.png', id: '_1' },
+]
+
+const AMENITIES = [
+  'Makeup/Audio/Changing Room',
+  '24/7 Power Backup',
+  'Parking Space',
+  'High Speed Internet',
+  'Premium Podcast Setup',
+  '1000+ Props Option',
+  'Tethering Cables',
+  'Beauty Dish',
+  'Wooden Chairs & Stools',
+  'Cloth backdrop',
+  'Epson L3110 Color Printer',
+  '2 Strobe lights',
+  'Elinchrom FRX 400 Standard kit',
+  'Product Shoot Table',
+  '32” HD Smart TV',
+  '6 LED Lights (Videography)',
+]
+
+const amenitiesContainerStyle = {
+  position: 'relative',
+  maxWidth: '1200px',
+  margin: '0 auto',
+  padding: '0.75rem 1rem 2.5rem',
+}
+
+const amenitiesHeaderStyle = {
+  textAlign: 'center',
+  marginBottom: '3.5rem',
+}
+
+const amenitiesTitleStyle = {
+  margin: 0,
+  fontSize: 'clamp(2rem, 5vw, 3.25rem)',
+  fontWeight: 800,
+  letterSpacing: '-0.02em',
+  color: '#f5f5f3',
+  background: 'linear-gradient(90deg,#ffffff,#00c2a8)',
+  backgroundClip: 'text',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+}
+
+const amenitiesGridStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+  gap: '20px',
+}
+
+const amenitiesCardStyle = {
+  padding: '22px',
+  borderRadius: '18px',
+  background: 'rgba(255,255,255,0.03)',
+  border: '1px solid rgba(255,255,255,0.06)',
+  backdropFilter: 'blur(8px)',
+  WebkitBackdropFilter: 'blur(8px)',
+  position: 'relative',
+  overflow: 'hidden',
+}
+
+const amenitiesCardTopBarStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  height: '4px',
+  width: '100%',
+  background: 'linear-gradient(90deg,#00c2a8,#00f5d4)',
+}
+
+const amenitiesCardTextStyle = {
+  margin: 0,
+  fontSize: '16px',
+  fontWeight: 600,
+  color: '#e6f7f5',
+  lineHeight: 1.45,
+}
+
+const AmenitiesCards = memo(() => (
+  <div style={amenitiesContainerStyle}>
+    <div style={amenitiesGridStyle}>
+      {AMENITIES.map((item) => (
+        <div key={item} style={amenitiesCardStyle}>
+          <div style={amenitiesCardTopBarStyle} />
+          <p style={amenitiesCardTextStyle}>{item}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+))
+
+AmenitiesCards.displayName = 'AmenitiesCards'
+
+function getDesktopPositionStyle(id) {
+  const baseStyle = {
+    position: 'absolute',
+    borderRadius: '16px',
+    overflow: 'hidden',
+  }
+
+  switch (id) {
+    case '_4':
+      return { ...baseStyle, width: '45%', height: '40%', top: '5%', left: '50%', x: '-50%', zIndex: 40 }
+    case '_3':
+      return { ...baseStyle, width: '45%', height: '40%', top: '25%', left: '5%', zIndex: 30 }
+    case '_2':
+      return { ...baseStyle, width: '45%', height: '40%', top: '25%', right: '5%', zIndex: 30 }
+    case '_1':
+      return { ...baseStyle, width: '45%', height: '40%', bottom: '5%', left: '50%', x: '-50%', zIndex: 20 }
+    default:
+      return baseStyle
+  }
+}
+
+const AnimatedGalleryCard = memo(({ img, index, scrollYProgress }) => {
+  const start = 0.1 + index * 0.15
+  const end = start + 0.25
+
+  const y = useTransform(scrollYProgress, [start, end], ['0%', '-150%'])
+  const opacity = useTransform(scrollYProgress, [start + 0.1, end], [1, 0])
+  const scale = useTransform(scrollYProgress, [start, end], [1, 0.9])
+
+  return (
+    <motion.div
+      style={{
+        ...getDesktopPositionStyle(img.id),
+        y,
+        opacity,
+        scale,
+        boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)',
+      }}
+    >
+      <img
+        src={img.src}
+        alt="Gallery"
+        loading="lazy"
+        decoding="async"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+    </motion.div>
+  )
+})
+
+AnimatedGalleryCard.displayName = 'AnimatedGalleryCard'
+
+const DesktopImageGallery = memo(() => {
   const containerRef = useRef(null)
-  const [isMobile, setIsMobile] = useState(false)
-  
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"],
+    offset: ['start start', 'end end'],
   })
 
+  const headingOpacity = useTransform(scrollYProgress, [0.7, 0.85], [0, 1])
+  const headingY = useTransform(scrollYProgress, [0.7, 0.9], [50, 0])
+
+  return (
+    <section
+      style={{
+        position: 'relative',
+        backgroundColor: '#0F0F12',
+      }}
+    >
+      <div
+        ref={containerRef}
+        style={{
+          position: 'relative',
+          height: '400vh',
+        }}
+      >
+        <div
+          style={{
+            position: 'sticky',
+            top: 0,
+            height: '100vh',
+            width: '100%',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '0 1rem',
+          }}
+        >
+          <div style={{ position: 'relative', width: '100%', height: '80vh', maxWidth: '1280px' }}>
+            {IMAGES.map((img, index) => (
+              <AnimatedGalleryCard key={img.id} img={img} index={index} scrollYProgress={scrollYProgress} />
+            ))}
+
+            <motion.div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 10,
+                opacity: headingOpacity,
+                y: headingY,
+                padding: '0 1rem',
+              }}
+            >
+              <h2
+                style={{
+                  color: '#F5F5F3',
+                  fontSize: '4rem',
+                  fontWeight: 800,
+                  textAlign: 'center',
+                  lineHeight: 1.2,
+                }}
+              >
+                AMENITIES & FEATURES
+              </h2>
+              <div style={{ marginTop: '14px', width: '100%' }}>
+                <AmenitiesCards />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+})
+
+DesktopImageGallery.displayName = 'DesktopImageGallery'
+
+const MobileImageGallery = memo(() => (
+  <>
+    <section
+      style={{
+        position: 'relative',
+        backgroundColor: '#0F0F12',
+        padding: '2rem 1rem 0',
+      }}
+    >
+      <div style={{ maxWidth: '720px', margin: '0 auto', display: 'grid', gap: '1rem' }}>
+        {IMAGES.map((img) => (
+          <div
+            key={img.id}
+            style={{
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)',
+            }}
+          >
+            <img
+              src={img.src}
+              alt="Gallery"
+              loading="lazy"
+              decoding="async"
+              style={{ width: '100%', display: 'block', aspectRatio: '4 / 3', objectFit: 'cover' }}
+            />
+          </div>
+        ))}
+      </div>
+      <h2
+        style={{
+          margin: '2rem 0 1rem',
+          color: '#F5F5F3',
+          fontSize: 'clamp(1.75rem, 8vw, 2.5rem)',
+          fontWeight: 800,
+          textAlign: 'center',
+          lineHeight: 1.2,
+        }}
+      >
+        AMENITIES & FEATURES
+      </h2>
+      <AmenitiesCards />
+    </section>
+  </>
+))
+
+MobileImageGallery.displayName = 'MobileImageGallery'
+
+const ImageGallery = memo(() => {
+  const [isMobile, setIsMobile] = useState(false)
+
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    const checkMobile = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
     checkMobile()
     window.addEventListener('resize', checkMobile, { passive: true })
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const images = useMemo(() => [
-    { src: '/ImageGallery/Brown_Setup_1 1.png', id: '_4' },
-    { src: '/ImageGallery/Brown_Setup_1 3.png', id: '_3' },
-    { src: '/ImageGallery/Brown_Setup_1 5.png', id: '_2' },
-    { src: '/ImageGallery/nearby studio_pitch.png', id: '_1' },
-  ], [])
-
-  const getPositionStyle = useMemo(() => (id, index) => {
-    const baseStyle = {
-      position: 'absolute',
-      borderRadius: '16px',
-      overflow: 'hidden',
-    }
-
-    if (isMobile) {
-      // Mobile: Stack vertically
-      return {
-        ...baseStyle,
-        width: '85%',
-        height: '35%',
-        left: '50%',
-        top: `${5 + index * 18}%`,
-        x: '-50%',
-        zIndex: 40 - index,
-      }
-    }
-
-    // Desktop: Original overlapping layout
-    switch(id) {
-      case '_4': return { ...baseStyle, width: '45%', height: '40%', top: '5%', left: '50%', x: '-50%', zIndex: 40 }
-      case '_3': return { ...baseStyle, width: '45%', height: '40%', top: '25%', left: '5%', zIndex: 30 }
-      case '_2': return { ...baseStyle, width: '45%', height: '40%', top: '25%', right: '5%', zIndex: 30 }
-      case '_1': return { ...baseStyle, width: '45%', height: '40%', bottom: '5%', left: '50%', x: '-50%', zIndex: 20 }
-      default: return baseStyle
-    }
-  }, [isMobile])
-
-  return (
-    <section 
-      ref={containerRef} 
-      style={{ position: 'relative', height: '400vh', backgroundColor: '#0F0F12' }}
-    >
-      <div 
-        style={{ 
-          position: 'sticky', 
-          top: 0, 
-          height: '100vh', 
-          width: '100%', 
-          overflow: 'hidden',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '0 1rem'
-        }}
-      >
-        <div style={{ position: 'relative', width: '100%', height: '80vh', maxWidth: '1280px' }}>
-          
-          {images.map((img, index) => {
-            const start = 0.1 + (index * 0.15)
-            const end = start + 0.25
-
-            const y = useTransform(scrollYProgress, [start, end], ["0%", "-150%"])
-            const opacity = useTransform(scrollYProgress, [start + 0.1, end], [1, 0])
-            const scale = useTransform(scrollYProgress, [start, end], [1, 0.9])
-
-            return (
-              <motion.div
-                key={img.id}
-                style={{ 
-                  ...getPositionStyle(img.id, index),
-                  y, 
-                  opacity,
-                  scale,
-                  boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)'
-                }}
-              >
-                <img 
-                  src={img.src} 
-                  alt="Gallery" 
-                  loading="lazy"
-                  decoding="async"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
-                />
-              </motion.div>
-            )
-          })}
-
-          {/* Text Reveal */}
-          <motion.div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 10,
-              opacity: useTransform(scrollYProgress, [0.7, 0.85], [0, 1]),
-              y: useTransform(scrollYProgress, [0.7, 0.9], [50, 0]),
-              padding: '0 1rem',
-            }}
-          >
-            <h2 style={{ 
-              color: '#F5F5F3', 
-              fontSize: isMobile ? 'clamp(1.5rem, 8vw, 3rem)' : '4rem',
-              fontWeight: 800, 
-              textAlign: 'center',
-              lineHeight: 1.2,
-            }}>
-              AMENITIES & FEATURES
-            </h2>
-          </motion.div>
-
-        </div>
-      </div>
-    </section>
-  )
+  return isMobile ? <MobileImageGallery /> : <DesktopImageGallery />
 })
 
 ImageGallery.displayName = 'ImageGallery'

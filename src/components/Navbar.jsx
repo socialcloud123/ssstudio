@@ -6,6 +6,7 @@ import logo from "/logo.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [bookOpen, setBookOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const circleRefs = useRef([]);
@@ -70,6 +71,7 @@ const Navbar = () => {
   const handleContactClick = (e) => {
     e.preventDefault();
     setOpen(false);
+    setBookOpen(false);
     
     if (location.pathname === '/') {
       // Already on home page, just scroll
@@ -89,6 +91,8 @@ const Navbar = () => {
     }
   };
 
+  const isBookSpaceActive = ['/Podcast', '/FashionShoot', '/Studios'].includes(location.pathname);
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -107,7 +111,15 @@ const Navbar = () => {
       {/* Links */}
       <ul className={`navbar-links ${open ? "show" : ""}`}>
         <li className={location.pathname === '/' ? 'active' : ''}>
-          <Link to="/" onClick={() => setOpen(false)} onMouseEnter={() => handleEnter(0)} onMouseLeave={() => handleLeave(0)}>
+          <Link
+            to="/"
+            onClick={() => {
+              setOpen(false);
+              setBookOpen(false);
+            }}
+            onMouseEnter={() => handleEnter(0)}
+            onMouseLeave={() => handleLeave(0)}
+          >
             <span className="hover-circle" ref={el => circleRefs.current[0] = el}></span>
             <span className="label-stack">
               <span className="pill-label">Home</span>
@@ -115,36 +127,102 @@ const Navbar = () => {
             </span>
           </Link>
         </li>
-        <li className={location.pathname === '/Podcast' ? 'active' : ''}>
-          <Link to="/Podcast" onClick={() => setOpen(false)} onMouseEnter={() => handleEnter(1)} onMouseLeave={() => handleLeave(1)}>
+
+        <li
+          className={`nav-dropdown ${isBookSpaceActive ? 'active' : ''} ${bookOpen ? 'open' : ''}`}
+          onMouseEnter={() => handleEnter(1)}
+          onMouseLeave={() => handleLeave(1)}
+        >
+          <button
+            type="button"
+            className="dropdown-toggle"
+            onClick={() => setBookOpen((prev) => !prev)}
+          >
             <span className="hover-circle" ref={el => circleRefs.current[1] = el}></span>
             <span className="label-stack">
-              <span className="pill-label">Podcast</span>
-              <span className="pill-label-hover">Podcast</span>
+              <span className="pill-label">Book Our Space</span>
+              <span className="pill-label-hover">Book Our Space</span>
             </span>
-          </Link>
+            <span className="dropdown-caret" aria-hidden="true">▾</span>
+          </button>
+
+          <ul className="dropdown-menu">
+            <li>
+              <Link
+                to="/Studios"
+                onClick={() => { setOpen(false); setBookOpen(false); }}
+                onMouseEnter={() => handleEnter(3)}
+                onMouseLeave={() => handleLeave(3)}
+              >
+                <span className="hover-circle" ref={el => circleRefs.current[3] = el}></span>
+                <span className="label-stack">
+                  <span className="pill-label">Rent Our Studio</span>
+                  <span className="pill-label-hover">Rent Our Studio</span>
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/Podcast"
+                onClick={() => { setOpen(false); setBookOpen(false); }}
+                onMouseEnter={() => handleEnter(4)}
+                onMouseLeave={() => handleLeave(4)}
+              >
+                <span className="hover-circle" ref={el => circleRefs.current[4] = el}></span>
+                <span className="label-stack">
+                  <span className="pill-label">Podcast Shoot</span>
+                  <span className="pill-label-hover">Podcast Shoot</span>
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/FashionShoot"
+                onClick={() => { setOpen(false); setBookOpen(false); }}
+                onMouseEnter={() => handleEnter(5)}
+                onMouseLeave={() => handleLeave(5)}
+              >
+                <span className="hover-circle" ref={el => circleRefs.current[5] = el}></span>
+                <span className="label-stack">
+                  <span className="pill-label">Model Shoot</span>
+                  <span className="pill-label-hover">Model Shoot</span>
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/Studios"
+                onClick={() => { setOpen(false); setBookOpen(false); }}
+                onMouseEnter={() => handleEnter(6)}
+                onMouseLeave={() => handleLeave(6)}
+              >
+                <span className="hover-circle" ref={el => circleRefs.current[6] = el}></span>
+                <span className="label-stack">
+                  <span className="pill-label">Product Shoot</span>
+                  <span className="pill-label-hover">Product Shoot</span>
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/Studios"
+                onClick={() => { setOpen(false); setBookOpen(false); }}
+                onMouseEnter={() => handleEnter(7)}
+                onMouseLeave={() => handleLeave(7)}
+              >
+                <span className="hover-circle" ref={el => circleRefs.current[7] = el}></span>
+                <span className="label-stack">
+                  <span className="pill-label">Content Creation</span>
+                  <span className="pill-label-hover">Content Creation</span>
+                </span>
+              </Link>
+            </li>
+          </ul>
         </li>
-        <li className={location.pathname === '/Studios' ? 'active' : ''}>
-          <Link to="/Studios" onClick={() => setOpen(false)} onMouseEnter={() => handleEnter(2)} onMouseLeave={() => handleLeave(2)}>
-            <span className="hover-circle" ref={el => circleRefs.current[2] = el}></span>
-            <span className="label-stack">
-              <span className="pill-label">Studios</span>
-              <span className="pill-label-hover">Studios</span>
-            </span>
-          </Link>
-        </li>
-        <li className={location.pathname === '/FashionShoot' ? 'active' : ''}>
-          <Link to="/FashionShoot" onClick={() => setOpen(false)} onMouseEnter={() => handleEnter(3)} onMouseLeave={() => handleLeave(3)}>
-            <span className="hover-circle" ref={el => circleRefs.current[3] = el}></span>
-            <span className="label-stack">
-              <span className="pill-label">Fashion Shoot</span>
-              <span className="pill-label-hover">Fashion Shoot</span>
-            </span>
-          </Link>
-        </li>
+
         <li className={location.pathname === '/contactus' ? 'active' : ''}>
-          <a href="#contact-form" onClick={handleContactClick} onMouseEnter={() => handleEnter(4)} onMouseLeave={() => handleLeave(4)}>
-            <span className="hover-circle" ref={el => circleRefs.current[4] = el}></span>
+          <a href="#contact-form" onClick={handleContactClick} onMouseEnter={() => handleEnter(2)} onMouseLeave={() => handleLeave(2)}>
+            <span className="hover-circle" ref={el => circleRefs.current[2] = el}></span>
             <span className="label-stack">
               <span className="pill-label">Contact Us</span>
               <span className="pill-label-hover">Contact Us</span>

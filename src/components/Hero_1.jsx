@@ -301,6 +301,27 @@ LightRays.displayName = 'LightRays';
 ========================= */
 
 export default memo(function App() {
+    const [isMobile, setIsMobile] = useState(
+        () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+    );
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
+        const handleChange = (event) => setIsMobile(event.matches);
+
+        // Keep state synced on mount too.
+        setIsMobile(mediaQuery.matches);
+
+        if (mediaQuery.addEventListener) {
+            mediaQuery.addEventListener('change', handleChange);
+            return () => mediaQuery.removeEventListener('change', handleChange);
+        }
+
+        // Safari fallback
+        mediaQuery.addListener(handleChange);
+        return () => mediaQuery.removeListener(handleChange);
+    }, []);
+
     return (
         <div
             style={{
@@ -314,17 +335,17 @@ export default memo(function App() {
             <SplashCursor />
             {/* Light Rays Background */}
             <LightRays
-                raysOrigin="top-center"
+                raysOrigin={isMobile ? "center" : "top-center"}
                 raysColor="#00C2A8"
-                raysSpeed={1}
-                lightSpread={0.5}
-                rayLength={1}
-                followMouse={true}
-                mouseInfluence={0.4}
+                raysSpeed={isMobile ? 0.8 : 1}
+                lightSpread={isMobile ? 0.35 : 0.5}
+                rayLength={isMobile ? 3 : 1}
+                followMouse={!isMobile}
+                mouseInfluence={isMobile ? 0.4 : 0.4}
                 noiseAmount={0}
                 distortion={0}
                 pulsating={false}
-                fadeDistance={1}
+                fadeDistance={isMobile ? 0.85 : 1}
                 saturation={1}
             />
 

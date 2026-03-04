@@ -70,7 +70,9 @@ export const ScrollVelocity = memo(({
     );
 
     const copyRef = useRef(null);
+    const parallaxRef = useRef(null);
     const copyWidth = useElementWidth(copyRef);
+    const containerWidth = useElementWidth(parallaxRef);
 
     function wrap(min, max, v) {
       const range = max - min;
@@ -97,8 +99,13 @@ export const ScrollVelocity = memo(({
       baseX.set(baseX.get() + moveBy);
     });
 
+    // Ensure enough repeated copies to avoid visible gaps/restarts on any viewport width.
+    const safeCopyCount = copyWidth > 0
+      ? Math.max(numCopies ?? 1, Math.ceil((containerWidth * 2) / copyWidth) + 3)
+      : (numCopies ?? 1);
+
     const spans = [];
-    for (let i = 0; i < (numCopies ?? 1); i++) {
+    for (let i = 0; i < safeCopyCount; i++) {
       spans.push(
         <span className={`flex-shrink-0 ${className}`} key={i} ref={i === 0 ? copyRef : null}>
           {children}
@@ -107,10 +114,10 @@ export const ScrollVelocity = memo(({
     }
 
     return (
-      <div className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
+      <div ref={parallaxRef} className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
         <motion.div
-          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-[2.5rem] font-bold tracking-[-0.02em] text-[#f5f5f3]/70 uppercase`}
-          style={{ x, ...scrollerStyle }}
+          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans font-bold tracking-[-0.02em] text-[#f5f5f3]/70 uppercase`}
+          style={{ x, fontSize: 'var(--scroll-velocity-font-size, 2.5rem)', ...scrollerStyle }}
         >
           {spans}
         </motion.div>
@@ -119,24 +126,25 @@ export const ScrollVelocity = memo(({
   }
 
   return (
-    <section>
+    <section className="scroll-velocity-root">
       {texts.map((text, index) => (
-        <VelocityText
-          key={index}
-          className={className}
-          baseVelocity={index % 2 !== 0 ? -velocity : velocity}
-          scrollContainerRef={scrollContainerRef}
-          damping={damping}
-          stiffness={stiffness}
-          numCopies={numCopies}
-          velocityMapping={velocityMapping}
-          parallaxClassName={parallaxClassName}
-          scrollerClassName={scrollerClassName}
-          parallaxStyle={parallaxStyle}
-          scrollerStyle={scrollerStyle}
-        >
-          {text}&nbsp;
-        </VelocityText>
+        <div className="scroll-velocity-row" key={index}>
+          <VelocityText
+            className={className}
+            baseVelocity={index % 2 !== 0 ? -velocity : velocity}
+            scrollContainerRef={scrollContainerRef}
+            damping={damping}
+            stiffness={stiffness}
+            numCopies={numCopies}
+            velocityMapping={velocityMapping}
+            parallaxClassName={parallaxClassName}
+            scrollerClassName={scrollerClassName}
+            parallaxStyle={parallaxStyle}
+            scrollerStyle={scrollerStyle}
+          >
+            {text}
+          </VelocityText>
+        </div>
       ))}
     </section>
   );

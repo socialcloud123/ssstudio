@@ -125,6 +125,13 @@
   margin-bottom: 1.5rem;
 }
 
+/* Mobile only */
+@media (max-width: 767px) {
+  .hero-section {
+    min-height: 32vh;
+  }
+}
+
 /* Tablet and up */
 @media (min-width: 768px) {
   .hero-section {

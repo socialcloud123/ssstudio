@@ -170,7 +170,7 @@
 }
 
 .card-extra {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.4);
   margin-bottom: 1rem;
   font-family: 'Outfit', sans-serif;
@@ -204,8 +204,17 @@
   color: #d4a43a;
 }
 
+.meta-gst-inline {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  font-family: 'Outfit', sans-serif;
+  vertical-align: middle;
+}
+
 .gst-note {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.4);
   margin-bottom: 1rem;
   font-family: 'Outfit', sans-serif;
@@ -240,6 +249,15 @@
   font-size: 1.4rem;
   font-weight: 700;
   color: #d4a43a;
+}
+
+.tier-gst {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  font-family: 'Outfit', sans-serif;
+  vertical-align: middle;
 }
 
 .features {

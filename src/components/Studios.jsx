@@ -63,7 +63,7 @@ export default function Studios() {
                   {pkg.tiers.map((tier, i) => (
                     <div key={i} className="tier-item">
                       <span className="tier-label">{tier.label}</span>
-                      <span className="tier-price">{tier.price}</span>
+                      <span className="tier-price">{tier.price} <span className="tier-gst">+GST</span></span>
                     </div>
                   ))}
                 </div>
@@ -72,9 +72,9 @@ export default function Studios() {
               <>
                 <div className="card-meta">
                   <div><span className="meta-label">Duration</span><span className="meta-value">{pkg.duration}</span></div>
-                  <div><span className="meta-label">Investment</span><span className="meta-price">{pkg.price}</span></div>
+                  <div><span className="meta-label">Investment</span><span className="meta-price">{pkg.price} <span className="meta-gst-inline">+GST</span></span></div>
                 </div>
-                <div className="gst-note">+ GST · Extra Hour {pkg.extra}</div>
+                <div className="gst-note">Extra Hour {pkg.extra}</div>
               </>
             )}
             <ul className="features">
