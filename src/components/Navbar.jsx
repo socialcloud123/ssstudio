@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import "./Navbar.css";
-import logo from "/logo.png";
+import logo400 from "/logo-400.png";
+import logo800 from "/logo-800.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -96,7 +97,10 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src={logo} alt="Logo" />
+        <picture>
+          <source srcSet={`${logo400} 400w, ${logo800} 800w`} sizes="140px" />
+          <img src={logo400} alt="Logo" width="400" height="225" decoding="async" loading="lazy" />
+        </picture>
       </div>
 
       {/* Hamburger */}

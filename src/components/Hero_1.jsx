@@ -361,15 +361,27 @@ export default memo(function App() {
                     pointerEvents: 'auto',
                 }}
             >
-                <img
-                    src="/logo.png"
-                    alt="Logo"
-                    style={{
-                        width: '400px',
-                        maxWidth: '80%',  // keeps it responsive
-                        height: 'auto',
-                    }}
-                />
+                <picture>
+                    <source
+                        srcSet="/logo-400.png 400w, /logo-800.png 800w"
+                        sizes="(max-width: 640px) 220px, (max-width: 1024px) 320px, 400px"
+                        type="image/png"
+                    />
+                    <img
+                        src="/logo-800.png"
+                        alt="Logo"
+                        width="800"
+                        height="450"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                        style={{
+                            width: '400px',
+                            maxWidth: '80%',  // keeps it responsive
+                            height: 'auto',
+                        }}
+                    />
+                </picture>
             </div>
             
             {/* Bottom Text */}

@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect, useState, memo } from 'react';
+import { useRef, useEffect, useState, useMemo, memo } from 'react';
 import {
   motion,
   useScroll,
@@ -12,12 +12,33 @@ import {
 function useElementWidth(ref) {
   const [width, setWidth] = useState(0);
 
-  useLayoutEffect(() => {
-    function updateWidth() {
-      if (ref.current) {
-        setWidth(ref.current.offsetWidth);
-      }
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    // Async measure to avoid blocking paint.
+    if (typeof ResizeObserver !== 'undefined') {
+      let frame;
+      const ro = new ResizeObserver(entries => {
+        const entry = entries[0];
+        const next = entry?.contentRect?.width ?? 0;
+        setWidth(prev => (prev === next ? prev : next));
+      });
+      ro.observe(node);
+      frame = requestAnimationFrame(() => {
+        const next = node.getBoundingClientRect?.().width ?? 0;
+        setWidth(prev => (prev === next ? prev : next));
+      });
+      return () => {
+        ro.disconnect();
+        if (frame) cancelAnimationFrame(frame);
+      };
     }
+
+    const updateWidth = () => {
+      const next = node.offsetWidth || 0;
+      setWidth(prev => (prev === next ? prev : next));
+    };
     updateWidth();
     window.addEventListener('resize', updateWidth, { passive: true });
     return () => window.removeEventListener('resize', updateWidth);
@@ -54,6 +75,32 @@ export const ScrollVelocity = memo(({
     parallaxStyle,
     scrollerStyle
   }) {
+    const [allowMotion, setAllowMotion] = useState(false);
+    const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+    useEffect(() => {
+      if (typeof window === 'undefined' || !window.matchMedia) return;
+      const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const handleChange = () => setPrefersReducedMotion(media.matches);
+      handleChange();
+      media.addEventListener('change', handleChange);
+      return () => media.removeEventListener('change', handleChange);
+    }, []);
+
+    useEffect(() => {
+      if (prefersReducedMotion) return;
+      let idleHandle;
+      const start = () => setAllowMotion(true);
+
+      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+        idleHandle = window.requestIdleCallback(start, { timeout: 600 });
+        return () => window.cancelIdleCallback?.(idleHandle);
+      }
+
+      idleHandle = window.setTimeout(start, 300);
+      return () => window.clearTimeout(idleHandle);
+    }, [prefersReducedMotion]);
+
     const baseX = useMotionValue(0);
     const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
     const { scrollY } = useScroll(scrollOptions);
@@ -87,6 +134,7 @@ export const ScrollVelocity = memo(({
 
     const directionFactor = useRef(1);
     useAnimationFrame((t, delta) => {
+      if (!allowMotion || prefersReducedMotion) return;
       let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
       if (velocityFactor.get() < 0) {
@@ -100,18 +148,19 @@ export const ScrollVelocity = memo(({
     });
 
     // Ensure enough repeated copies to avoid visible gaps/restarts on any viewport width.
-    const safeCopyCount = copyWidth > 0
-      ? Math.max(numCopies ?? 1, Math.ceil((containerWidth * 2) / copyWidth) + 3)
-      : (numCopies ?? 1);
+    const safeCopyCount = useMemo(() => {
+      if (copyWidth === 0 || containerWidth === 0) return numCopies ?? 3;
+      const calculated = Math.ceil((containerWidth * 2) / copyWidth) + 3;
+      return Math.min(24, Math.max(numCopies ?? 3, calculated));
+    }, [containerWidth, copyWidth, numCopies]);
 
-    const spans = [];
-    for (let i = 0; i < safeCopyCount; i++) {
-      spans.push(
+    const spans = useMemo(() => {
+      return Array.from({ length: safeCopyCount }).map((_, i) => (
         <span className={`flex-shrink-0 ${className}`} key={i} ref={i === 0 ? copyRef : null}>
           {children}
         </span>
-      );
-    }
+      ));
+    }, [safeCopyCount, className, children]);
 
     return (
       <div ref={parallaxRef} className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
