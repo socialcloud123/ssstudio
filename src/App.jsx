@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import './App.css';
 
-// Critical components - load immediately
+// Critical components - load immediately (above fold)
 import Navbar from './components/Navbar';
 import Hero_1 from './components/Hero_1';
 
@@ -20,16 +20,26 @@ const Podcast = lazy(() => import("./components/Podcast"));
 const Studios = lazy(() => import("./components/Studios"));
 const FashionShoot = lazy(() => import("./components/FashionShoot"));
 
-// Loading fallback component
+// Optimized loading fallback
 const LoadingFallback = () => (
-  <div style={{ minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-    <div style={{ color: '#00C2A8', fontSize: '1.2rem' }}>Loading...</div>
+  <div style={{ 
+    minHeight: '50vh', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    background: 'transparent'
+  }}>
+    <div style={{ 
+      color: '#00C2A8', 
+      fontSize: '1.2rem',
+      fontWeight: '600'
+    }}>Loading...</div>
   </div>
 );
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a1333] via-[#0f0f1f] to-black">
+    <main className="min-h-screen bg-gradient-to-br from-[#1a1333] via-[#0f0f1f] to-black">
       <Navbar />
       <Hero_1 />
       <Suspense fallback={<LoadingFallback />}>
@@ -43,7 +53,7 @@ function HomePage() {
         <ContactSection />
         <ContactForm />
       </Suspense>
-    </div>
+    </main>
   );
 }
 

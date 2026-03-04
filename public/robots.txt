@@ -1,0 +1,12 @@
+# robots.txt for NearBy Studios
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://www.nearbystudios.in/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
