@@ -353,15 +353,24 @@ export default memo(function App() {
             <div
                 style={{
                     position: 'absolute',
-                    inset: 0,                 // fills the whole parent
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '100%',
                     display: 'flex',
-                    alignItems: 'center',     // vertical center
-                    justifyContent: 'center', // horizontal center
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     zIndex: 10,
                     pointerEvents: 'auto',
                 }}
             >
-                <picture>
+                <picture
+                    style={{
+                        display: 'block',
+                        width: '100%',
+                        textAlign: 'center',
+                    }}
+                >
                     <source
                         srcSet="/logo-400.png 400w, /logo-800.png 800w"
                         sizes="(max-width: 640px) 220px, (max-width: 1024px) 320px, 400px"
@@ -376,8 +385,10 @@ export default memo(function App() {
                         fetchPriority="high"
                         decoding="async"
                         style={{
-                            width: '400px',
-                            maxWidth: '80%',  // keeps it responsive
+                            display: 'block',
+                            margin: '0 auto',
+                            width: 'clamp(220px, 36vw, 400px)',
+                            maxWidth: '80vw',
                             height: 'auto',
                         }}
                     />

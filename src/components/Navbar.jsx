@@ -99,7 +99,7 @@ const Navbar = () => {
       <div className="navbar-logo">
         <picture>
           <source srcSet={`${logo400} 400w, ${logo800} 800w`} sizes="140px" />
-          <img src={logo400} alt="Logo" width="400" height="225" decoding="async" loading="lazy" />
+          <img src={logo400} alt="Logo" decoding="async" loading="lazy" />
         </picture>
       </div>
 
