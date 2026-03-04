@@ -24,7 +24,7 @@ export default function ContactForm() {
 
               <div className="contact-item">
                 <span className="label">PHONE</span>
-                <a href="tel:+919980687439">+91 99806 87439</a>
+                <a href="tel:+916366623955">+91 63666 23955</a>
               </div>
 
               <div className="divider" />

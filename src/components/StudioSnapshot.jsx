@@ -131,7 +131,7 @@ const StudioSnapshot = memo(() => {
           </div>
 
           <div className="cta-row">
-            <a href="https://wa.me/919980687439?text=Hi%2C%20I%20am%20interested%20in%20booking%20Nearby%20Studio.%20Please%20share%20more%20details." className="primary-btn in-service" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/916366623955?text=Hi%2C%20I%20am%20interested%20in%20booking%20Nearby%20Studio.%20Please%20share%20more%20details." className="primary-btn in-service" target="_blank" rel="noopener noreferrer">
               <div className="link-hover">
                 <div className="link-inner">
                   <div className="button-text">ENQUIRE ON WHATSAPP</div>
