@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import './App.css';
 
@@ -64,9 +64,12 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contactus" element={<ContactSection />} />
-          <Route path="/Podcast" element={<Podcast />} />
-          <Route path="/Studios" element={<Studios />} />
-          <Route path="/FashionShoot" element={<FashionShoot />} />
+          <Route path="/podcast" element={<Podcast />} />
+          <Route path="/studios" element={<Studios />} />
+          <Route path="/fashionshoot" element={<FashionShoot />} />
+          <Route path="/Podcast" element={<Navigate to="/podcast" replace />} />
+          <Route path="/Studios" element={<Navigate to="/studios" replace />} />
+          <Route path="/FashionShoot" element={<Navigate to="/fashionshoot" replace />} />
         </Routes>
       </Suspense>
     </Router>

@@ -92,7 +92,7 @@ const Navbar = () => {
     }
   };
 
-  const isBookSpaceActive = ['/Podcast', '/FashionShoot', '/Studios'].includes(location.pathname);
+  const isBookSpaceActive = ['/podcast', '/fashionshoot', '/studios'].includes(location.pathname);
 
   return (
     <nav className="navbar">
@@ -153,7 +153,7 @@ const Navbar = () => {
           <ul className="dropdown-menu">
             <li>
               <Link
-                to="/Studios"
+                to="/studios"
                 onClick={() => { setOpen(false); setBookOpen(false); }}
                 onMouseEnter={() => handleEnter(3)}
                 onMouseLeave={() => handleLeave(3)}
@@ -167,7 +167,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/Podcast"
+                to="/podcast"
                 onClick={() => { setOpen(false); setBookOpen(false); }}
                 onMouseEnter={() => handleEnter(4)}
                 onMouseLeave={() => handleLeave(4)}
@@ -181,7 +181,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/FashionShoot"
+                to="/fashionshoot"
                 onClick={() => { setOpen(false); setBookOpen(false); }}
                 onMouseEnter={() => handleEnter(5)}
                 onMouseLeave={() => handleLeave(5)}
@@ -195,7 +195,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/Studios"
+                to="/studios"
                 onClick={() => { setOpen(false); setBookOpen(false); }}
                 onMouseEnter={() => handleEnter(6)}
                 onMouseLeave={() => handleLeave(6)}
@@ -209,7 +209,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/Studios"
+                to="/studios"
                 onClick={() => { setOpen(false); setBookOpen(false); }}
                 onMouseEnter={() => handleEnter(7)}
                 onMouseLeave={() => handleLeave(7)}
