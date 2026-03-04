@@ -5,7 +5,7 @@ import ColorBlends from './ColorBlends'
 function CompanyInfo() {
   const videoRef = useRef(null)
 
-  const startTime = 3
+  const startTime = 2
   const endTime = 5
 
   useEffect(() => {
