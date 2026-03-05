@@ -6,19 +6,19 @@ export default function InstagramTail() {
   const fallbackPosts = [
     {
       id: '01',
-      image: '/Snapshots/Green_screen.webp',
+      image: '/3.png',
       alt: 'Professional green screen setup',
       href: profileUrl
     },
     {
       id: '02',
-      image: '/Snapshots/Studio_setup.webp',
+      image: '/2.png',
       alt: 'Studio production lighting setup',
       href: profileUrl
     },
     {
       id: '03',
-      image: '/Snapshots/Content_creation.png',
+      image: '/1.png',
       alt: 'Content creation shoot in progress',
       href: profileUrl
     }
@@ -84,9 +84,6 @@ export default function InstagramTail() {
               View on Instagram
             </span>
 
-            <span className="greenscreen-instagram__index">
-              Post {post.id}
-            </span>
           </a>
         ))}
       </div>

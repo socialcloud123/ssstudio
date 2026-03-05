@@ -517,4 +517,8 @@
   .footer-credits {
     text-align: center;
   }
+
+  .footer-owner-line {
+    display: block;
+  }
 }

@@ -117,9 +117,13 @@ export default function ContactForm() {
                 }}
               >
                 nearby studio
-              </a>{' '}| Developed & Owned by{' '}<a href="https://sripadastudios.com/" target="_blank" rel="noopener noreferrer">
-                Sripada Studios
               </a>
+              <span className="footer-owner-line">
+                {' '}| Developed & Owned by{' '}
+                <a href="https://sripadastudios.com/" target="_blank" rel="noopener noreferrer">
+                  Sripada Studios
+                </a>
+              </span>
             </p>
             <div className="footer-navbar-wrap">
               <Navbar />

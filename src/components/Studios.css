@@ -67,15 +67,15 @@
 }
 
 .studios-sub {
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-size: clamp(0.9rem, 5vw, 1rem);
   color: rgba(245, 245, 243, 0.8);
-  max-width: 600px;
+  max-width: 650px;
   line-height: 1.8;
 }
 
 .studios-tabs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2px;
   max-width: 1400px;
   margin: 0 auto 3rem;

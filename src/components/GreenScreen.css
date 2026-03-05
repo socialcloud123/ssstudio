@@ -17,8 +17,14 @@
 }
 
 .greenscreen-grid {
-  grid-template-columns: minmax(320px, 520px);
+  grid-template-columns: repeat(2, minmax(320px, 520px));
   justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .greenscreen-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {

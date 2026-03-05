@@ -110,7 +110,7 @@ export default function Podcast() {
     { key: 'b', label: 'Founders & Startup Owners' },
     { key: 'c', label: 'Corporates Heads' },
     { key: 'd', label: 'Influencers & Content Creators' },
-    { key: 'e', label: 'Brands' }
+    { key: 'e', label: 'Brand Show' }
   ]
 
   const filteredPackages = allPackages.filter((pkg) => {
