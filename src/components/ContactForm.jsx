@@ -10,7 +10,7 @@ export default function ContactForm() {
             <div className="contact-left">
               <h1>Let&apos;s work together.</h1>
               <p>
-                Tell us about your project. We&apos;ll get back to you within 24 hours.
+                Tell us about your project.<br /> We&apos;ll get back to you within 24 hours.
               </p>
             </div>
 
@@ -41,9 +41,6 @@ export default function ContactForm() {
               </div>
             </div>
 
-            <a href="#contact-form" className="contact-btn">
-              Start a Project →
-            </a>
           </div>
 
           <div className="contact-form-wrapper">
@@ -54,7 +51,7 @@ export default function ContactForm() {
                   type="text"
                   id="name"
                   name="name"
-                  placeholder="John Doe"
+                  placeholder="Your full name"
                   required
                 />
               </div>
@@ -65,7 +62,7 @@ export default function ContactForm() {
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="john@example.com"
+                  placeholder="Enter your email address"
                   required
                 />
               </div>
@@ -77,10 +74,12 @@ export default function ContactForm() {
                   name="service"
                   required
                 >
-                  <option value="">Select a service</option>
-                  <option value="studios">Studios</option>
-                  <option value="podcast">Podcast</option>
+                  <option value="">Choose a service</option>
+                  <option value="studios">Studio Rental</option>
+                  <option value="podcast">Podcast Shoot</option>
                   <option value="fashion-shoot">Fashion Shoot</option>
+                  <option value="fashion-shoot">Green Screen Shoot</option>
+                  <option value="product-shoot">Other Inquiry</option>
                 </select>
               </div>
 
@@ -90,7 +89,7 @@ export default function ContactForm() {
                   id="message"
                   name="message"
                   rows="5"
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell us about your project..."
                   required
                 />
               </div>
@@ -104,9 +103,21 @@ export default function ContactForm() {
       </section>
 
       <footer className="footer">
-        <p>© 2026 All rights reserved by nearbystudio.in | Developed with passion by <a href="https://sripadastudios.com/" target="_blank" rel="noopener noreferrer">
-    Sripada Studios
-  </a></p>
+        <p>© 2026 All rights reserved by{' '}
+          <a
+            href="https://www.nearbystudio.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.preventDefault()
+              window.open('https://www.nearbystudio.in/', '_blank', 'noopener,noreferrer')
+            }}
+          >
+            nearby studio
+          </a>{' '}| Developed & Owned by{' '}<a href="https://sripadastudios.com/" target="_blank" rel="noopener noreferrer">
+            Sripada Studios
+          </a>
+        </p>
       </footer>
     </>
   )

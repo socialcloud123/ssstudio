@@ -75,7 +75,6 @@ export const ScrollVelocity = memo(({
     parallaxStyle,
     scrollerStyle
   }) {
-    const [allowMotion, setAllowMotion] = useState(false);
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
     useEffect(() => {
@@ -86,20 +85,6 @@ export const ScrollVelocity = memo(({
       media.addEventListener('change', handleChange);
       return () => media.removeEventListener('change', handleChange);
     }, []);
-
-    useEffect(() => {
-      if (prefersReducedMotion) return;
-      let idleHandle;
-      const start = () => setAllowMotion(true);
-
-      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-        idleHandle = window.requestIdleCallback(start, { timeout: 600 });
-        return () => window.cancelIdleCallback?.(idleHandle);
-      }
-
-      idleHandle = window.setTimeout(start, 300);
-      return () => window.clearTimeout(idleHandle);
-    }, [prefersReducedMotion]);
 
     const baseX = useMotionValue(0);
     const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
@@ -134,7 +119,7 @@ export const ScrollVelocity = memo(({
 
     const directionFactor = useRef(1);
     useAnimationFrame((t, delta) => {
-      if (!allowMotion || prefersReducedMotion) return;
+      if (prefersReducedMotion) return;
       let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
       if (velocityFactor.get() < 0) {
@@ -148,19 +133,21 @@ export const ScrollVelocity = memo(({
     });
 
     // Ensure enough repeated copies to avoid visible gaps/restarts on any viewport width.
-    const safeCopyCount = useMemo(() => {
-      if (copyWidth === 0 || containerWidth === 0) return numCopies ?? 3;
-      const calculated = Math.ceil((containerWidth * 2) / copyWidth) + 3;
-      return Math.min(24, Math.max(numCopies ?? 3, calculated));
-    }, [containerWidth, copyWidth, numCopies]);
+    const repeatCount = useMemo(() => {
+      const minimum = Math.max(2, numCopies || 2);
+      if (!copyWidth || !containerWidth) return minimum;
+      return Math.max(minimum, Math.ceil(containerWidth / copyWidth) + 2);
+    }, [numCopies, copyWidth, containerWidth]);
 
-    const spans = useMemo(() => {
-      return Array.from({ length: safeCopyCount }).map((_, i) => (
-        <span className={`flex-shrink-0 ${className}`} key={i} ref={i === 0 ? copyRef : null}>
-          {children}
-        </span>
-      ));
-    }, [safeCopyCount, className, children]);
+    const spans = useMemo(
+      () =>
+        Array.from({ length: repeatCount }).map((_, index) => (
+          <span className={`flex-shrink-0 ${className}`} ref={index === 0 ? copyRef : null} key={index}>
+            {children}
+          </span>
+        )),
+      [className, children, repeatCount]
+    );
 
     return (
       <div ref={parallaxRef} className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>

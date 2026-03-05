@@ -32,7 +32,10 @@ const WhyStudio = memo(() => {
       <div className="why-premium-container">
         <div className="why-premium-grid">
           <div className="why-premium-content">
-            <span className="why-premium-tag">Why nearbystudio</span>
+            <span className="why-premium-tag">
+              <span>Why</span>
+              <span className="why-premium-tag-strong">nearbystudio</span>
+            </span>
 
             <h2 className="why-premium-title">
               Production-First.

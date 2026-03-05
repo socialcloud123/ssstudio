@@ -326,6 +326,36 @@
   transform: translateY(-3px);
 }
 
+.note-strip {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #252525;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.note-icon {
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 194, 168, 0.2);
+  color: #00c2a8;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 
 /* ===============================
    RESPONSIVE
@@ -344,5 +374,11 @@
   .podcast-section::after {
     font-size: 25vw;
     opacity: 0.03;
+  }
+
+  .note-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
 }

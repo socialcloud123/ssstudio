@@ -19,6 +19,7 @@ const ContactForm = lazy(() => import('./components/ContactForm'));
 const Podcast = lazy(() => import("./components/Podcast"));
 const Studios = lazy(() => import("./components/Studios"));
 const FashionShoot = lazy(() => import("./components/FashionShoot"));
+const GreenScreen = lazy(() => import("./components/GreenScreen"));
 
 // Optimized loading fallback
 const LoadingFallback = () => (
@@ -67,9 +68,11 @@ function App() {
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/studios" element={<Studios />} />
           <Route path="/fashionshoot" element={<FashionShoot />} />
+          <Route path="/greenscreenshoot" element={<GreenScreen />} />
           <Route path="/Podcast" element={<Navigate to="/podcast" replace />} />
           <Route path="/Studios" element={<Navigate to="/studios" replace />} />
           <Route path="/FashionShoot" element={<Navigate to="/fashionshoot" replace />} />
+          <Route path="/GreenScreenShoot" element={<Navigate to="/greenscreenshoot" replace />} />
         </Routes>
       </Suspense>
     </Router>

@@ -1,0 +1,15 @@
+.greenscreen-section::after {
+  content: 'GREEN SCREEN';
+  font-size: clamp(4rem, 7vw, 6rem);
+}
+
+.greenscreen-grid {
+  grid-template-columns: minmax(320px, 520px);
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .greenscreen-grid {
+    grid-template-columns: 1fr;
+  }
+}

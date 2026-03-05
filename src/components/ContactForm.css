@@ -14,8 +14,9 @@
 }
 
 .left-column {
-  display: grid;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   gap: 24px;
   height: 100%;
 }

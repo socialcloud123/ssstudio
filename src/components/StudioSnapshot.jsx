@@ -4,7 +4,7 @@ import SplashCursor from './SplashCursor';
 
 const StudioSnapshot = memo(() => {
   const galleryImages = [
-    '/Snapshots/Content.png',
+    '/Snapshots/Product.png',
     '/Snapshots/sofa.png',
     '/Snapshots/Green_screen.png',
     '/Snapshots/chair_1.png',
@@ -13,7 +13,7 @@ const StudioSnapshot = memo(() => {
     '/Snapshots/Model.png',
     '/Snapshots/Model (2).png',
     '/Snapshots/chair_1.png',
-    '/Snapshots/Product.png',
+    '/Snapshots/Content.png',
     '/Snapshots/Product (1).png',
     '/Snapshots/Studio.png',
     '/Snapshots/Studio (1).png',
@@ -113,7 +113,12 @@ const StudioSnapshot = memo(() => {
                 <div className="stat-sub">Open-plan layout with staging zone.</div>
               </div>
               <div className="stat-card">
-                <div className="stat-number">500</div>
+                <div className="stat-number">
+                  500
+                  <span style={{ fontSize: "0.5em", opacity: 0.8, }}>
+                    sq.ft.
+                  </span>
+                </div>
                 <div className="stat-label">Production floor</div>
                 <div className="stat-sub">Optimized for multi-camera setups.</div>
               </div>

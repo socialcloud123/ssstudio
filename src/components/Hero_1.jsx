@@ -322,6 +322,32 @@ export default memo(function App() {
         return () => mediaQuery.removeListener(handleChange);
     }, []);
 
+    const videoRef = useRef(null);
+
+useEffect(() => {
+  const video = videoRef.current;
+  if (!video) return;
+
+  const handleLoaded = () => {
+    video.currentTime = 2.76;
+    video.play();
+  };
+
+  const handleTimeUpdate = () => {
+    if (video.currentTime >= 5) {
+      video.currentTime = 2.76;
+    }
+  };
+
+  video.addEventListener("loadedmetadata", handleLoaded);
+  video.addEventListener("timeupdate", handleTimeUpdate);
+
+  return () => {
+    video.removeEventListener("loadedmetadata", handleLoaded);
+    video.removeEventListener("timeupdate", handleTimeUpdate);
+  };
+}, []);
+
     return (
         <div
             style={{
@@ -364,35 +390,21 @@ export default memo(function App() {
                     pointerEvents: 'auto',
                 }}
             >
-                <picture
-                    style={{
-                        display: 'block',
-                        width: '100%',
-                        textAlign: 'center',
-                    }}
-                >
-                    <source
-                        srcSet="/logo-400.png 400w, /logo-800.png 800w"
-                        sizes="(max-width: 640px) 220px, (max-width: 1024px) 320px, 400px"
-                        type="image/png"
-                    />
-                    <img
-                        src="/logo-800.png"
-                        alt="Logo"
-                        width="800"
-                        height="450"
-                        loading="eager"
-                        fetchPriority="high"
-                        decoding="async"
-                        style={{
-                            display: 'block',
-                            margin: '0 auto',
-                            width: 'clamp(220px, 36vw, 400px)',
-                            maxWidth: '80vw',
-                            height: 'auto',
-                        }}
-                    />
-                </picture>
+                <video
+  ref={videoRef}
+  src="/Nearby studio_Studio tour 1.mp4"
+  muted
+  playsInline
+  preload="auto"
+  style={{
+    display: "block",
+    margin: "0 auto",
+    width: "clamp(220px, 36vw, 400px)",
+    maxWidth: "80vw",
+    height: "auto",
+    mixBlendMode: "screen",
+  }}
+/>
             </div>
             
             {/* Bottom Text */}
@@ -405,7 +417,24 @@ export default memo(function App() {
   }}
 >
   <ShinyText
-    text=" a Studio Floor by Sripada Studios "
+    text={
+    <>
+      a Studio Floor by{" "}
+      <a
+        href="https://sripadastudios.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          fontWeight: 700,
+          textDecoration: "none",
+          color: "inherit",
+          cursor: "pointer",
+        }}
+      >
+        Sripada Studios
+      </a>
+    </>
+  }
     speed={2}
     delay={0}
     color="#F5F5F3"

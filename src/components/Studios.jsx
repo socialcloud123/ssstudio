@@ -30,14 +30,14 @@ export default function Studios() {
       <section className="studios-section">
       <div className="studios-hero">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="studios-tag">
-          600 Sqft Studio — Photo & Video Pricing
+          600 Sq.ft. Studio — Photo & Video Pricing
         </motion.div>
         <motion.h1 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
           Studio<br /><span>Packages</span>
         </motion.h1>
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.2 }} className="studios-sub">
-          600 sqft professional studio — 3 wall setup, no green mat.<br />
-           Without production, with 1–3 camera production, and greenscreen packages.   <br /> All prices + GST.
+          600 sq.ft. professional studio — 3 wall setup, no green mat available for this Studio packages.<br />
+           Without production, with 1–3 camera production.   <br /> All prices + GST.
         </motion.p>
       </div>
 
@@ -89,6 +89,11 @@ export default function Studios() {
             </a>
           </motion.div>
         ))}
+      </div>
+
+      <div className="note-strip">
+        <div className="note-icon">!</div>
+        Bring your own storage device to copy the data · All prices + GST · Sessions by appointment only
       </div>
     </section>
       <ContactForm />

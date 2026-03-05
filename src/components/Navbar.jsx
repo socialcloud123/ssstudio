@@ -92,7 +92,7 @@ const Navbar = () => {
     }
   };
 
-  const isBookSpaceActive = ['/podcast', '/fashionshoot', '/studios'].includes(location.pathname);
+  const isBookSpaceActive = ['/podcast', '/fashionshoot', '/studios', '/greenscreenshoot'].includes(location.pathname);
 
   return (
     <nav className="navbar">
@@ -195,29 +195,15 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/studios"
+                to="/greenscreenshoot"
                 onClick={() => { setOpen(false); setBookOpen(false); }}
                 onMouseEnter={() => handleEnter(6)}
                 onMouseLeave={() => handleLeave(6)}
               >
                 <span className="hover-circle" ref={el => circleRefs.current[6] = el}></span>
                 <span className="label-stack">
-                  <span className="pill-label">Product Shoot</span>
-                  <span className="pill-label-hover">Product Shoot</span>
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/studios"
-                onClick={() => { setOpen(false); setBookOpen(false); }}
-                onMouseEnter={() => handleEnter(7)}
-                onMouseLeave={() => handleLeave(7)}
-              >
-                <span className="hover-circle" ref={el => circleRefs.current[7] = el}></span>
-                <span className="label-stack">
-                  <span className="pill-label">Content Creation</span>
-                  <span className="pill-label-hover">Content Creation</span>
+                  <span className="pill-label">Green Screen Shoot</span>
+                  <span className="pill-label-hover">Green Screen Shoot</span>
                 </span>
               </Link>
             </li>

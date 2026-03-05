@@ -204,6 +204,11 @@ export default function Podcast() {
           </motion.div>
         ))}
       </div>
+
+      <div className="note-strip">
+        <div className="note-icon">!</div>
+        Bring your own storage device to copy the data · All prices + GST · Sessions by appointment only
+      </div>
     </section>
       <ContactForm />
     </>
