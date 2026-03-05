@@ -2,3 +2,6 @@ node_modules
 dist
 .DS_Store
 .vercel
+
+# Prevent oversized source video from being committed
+public/nearby studio logo 1.mov
