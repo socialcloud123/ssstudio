@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import "./Navbar.css";
-import logo400 from "/logo-400.png";
-import logo800 from "/logo-800.png";
+import logoWhite from "/Nearby studio_white.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -98,8 +97,8 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo">
         <picture>
-          <source srcSet={`${logo400} 400w, ${logo800} 800w`} sizes="140px" />
-          <img src={logo400} alt="Logo" decoding="async" loading="lazy" />
+          <source srcSet={`${logoWhite}`} />
+          <img src={logoWhite} alt="Logo" decoding="async" loading="lazy" />
         </picture>
       </div>
 

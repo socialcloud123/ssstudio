@@ -329,13 +329,13 @@ useEffect(() => {
   if (!video) return;
 
   const handleLoaded = () => {
-    video.currentTime = 2.76;
+    video.currentTime = 0;
     video.play();
   };
 
   const handleTimeUpdate = () => {
     if (video.currentTime >= 5) {
-      video.currentTime = 2.76;
+      video.currentTime = 0;
     }
   };
 
@@ -392,17 +392,15 @@ useEffect(() => {
             >
                 <video
   ref={videoRef}
-  src="/Nearby studio_Studio tour 1.mp4"
+  src="/nearby studio logo 1.webm"
+  autoPlay
   muted
+  loop
   playsInline
-  preload="auto"
   style={{
-    display: "block",
-    margin: "0 auto",
-    width: "clamp(220px, 36vw, 400px)",
-    maxWidth: "80vw",
-    height: "auto",
+    width: "clamp(400px, 36vw, 600px)",
     mixBlendMode: "screen",
+    background: "transparent",
   }}
 />
             </div>

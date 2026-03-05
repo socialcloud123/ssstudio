@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from './Navbar'
 import ContactForm from './ContactForm'
+import InstagramTail from './Instagram_tail'
 import './Podcast.css'
 
 export default function Podcast() {
@@ -209,6 +210,8 @@ export default function Podcast() {
         <div className="note-icon">!</div>
         Bring your own storage device to copy the data · All prices + GST · Sessions by appointment only
       </div>
+
+      <InstagramTail />
     </section>
       <ContactForm />
     </>

@@ -17,7 +17,7 @@ const OurSpaces = memo(() => {
       id: '02',
       name: 'Product Photoshoots',
       description: 'Clean product frames, ecommerce-ready shots, brand creatives.',
-      leftImg: '/Snapshots/product_new.png',
+      leftImg: '/Snapshots/Product_4.png',
       rightImg: '/Snapshots/product_new_1.png'
     },
     {
@@ -25,13 +25,13 @@ const OurSpaces = memo(() => {
       name: 'Model Photography',
       description: 'Fashion, portfolio shoots, campaign-ready imagery.',
       leftImg: '/Snapshots/model_new_1.png',
-      rightImg: '/Snapshots/model_new.png'
+      rightImg: '/Snapshots/Model_3.png'
     },
     {
       id: '04',
       name: 'Content Creation',
       description: 'Reels, YouTube, brand videos, educational content, creator formats.',
-      leftImg: '/Snapshots/Content_creation.png',
+      leftImg: '/Snapshots/Rishab_CC.png',
       rightImg: '/Snapshots/6.png'
     }
   ]

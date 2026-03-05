@@ -1,0 +1,293 @@
+/* =====================================
+   GREENSCREEN INSTAGRAM SECTION
+===================================== */
+
+.greenscreen-instagram {
+  position: relative;
+  overflow: hidden;
+
+  --gs-border: rgba(255, 255, 255, 0.08);
+  --gs-text: #ffffff;
+  --gs-muted: rgba(255, 255, 255, 0.55);
+
+  max-width: 1400px;
+  margin: clamp(2rem, 5vw, 4rem) auto 0;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+
+  border-radius: 24px;
+  border: 1px solid var(--gs-border);
+
+  background:
+    radial-gradient(circle at 90% 0%, rgba(0, 194, 168, 0.12), transparent 40%),
+    linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+/* Subtle Instagram Accent Line */
+.greenscreen-instagram::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 3px;
+
+  background: linear-gradient(
+    90deg,
+    #f58529,
+    #dd2a7b,
+    #8134af,
+    #515bd4
+  );
+
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
+.greenscreen-instagram__header h2 {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+
+  display: inline-block;   /* IMPORTANT */
+
+  background: linear-gradient(
+    90deg,
+    #f58529 0%,
+    #dd2a7b 35%,
+    #a266c5 65%,
+    #616aca 100%
+  );
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.greenscreen-instagram__eyebrow {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 194, 168, 0.4);
+  background: rgba(0, 194, 168, 0.06);
+
+  color: #78e9d7;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+
+.greenscreen-instagram__header p {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gs-muted);
+}
+
+.greenscreen-instagram__header {
+  margin-bottom: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* =====================================
+   GRID
+===================================== */
+
+.greenscreen-instagram__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.9rem, 2vw, 1.6rem);
+  margin-bottom: clamp(1rem, 2.2vw, 2rem);
+}
+
+/* =====================================
+   CARD
+===================================== */
+
+.greenscreen-instagram__card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 18px;
+
+  border: 1px solid var(--gs-border);
+  background: #0e1116;
+
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.greenscreen-instagram__card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+
+  transition: transform 0.6s ease;
+}
+
+/* Bottom cinematic gradient */
+.greenscreen-instagram__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.15),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Overlay Text */
+.greenscreen-instagram__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+}
+
+/* Post Index */
+.greenscreen-instagram__index {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.8rem;
+  z-index: 3;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  color: rgba(255,255,255,0.9);
+}
+
+/* Hover Effects */
+.greenscreen-instagram__card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 194, 168, 0.6);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.greenscreen-instagram__card:hover img {
+  transform: scale(1.08);
+}
+
+.greenscreen-instagram__card:hover .greenscreen-instagram__overlay {
+  opacity: 1;
+}
+
+.greenscreen-instagram__card:focus-visible {
+  outline: 2px solid rgba(0, 194, 168, 0.85);
+  outline-offset: 3px;
+}
+
+/* =====================================
+   CTA BUTTON
+===================================== */
+
+.greenscreen-instagram__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem 1.8rem;
+  border-radius: 999px;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  background: linear-gradient(
+    90deg,
+    #f58529,
+    #dd2a7b,
+    #8134af,
+    #515bd4
+  );
+
+  background-size: 200% 200%;
+  animation: instagramGradient 6s ease infinite;
+
+  color: #ffffff;
+  border: none;
+
+  box-shadow:
+    0 15px 35px rgba(221, 42, 123, 0.4);
+
+  transition: all 0.3s ease;
+}
+
+.greenscreen-instagram__btn:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 25px 50px rgba(221, 42, 123, 0.6);
+}
+
+.greenscreen-instagram__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 992px) {
+  .greenscreen-instagram__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .greenscreen-instagram {
+    padding: 1.15rem;
+  }
+
+  .greenscreen-instagram__grid {
+    grid-template-columns: 1fr;
+    gap: 0.95rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .greenscreen-instagram__header p {
+    letter-spacing: 0.12em;
+  }
+
+}

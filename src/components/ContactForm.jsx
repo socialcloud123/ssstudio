@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from './Navbar'
 import './ContactForm.css'
 
 export default function ContactForm() {
@@ -103,21 +104,28 @@ export default function ContactForm() {
       </section>
 
       <footer className="footer">
-        <p>© 2026 All rights reserved by{' '}
-          <a
-            href="https://www.nearbystudio.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => {
-              e.preventDefault()
-              window.open('https://www.nearbystudio.in/', '_blank', 'noopener,noreferrer')
-            }}
-          >
-            nearby studio
-          </a>{' '}| Developed & Owned by{' '}<a href="https://sripadastudios.com/" target="_blank" rel="noopener noreferrer">
-            Sripada Studios
-          </a>
-        </p>
+        <div className="footer-inner">
+          <div className="footer-bar">
+            <p className="footer-credits">© 2026 All rights reserved by{' '}
+              <a
+                href="https://www.nearbystudio.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault()
+                  window.open('https://www.nearbystudio.in/', '_blank', 'noopener,noreferrer')
+                }}
+              >
+                nearby studio
+              </a>{' '}| Developed & Owned by{' '}<a href="https://sripadastudios.com/" target="_blank" rel="noopener noreferrer">
+                Sripada Studios
+              </a>
+            </p>
+            <div className="footer-navbar-wrap">
+              <Navbar />
+            </div>
+          </div>
+        </div>
       </footer>
     </>
   )

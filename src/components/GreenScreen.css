@@ -1,6 +1,19 @@
 .greenscreen-section::after {
   content: 'GREEN SCREEN';
-  font-size: clamp(4rem, 7vw, 6rem);
+  position: absolute;
+  top: 11%;
+  right: 0%;
+  transform: translateY(-50%);
+  width: 70%;
+  text-align: right;
+  font-size: clamp(5rem, 10vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
 .greenscreen-grid {

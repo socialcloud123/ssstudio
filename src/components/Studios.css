@@ -11,7 +11,7 @@
 .studios-section::after {
   content: "STUDIOS";
   position: absolute;
-  top: 17%;
+  top: 10%;
   right: 5%;
   transform: translateY(-50%);
   width: 70%;
