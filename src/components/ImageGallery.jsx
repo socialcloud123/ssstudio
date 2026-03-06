@@ -11,7 +11,7 @@ const IMAGES = [
 ]
 
 const AMENITIES = [
-  'Makeup/Audio/Changing Room',
+  'Makeup/Audio/Dressing Room',
   '24/7 Power Backup',
   'Parking Space',
   'High Speed Internet',

@@ -19,7 +19,7 @@ export default function FashionShoot() {
         { text: 'Edited + Original Photos', highlight: true },
         { text: 'Own Costume (Up to 2)', highlight: true },
         { text: 'AC Studio Indoor Setup', highlight: true },
-        { text: 'Makeup Room & Changing Room', highlight: true }
+        { text: 'Makeup Room & Dressing Room', highlight: true }
       ]
     },
     {
@@ -35,7 +35,7 @@ export default function FashionShoot() {
         { text: 'Edited + Original Photos', highlight: true },
         { text: 'Own Costume (Up to 4)', highlight: true },
         { text: 'AC Studio Indoor Setup', highlight: true },
-        { text: 'Makeup Room & Changing Room', highlight: true },
+        { text: 'Makeup Room & Dressing Room', highlight: true },
         { text: 'Shoot Guidance with Catalogue for Poses', highlight: true }
       ],
       badge: 'Best Value — Full Day'

@@ -24,7 +24,7 @@ const OurSpaces = memo(() => {
       id: '03',
       name: 'Model Photography',
       description: 'Fashion, portfolio shoots, campaign-ready imagery.',
-      leftImg: '/Snapshots/model_new_1.webp',
+      leftImg: '/Snapshots/model_new_2.webp',
       rightImg: '/Snapshots/Model_3.webp'
     },
     {

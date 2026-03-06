@@ -17,7 +17,7 @@ export default function Podcast() {
         target: 'All Audiences • You Decide',
         duration: '2 hrs',
         price: '₹3,499',
-        features: ['AC Studio access', 'Premium sofas', 'Makeup & Changing Room', 'Sound-treated room for clean audio'],
+        features: ['AC Studio access', 'Premium sofas', 'Makeup & Dressing Room', 'Sound-treated room for clean audio'],
         custom: true
       },
       {
