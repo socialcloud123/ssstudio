@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import './App.css';
+import ScrollToTopButton from './components/ScrollToTop';
 
 // Critical components - load immediately (above fold)
 import Navbar from './components/Navbar';
@@ -61,7 +62,7 @@ function HomePage() {
   );
 }
 
-function ScrollToTop() {
+function ScrollToTopOnRouteChange() {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -74,7 +75,8 @@ function ScrollToTop() {
 function App() {
   return (
     <Router>
-      <ScrollToTop />
+      <ScrollToTopOnRouteChange />
+      <ScrollToTopButton />
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
           <Route path="/" element={<HomePage />} />

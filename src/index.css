@@ -25,6 +25,36 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Keep page content non-selectable while preserving interactive controls. */
+body :not(a):not(button):not(input):not(textarea):not(select):not(option):not(summary):not([role="button"]):not([contenteditable="true"]) {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+img,
+svg,
+video,
+canvas {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;
+}
+
+a,
+button,
+input,
+textarea,
+select,
+option,
+summary,
+[role="button"],
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+  pointer-events: auto;
+}
+
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
