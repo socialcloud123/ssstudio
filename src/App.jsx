@@ -4,9 +4,9 @@ import './App.css';
 
 // Critical components - load immediately (above fold)
 import Navbar from './components/Navbar';
-import Hero_1 from './components/Hero_1';
 
 // Lazy load below-the-fold components
+const Hero_1 = lazy(() => import('./components/Hero_1'));
 const Hero = lazy(() => import('./components/Hero'));
 const StudioSnapshot = lazy(() => import('./components/StudioSnapshot'));
 const Services = lazy(() => import('./components/Services'));
@@ -43,7 +43,9 @@ function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a1333] via-[#0f0f1f] to-black">
       <Navbar />
-      <Hero_1 />
+      <Suspense fallback={<LoadingFallback />}>
+        <Hero_1 />
+      </Suspense>
       <Suspense fallback={<LoadingFallback />}>
         <Hero />
         <StudioSnapshot />

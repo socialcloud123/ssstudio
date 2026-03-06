@@ -4,10 +4,10 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 const MOBILE_BREAKPOINT = 768
 
 const IMAGES = [
-  { src: '/ImageGallery/Brown_Setup_1 1.png', id: '_4' },
-  { src: '/ImageGallery/Brown_Setup_1 3.png', id: '_3' },
-  { src: '/ImageGallery/Brown_Setup_1 5.png', id: '_2' },
-  { src: '/ImageGallery/nearby studio_pitch.png', id: '_1' },
+  { src: '/ImageGallery/Brown_Setup_1 1.webp', id: '_4' },
+  { src: '/ImageGallery/Brown_Setup_1 3.webp', id: '_3' },
+  { src: '/ImageGallery/Brown_Setup_1 5.webp', id: '_2' },
+  { src: '/ImageGallery/nearby studio_pitch.webp', id: '_1' },
 ]
 
 const AMENITIES = [
@@ -64,8 +64,6 @@ const amenitiesCardStyle = {
   borderRadius: '18px',
   background: 'rgba(255,255,255,0.03)',
   border: '1px solid rgba(255,255,255,0.06)',
-  backdropFilter: 'blur(8px)',
-  WebkitBackdropFilter: 'blur(8px)',
   position: 'relative',
   overflow: 'hidden',
 }

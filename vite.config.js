@@ -14,8 +14,7 @@ export default defineConfig({
         manualChunks: {
           'vendor-react': ['react', 'react-dom'],
           'vendor-router': ['react-router-dom'],
-          'vendor-animation': ['framer-motion', 'motion'],
-          'vendor-3d': ['three', 'ogl'],
+          'vendor-animation': ['framer-motion'],
           'vendor-gsap': ['gsap'],
         },
       },
@@ -32,6 +31,6 @@ export default defineConfig({
     sourcemap: false,
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'framer-motion'],
+    include: ['react', 'react-dom'],
   },
 })

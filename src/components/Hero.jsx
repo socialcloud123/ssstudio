@@ -1,12 +1,32 @@
-import { useEffect, useRef, memo } from 'react'
+import { useEffect, useRef, useState, memo } from 'react'
 import './Hero.css'
 
 const Hero = memo(() => {
   const videoRef = useRef(null)
+  const sectionRef = useRef(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px 0px' }
+    )
+
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const video = videoRef.current
-    if (!video) return
+    if (!video || !shouldLoadVideo) return
 
     const playVideo = async () => {
       try {
@@ -24,10 +44,10 @@ const Hero = memo(() => {
     } else {
       video.addEventListener('loadeddata', playVideo, { once: true })
     }
-  }, [])
+  }, [shouldLoadVideo])
 
   return (
-    <div className="hero-section">
+    <div className="hero-section" ref={sectionRef}>
       <video 
         ref={videoRef}
         autoPlay 
@@ -35,10 +55,12 @@ const Hero = memo(() => {
         loop 
         playsInline 
         className="hero-video object-contain"
-        preload="metadata"
+        preload="none"
         webkit-playsinline="true"
       >
-        <source src="/Nearby studio_Studio tour 1.mp4" type="video/mp4" />
+        {shouldLoadVideo && (
+          <source src="/Nearby studio_Studio tour 1.mp4" type="video/mp4" />
+        )}
       </video>
     </div>
   )

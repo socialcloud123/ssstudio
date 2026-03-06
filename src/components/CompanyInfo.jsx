@@ -1,55 +1,49 @@
-import React, { useEffect, useRef } from 'react'
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import './CompanyInfo.css'
-import ColorBlends from './ColorBlends'
+const ColorBlends = lazy(() => import('./ColorBlends'))
 
 function CompanyInfo() {
-  const videoRef = useRef(null)
-
-  const startTime = 2.76
-  const endTime = 5
+  const sectionRef = useRef(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
 
   useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
+    const section = sectionRef.current
+    if (!section) return
 
-    const handleLoaded = () => {
-      video.currentTime = startTime
-      video.play()
-    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '250px 0px' }
+    )
 
-    const handleTimeUpdate = () => {
-      if (video.currentTime >= endTime) {
-        video.currentTime = startTime
-      }
-    }
-
-    video.addEventListener('loadedmetadata', handleLoaded)
-    video.addEventListener('timeupdate', handleTimeUpdate)
-
-    return () => {
-      video.removeEventListener('loadedmetadata', handleLoaded)
-      video.removeEventListener('timeupdate', handleTimeUpdate)
-    }
+    observer.observe(section)
+    return () => observer.disconnect()
   }, [])
 
   return (
-    <section className="company-info-section">
+    <section className="company-info-section" ref={sectionRef}>
       {/* Background Layer */}
       <div className="company-bg">
-        <ColorBlends
-          colors={["#00c2a8", "#0f0f12", "#00433a"]}
-          rotation={105}
-          speed={0.1}
-          scale={1}
-          frequency={1}
-          warpStrength={1}
-          mouseInfluence={1}
-          parallax={4}
-          noise={0.1}
-          transparent
-          autoRotate={0}
-          color=""
-        />
+        <Suspense fallback={null}>
+          <ColorBlends
+            colors={["#00c2a8", "#0f0f12", "#00433a"]}
+            rotation={105}
+            speed={0.1}
+            scale={1}
+            frequency={1}
+            warpStrength={1}
+            mouseInfluence={1}
+            parallax={4}
+            noise={0.1}
+            transparent
+            autoRotate={0}
+            color=""
+          />
+        </Suspense>
       </div>
 
       <div className="company-info-container">
@@ -81,16 +75,19 @@ function CompanyInfo() {
 
         <div className="company-video-wrapper">
           <video
-            ref={videoRef}
             autoPlay
             muted
+            loop
             playsInline
             className="company-video"
+            preload="none"
           >
-            <source
-              src="/Nearby studio_Studio tour 1.mp4"
-              type="video/mp4"
-            />
+            {shouldLoadVideo && (
+              <source
+                src="/nearby studio logo 1.mp4"
+                type="video/mp4"
+              />
+            )}
           </video>
         </div>
       </div>

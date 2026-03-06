@@ -1,27 +1,36 @@
-import React, { useEffect, useRef, memo } from 'react'
+import React, { lazy, Suspense, useEffect, useRef, memo, useState } from 'react'
 import './StudioSnapshot.css'
-import SplashCursor from './SplashCursor';
+const SplashCursor = lazy(() => import('./SplashCursor'));
 
 const StudioSnapshot = memo(() => {
   const galleryImages = [
-    '/Snapshots/Product.png',
-    '/Snapshots/sofa.png',
-    '/Snapshots/Green_screen.png',
-    '/Snapshots/chair_1.png',
-    '/Snapshots/17-1.png',
-    '/Snapshots/Studio (1).png',
-    '/Snapshots/Model.png',
-    '/Snapshots/Model (2).png',
-    '/Snapshots/chair_1.png',
-    '/Snapshots/Content.png',
-    '/Snapshots/Product (1).png',
-    '/Snapshots/Studio.png',
-    '/Snapshots/Model (1).png',
-    '/Snapshots/Studio (2).png',
-    '/Snapshots/Studio (3).png',
-    '/Snapshots/Studio_setup.png',
+    '/Snapshots/Product.webp',
+    '/Snapshots/sofa.webp',
+    '/Snapshots/Green_screen.webp',
+    '/Snapshots/chair_1.webp',
+    '/Snapshots/17-1.webp',
+    '/Snapshots/Studio (1).webp',
+    '/Snapshots/Model.webp',
+    '/Snapshots/Model (2).webp',
+    '/Snapshots/chair_1.webp',
+    '/Snapshots/Content.webp',
+    '/Snapshots/Product (1).webp',
+    '/Snapshots/Studio.webp',
+    '/Snapshots/Model (1).webp',
+    '/Snapshots/Studio (2).webp',
+    '/Snapshots/Studio (3).webp',
+    '/Snapshots/Studio_setup.webp',
   ]
   const sectionRef = useRef(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)')
+    const syncMobileState = () => setIsMobile(mediaQuery.matches)
+    syncMobileState()
+    mediaQuery.addEventListener('change', syncMobileState)
+    return () => mediaQuery.removeEventListener('change', syncMobileState)
+  }, [])
 
   useEffect(() => {
     const section = sectionRef.current
@@ -66,7 +75,11 @@ const StudioSnapshot = memo(() => {
 
   return (
     <section className="service-hero-section" ref={sectionRef}>
-      <SplashCursor />
+      {!isMobile && (
+        <Suspense fallback={null}>
+          <SplashCursor />
+        </Suspense>
+      )}
       <div className="abs-gallery-grid">
         {galleryImages.map((img, index) => (
           <div key={index} className="hover-gallery-image-wrapper">

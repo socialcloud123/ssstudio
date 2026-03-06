@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import "./Navbar.css";
-import logoWhite from "/Nearby studio_white.png";
+import logoWhite from "/Nearby studio_white.webp";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -49,9 +49,23 @@ const Navbar = () => {
       });
     };
 
-    layout();
+    let idleId;
+    let timeoutId;
+
+    const runLayout = () => layout();
+
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(runLayout, { timeout: 250 });
+    } else {
+      timeoutId = window.setTimeout(runLayout, 80);
+    }
+
     window.addEventListener('resize', layout);
-    return () => window.removeEventListener('resize', layout);
+    return () => {
+      if (idleId) window.cancelIdleCallback(idleId);
+      if (timeoutId) window.clearTimeout(timeoutId);
+      window.removeEventListener('resize', layout);
+    };
   }, []);
 
   const handleEnter = (i) => {

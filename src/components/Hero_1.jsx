@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState, memo, useCallback } from 'react';
+import React, { lazy, Suspense, useRef, useEffect, useState, memo, useCallback } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
-import SplashCursor from './SplashCursor';
-import ShinyText from './ShinyText';
+const SplashCursor = lazy(() => import('./SplashCursor'));
+const ShinyText = lazy(() => import('./ShinyText'));
 
 /* =========================
    LightRays Component
@@ -323,6 +323,29 @@ export default memo(function App() {
     }, []);
 
     const videoRef = useRef(null);
+    const [showCursor, setShowCursor] = useState(false);
+
+    useEffect(() => {
+        let idleId;
+        let timeoutId;
+
+        const enableHeavyEffects = () => {
+            if (!isMobile) {
+                setShowCursor(true);
+            }
+        };
+
+        if ('requestIdleCallback' in window) {
+            idleId = window.requestIdleCallback(enableHeavyEffects, { timeout: 600 });
+        } else {
+            timeoutId = window.setTimeout(enableHeavyEffects, 250);
+        }
+
+        return () => {
+            if (idleId) window.cancelIdleCallback(idleId);
+            if (timeoutId) window.clearTimeout(timeoutId);
+        };
+    }, [isMobile]);
 
 useEffect(() => {
   const video = videoRef.current;
@@ -358,7 +381,11 @@ useEffect(() => {
 
             }}
         >
-            <SplashCursor />
+            {!isMobile && showCursor && (
+                <Suspense fallback={null}>
+                    <SplashCursor />
+                </Suspense>
+            )}
             {/* Light Rays Background */}
             <LightRays
                 raysOrigin={isMobile ? "center" : "top-center"}
@@ -390,13 +417,14 @@ useEffect(() => {
                     pointerEvents: 'auto',
                 }}
             >
-                <video
+<video
   ref={videoRef}
   src="/nearby studio logo 1.webm"
   autoPlay
   muted
   loop
   playsInline
+  preload="metadata"
   style={{
     width: "clamp(400px, 36vw, 600px)",
     mixBlendMode: "screen",
@@ -414,35 +442,37 @@ useEffect(() => {
     textAlign: 'center',
   }}
 >
-  <ShinyText
-    text={
-    <>
-      a Studio Floor by{" "}
-      <a
-        href="https://sripadastudios.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          fontWeight: 700,
-          textDecoration: "none",
-          color: "inherit",
-          cursor: "pointer",
-        }}
-      >
-        Sripada Studios
-      </a>
-    </>
-  }
-    speed={2}
-    delay={0}
-    color="#F5F5F3"
-    shineColor="#F5F5F3"
-    spread={120}
-    direction="left"
-    yoyo={false}
-    pauseOnHover={false}
-    disabled={false}
-  />
+  <Suspense fallback={null}>
+    <ShinyText
+      text={
+      <>
+        a Studio Floor by{" "}
+        <a
+          href="https://sripadastudios.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            fontWeight: 700,
+            textDecoration: "none",
+            color: "inherit",
+            cursor: "pointer",
+          }}
+        >
+          Sripada Studios
+        </a>
+      </>
+    }
+      speed={2}
+      delay={0}
+      color="#F5F5F3"
+      shineColor="#F5F5F3"
+      spread={120}
+      direction="left"
+      yoyo={false}
+      pauseOnHover={false}
+      disabled={false}
+    />
+  </Suspense>
 </div>
      
         </div>

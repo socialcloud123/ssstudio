@@ -6,37 +6,37 @@ export default function InstagramTail() {
   const fallbackPosts = [
     {
       id: '01',
-      image: '/4.png',
+      image: '/4.webp',
       alt: 'Professional green screen setup',
       href: profileUrl
     },
     {
       id: '02',
-      image: '/3.png',
+      image: '/3.webp',
       alt: 'Studio production lighting setup',
       href: profileUrl
     },
     {
       id: '03',
-      image: '/1.png',
+      image: '/1.webp',
       alt: 'Content creation shoot in progress',
       href: profileUrl
     },
     {
       id: '04',
-      image: '/1.png',
+      image: '/1.webp',
       alt: 'Professional green screen setup',
       href: profileUrl
     },
     {
       id: '05',
-      image: '/2.png',
+      image: '/2.webp',
       alt: 'Studio production lighting setup',
       href: profileUrl
     },
     {
       id: '06',
-      image: '/5.png',
+      image: '/5.webp',
       alt: 'Content creation shoot in progress',
       href: profileUrl
     }
