@@ -14,6 +14,7 @@
     "seo:setup": "echo 'Follow steps in QUICK_SEO_SETUP.md to complete manual setup'"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",
     "framer-motion": "^12.33.0",
     "gsap": "^3.14.2",
