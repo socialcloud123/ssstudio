@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import './ContactForm.css'
 
@@ -151,9 +152,13 @@ export default function ContactForm() {
               <div className="footer-navbar-wrap">
                 <Navbar />
               </div>
-              <span className="footer-privacy-text">
+              <Link 
+                to="/privacy-policy" 
+                className="footer-privacy-text"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
                 Privacy Policy
-              </span>
+              </Link>
             </div>
           </div>
         </div>
