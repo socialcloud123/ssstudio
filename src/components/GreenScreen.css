@@ -21,6 +21,10 @@
   justify-content: center;
 }
 
+.greenscreen-section .features li {
+  color: #fff;
+}
+
 @media (max-width: 1024px) {
   .greenscreen-grid {
     grid-template-columns: 1fr;

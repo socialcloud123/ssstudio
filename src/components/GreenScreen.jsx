@@ -15,7 +15,7 @@ export default function GreenScreen() {
       price: '₹4,500',
       extra: '₹999',
       features: [
-        'AC 2 Ton',
+        '2 Ton AC',
         'Basic Lights Included',
         'Cafeteria Access',
         'WiFi',
@@ -35,7 +35,7 @@ export default function GreenScreen() {
       price: '₹9,999',
       extra: '₹999',
       features: [
-        'AC 2 Ton',
+        '2 Ton AC',
         'Basic Lights Included',
         'Cafeteria Access',
         'WiFi',

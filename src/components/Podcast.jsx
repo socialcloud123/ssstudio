@@ -17,7 +17,7 @@ export default function Podcast() {
         target: 'All Audiences • You Decide',
         duration: '2 hrs',
         price: '₹3,499',
-        features: ['AC Studio access', 'Premium sofas', 'Makeup & Dressing Room', 'Sound-treated room for clean audio'],
+        features: ['AC Studio access', 'Premium sofas', 'Makeup & Dressing Room', 'Soundproof Room'],
         custom: true
       },
       {
@@ -27,7 +27,7 @@ export default function Podcast() {
         target: 'Founders & Startup Owners',
         duration: '2.5 hrs',
         price: '₹24,999',
-        features: ['1 Camera Setup', '40 min podcast', '3 Reels edited', 'Basic colour correction, graphics & editing', 'Basic inserts • 1 Iteration', '2 Colour or Podcast Mics', '2 Rotation Chairs • White Table', '1 Sofa • Tea Tables • Plane Frame']
+        features: ['1 Camera Setup', '40 min podcast', '3 Reels edited', 'Basic colour correction, graphics & editing', 'Basic inserts • 1 Iteration', '2 Collar Mics', '2 Rotation Chairs', '1 White Table', '1 Sofa • Tea Table • Plain Frame']
       },
       {
         id: '02',
@@ -36,7 +36,7 @@ export default function Podcast() {
         target: 'Corporate Heads',
         duration: '2.5 hrs',
         price: '₹54,999',
-        features: ['1 Round Table • Up to 4 Guests', '4 Rotating Chairs', '3 Camera Setup', 'Premium lighting • 4 Colour Mics', '4 Reels <90 sec each • 1 Hook Teaser', '40–60 min Podcast • Podcast Switcher', '1 Iteration'],
+        features: ['Up to 4 Guests' , '1 Round Table', '4 Rotating Chairs', '3 Camera Setup', 'Premium lighting • 4 Collar Mics', '4 Reels <90 sec each • 1 Hook Teaser', '40–60 min Podcast • Podcast Switcher', '1 Iteration'],
         delivery: '7 Days'
       },
       {
@@ -46,7 +46,7 @@ export default function Podcast() {
         target: 'Influencers & Content Creators',
         duration: '2.5 hrs',
         price: '₹24,999',
-        features: ['1 Camera Setup', '40 min podcast', '3 Reels edited', 'Basic colour correction, graphics & editing', 'Basic inserts • 1 Iteration', '2 Colour or Podcast Mics', '2 Rotation Chairs • White Table', '1 Sofa • Tea Tables • Plane Frame']
+        features: ['1 Camera Setup', '40 min podcast', '3 Reels edited', 'Basic colour correction, graphics & editing', 'Basic inserts • 1 Iteration', '2 Collar Mics', '2 Rotation Chairs • White Table', '1 Sofa • Tea Table • Plain Frame']
       },
       {
         id: '04',
@@ -55,7 +55,7 @@ export default function Podcast() {
         target: 'Brands',
         duration: '2.5 hrs',
         price: '₹54,999',
-        features: ['Coffee Table Setup', 'Floor Mat • Logo Placement • Artificial Props', '2–3 Guests — 2-Seater Sofa + Premium Chair', '3 Camera Setup', 'Premium Lighting • 2–3 Colour Mics', '4 Reels <90 sec each • 1 Hook Teaser', '40–60 min Show • Podcast Switcher', '1 Iteration'],
+        features: ['2–3 Guests' ,'Coffee Table Setup', 'Floor Mat • Logo Placement • Artificial Props', '2-Seater Sofa + Premium Chair', '3 Camera Setup', 'Premium Lighting' ,'2–3 Collar Mics', '4 Reels <90 sec each + 1 Hook Teaser', '40–60 min Show + Podcast Switcher', '1 Iteration'],
         delivery: '7 Days'
       }
     ],
@@ -67,7 +67,7 @@ export default function Podcast() {
         target: 'Founders & Startup Owners',
         duration: '2.5 hrs',
         price: '₹34,999',
-        features: ['3 Camera Setup', 'Podcast Switcher', '5 Reels <90 sec each', '30–40 min Podcast (up to 1 hr)', 'Basic colour correction, graphics & editing', 'Basic inserts • 1 Iteration', '2 Colour or Podcast Mics', '2 Rotation Chairs • White Table • Sofa']
+        features: ['3 Camera Setup', 'Podcast Switcher', '5 Reels <90 sec each', '30–40 min Podcast (up to 1 hr)', 'Basic colour correction, graphics & editing', 'Basic inserts • 1 Iteration', '2 Collar Mics', '2 Rotation Chairs • Sofa', '1 White Table']
       },
       {
         id: '06',
@@ -76,7 +76,7 @@ export default function Podcast() {
         target: 'Corporate Series',
         duration: '2.5 hrs',
         price: '₹34,999',
-        features: ['2 People on Organic Sofa', 'Coffee Table • Two Individual Sofas', '3 Camera Setup', 'Premium Lighting • 2 Colour Mics', '4 Reels <90 sec each', '1 Hook Teaser • 1.5 hr Podcast', 'Podcast Switcher • 1 Iteration'],
+        features: ['2 People on Organic Sofa', 'Coffee Table • Two Individual Sofas', '3 Camera Setup', 'Premium Lighting • 2 Collar Mics', '4 Reels <90 sec each', '1 Hook Teaser • 1.5 hr Podcast', 'Podcast Switcher • 1 Iteration'],
         delivery: '7 Days'
       },
       {
@@ -86,7 +86,7 @@ export default function Podcast() {
         target: 'Influencers & Content Creators',
         duration: '2.5 hrs',
         price: '₹34,999',
-        features: ['3 Camera Setup', 'Podcast Switcher', '5 Reels <90 sec each', '30–40 min Podcast (up to 1 hr)', 'Basic colour correction, graphics & editing', 'Basic inserts • 1 Iteration', '2 Colour or Podcast Mics', '2 Rotation Chairs • White Table • Sofa']
+        features: ['3 Camera Setup', 'Podcast Switcher', '5 Reels <90 sec each', '30–40 min Podcast (up to 1 hr)', 'Basic colour correction, graphics & editing', 'Basic inserts • 1 Iteration', '2 Collar Mics', '2 Rotation Chairs • White Table • Sofa']
       }
     ],
     c: [
@@ -97,7 +97,7 @@ export default function Podcast() {
         target: 'Corporate — 2 People',
         duration: '2.5 hrs',
         price: '₹34,999',
-        features: ['2 People — Individual Sofas', '1 Coffee Table', '3 Camera Setup', 'Premium Lighting', '2 Colour Mics', '4 Reels <90 sec each', '1 Hook Teaser • 1.5 hr Podcast', 'Podcast Switcher • 1 Iteration'],
+        features: ['2 People — Individual Sofas', '1 Coffee Table', '3 Camera Setup', 'Premium Lighting', '2 Collar Mics', '4 Reels <90 sec each', '1 Hook Teaser • 1.5 hr Podcast', 'Podcast Switcher • 1 Iteration'],
         delivery: '7 Days'
       }
     ]

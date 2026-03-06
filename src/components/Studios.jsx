@@ -7,17 +7,29 @@ import './Studios.css'
 
 export default function Studios() {
   const [activePart, setActivePart] = useState('a')
+  const whiteFeatures = new Set([
+    'Makeup Room',
+    'Dressing Room',
+    'WiFi',
+    'Power Backup',
+    'Cafeteria Access',
+    'Soundproof Room',
+    'Multi-Angle Coverage',
+    '3 Wall Studio Setup',
+    'Makeup & Dressing Room',
+    'WiFi & Power Backup'
+  ])
 
   const packages = {
     a: [
-      { id: '01', name: '2 Hour Session', duration: '2 hrs', price: '₹1,800', extra: '₹900', features: ['Makeup Room', 'Dressing Room', 'WiFi', 'Power Backup', 'Cafeteria Access', 'Sound Proof'] },
-      { id: '02', name: '5 Hour Session', duration: '5 hrs', price: '₹4,449', extra: '₹900', features: ['Makeup Room', 'Dressing Room', 'WiFi', 'Power Backup', 'Cafeteria Access', 'Sound Proof'] },
-      { id: '03', name: 'Full Day Session', duration: '8 hrs', price: '₹7,200', extra: '₹900', features: ['Makeup Room', 'Dressing Room', 'WiFi', 'Power Backup', 'Cafeteria Access', 'Sound Proof'], badge: 'Best Value — Full Day' }
+      { id: '01', name: '2 Hour Session', duration: '2 hrs', price: '₹1,800', extra: '₹900', features: ['Makeup Room', 'Dressing Room', 'WiFi', 'Power Backup', 'Cafeteria Access', 'Soundproof Room'] },
+      { id: '02', name: '5 Hour Session', duration: '5 hrs', price: '₹4,449', extra: '₹900', features: ['Makeup Room', 'Dressing Room', 'WiFi', 'Power Backup', 'Cafeteria Access', 'Soundproof Room'] },
+      { id: '03', name: 'Full Day Session', duration: '8 hrs', price: '₹7,200', extra: '₹900', features: ['Makeup Room', 'Dressing Room', 'WiFi', 'Power Backup', 'Cafeteria Access', 'Soundproof Room'], badge: 'Best Value — Full Day' }
     ],
     b: [
-      { id: '01', name: '1 Camera Setup', tiers: [{ label: '2 Hours', price: '₹3,000' }, { label: '4 Hours', price: '₹6,000' }, { label: '8 Hours', price: '₹12,000' }], extra: '₹1,500', features: ['1 Professional Camera', '3 Wall Studio Setup', 'Makeup & Dressing Room', 'WiFi · Power Backup', 'Cafeteria Access · Sound Proof'] },
-      { id: '02', name: '2 Camera Setup', tiers: [{ label: '2 Hours', price: '₹4,200' }, { label: '4 Hours', price: '₹8,400' }, { label: '8 Hours', price: '₹16,800' }], extra: '₹2,100', features: ['2 Professional Cameras', 'Multi-Angle Coverage', '3 Wall Studio Setup', 'Makeup & Dressing Room', 'WiFi · Power Backup', 'Cafeteria Access · Sound Proof'] },
-      { id: '03', name: '3 Camera Setup', tiers: [{ label: '2 Hours', price: '₹5,400' }, { label: '4 Hours', price: '₹10,800' }, { label: '8 Hours', price: '₹21,600' }], extra: '₹2,700', features: ['3 Professional Cameras', 'Full Multi-Angle Coverage', '3 Wall Studio Setup', 'Makeup & Dressing Room', 'WiFi · Power Backup', 'Cafeteria Access · Sound Proof'], badge: 'Pro Package' }
+      { id: '01', name: '1 Camera Setup', tiers: [{ label: '2 Hours', price: '₹3,000' }, { label: '4 Hours', price: '₹6,000' }, { label: '8 Hours', price: '₹12,000' }], extra: '₹1,500', features: ['1 Professional Camera', '3 Wall Studio Setup', 'Makeup & Dressing Room', 'WiFi & Power Backup', 'Cafeteria Access' ,' Soundproof Room'] },
+      { id: '02', name: '2 Camera Setup', tiers: [{ label: '2 Hours', price: '₹4,200' }, { label: '4 Hours', price: '₹8,400' }, { label: '8 Hours', price: '₹16,800' }], extra: '₹2,100', features: ['2 Professional Cameras', 'Multi-Angle Coverage', '3 Wall Studio Setup', 'Makeup & Dressing Room', 'WiFi & Power Backup', 'Cafeteria Access', ' Soundproof Room'] },
+      { id: '03', name: '3 Camera Setup', tiers: [{ label: '2 Hours', price: '₹5,400' }, { label: '4 Hours', price: '₹10,800' }, { label: '8 Hours', price: '₹21,600' }], extra: '₹2,700', features: ['3 Professional Cameras', 'Full Multi-Angle Coverage', '3 Wall Studio Setup', 'Makeup & Dressing Room', 'WiFi & Power Backup', 'Cafeteria Access', 'Soundproof Room'], badge: 'Pro Package' }
     ]
   }
 
@@ -82,7 +94,7 @@ export default function Studios() {
             )}
             <ul className="features">
               {pkg.features.map((feature, i) => (
-                <li key={i} className={i < 2 ? 'highlight' : ''}>{feature}</li>
+                <li key={i} className={i < 2 || whiteFeatures.has(feature.trim()) ? 'highlight' : ''}>{feature}</li>
               ))}
             </ul>
             {pkg.badge && <span className="delivery-badge">{pkg.badge}</span>}
