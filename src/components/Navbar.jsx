@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { gsap } from "gsap";
+import { animate } from "framer-motion";
 import "./Navbar.css";
 import logoWhite from "/Nearby studio_white.webp";
 
@@ -10,7 +10,9 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const circleRefs = useRef([]);
-  const tlRefs = useRef([]);
+  const labelRefs = useRef([]);
+  const hoverLabelRefs = useRef([]);
+  const itemHeightRefs = useRef([]);
   const activeTweenRefs = useRef([]);
 
   useEffect(() => {
@@ -28,24 +30,18 @@ const Navbar = () => {
         circle.style.width = `${D}px`;
         circle.style.height = `${D}px`;
         circle.style.bottom = `-${delta}px`;
+        circle.style.transform = "translateX(-50%) scale(0)";
+        circle.style.transformOrigin = `50% ${originY}px`;
 
-        gsap.set(circle, { xPercent: -50, scale: 0, transformOrigin: `50% ${originY}px` });
+        const label = labelRefs.current[index];
+        const hoverLabel = hoverLabelRefs.current[index];
 
-        const label = pill.querySelector('.pill-label');
-        const hoverLabel = pill.querySelector('.pill-label-hover');
-
-        if (label) gsap.set(label, { y: 0 });
-        if (hoverLabel) gsap.set(hoverLabel, { y: h + 12, opacity: 0 });
-
-        tlRefs.current[index]?.kill();
-        const tl = gsap.timeline({ paused: true });
-        tl.to(circle, { scale: 1.2, xPercent: -50, duration: 2, ease: 'power3.easeOut', overwrite: 'auto' }, 0);
-        if (label) tl.to(label, { y: -(h + 8), duration: 2, ease: 'power3.easeOut', overwrite: 'auto' }, 0);
+        if (label) label.style.transform = "translateY(0px)";
         if (hoverLabel) {
-          gsap.set(hoverLabel, { y: Math.ceil(h + 100), opacity: 0 });
-          tl.to(hoverLabel, { y: 0, opacity: 1, duration: 2, ease: 'power3.easeOut', overwrite: 'auto' }, 0);
+          hoverLabel.style.transform = `translateY(${Math.ceil(h + 100)}px)`;
+          hoverLabel.style.opacity = "0";
         }
-        tlRefs.current[index] = tl;
+        itemHeightRefs.current[index] = h;
       });
     };
 
@@ -69,17 +65,47 @@ const Navbar = () => {
   }, []);
 
   const handleEnter = (i) => {
-    const tl = tlRefs.current[i];
-    if (!tl) return;
-    activeTweenRefs.current[i]?.kill();
-    activeTweenRefs.current[i] = tl.tweenTo(tl.duration(), { duration: 0.3, ease: 'power3.easeOut', overwrite: 'auto' });
+    const circle = circleRefs.current[i];
+    const label = labelRefs.current[i];
+    const hoverLabel = hoverLabelRefs.current[i];
+    const h = itemHeightRefs.current[i];
+    if (!circle || typeof h !== "number") return;
+    activeTweenRefs.current[i]?.forEach((control) => control?.stop?.());
+
+    const controls = [];
+    controls.push(animate(circle, { transform: "translateX(-50%) scale(1.2)" }, { duration: 0.3, ease: [0.22, 1, 0.36, 1] }));
+    if (label) {
+      controls.push(animate(label, { transform: `translateY(${-(h + 8)}px)` }, { duration: 0.3, ease: [0.22, 1, 0.36, 1] }));
+    }
+    if (hoverLabel) {
+      controls.push(animate(hoverLabel, { transform: "translateY(0px)", opacity: 1 }, { duration: 0.3, ease: [0.22, 1, 0.36, 1] }));
+    }
+    activeTweenRefs.current[i] = controls;
   };
 
   const handleLeave = (i) => {
-    const tl = tlRefs.current[i];
-    if (!tl) return;
-    activeTweenRefs.current[i]?.kill();
-    activeTweenRefs.current[i] = tl.tweenTo(0, { duration: 0.2, ease: 'power3.easeOut', overwrite: 'auto' });
+    const circle = circleRefs.current[i];
+    const label = labelRefs.current[i];
+    const hoverLabel = hoverLabelRefs.current[i];
+    const h = itemHeightRefs.current[i];
+    if (!circle || typeof h !== "number") return;
+    activeTweenRefs.current[i]?.forEach((control) => control?.stop?.());
+
+    const controls = [];
+    controls.push(animate(circle, { transform: "translateX(-50%) scale(0)" }, { duration: 0.2, ease: [0.22, 1, 0.36, 1] }));
+    if (label) {
+      controls.push(animate(label, { transform: "translateY(0px)" }, { duration: 0.2, ease: [0.22, 1, 0.36, 1] }));
+    }
+    if (hoverLabel) {
+      controls.push(
+        animate(
+          hoverLabel,
+          { transform: `translateY(${Math.ceil(h + 100)}px)`, opacity: 0 },
+          { duration: 0.2, ease: [0.22, 1, 0.36, 1] }
+        )
+      );
+    }
+    activeTweenRefs.current[i] = controls;
   };
 
   const handleContactClick = (e) => {
@@ -139,8 +165,8 @@ const Navbar = () => {
           >
             <span className="hover-circle" ref={el => circleRefs.current[0] = el}></span>
             <span className="label-stack">
-              <span className="pill-label">Home</span>
-              <span className="pill-label-hover">Home</span>
+              <span className="pill-label" ref={el => labelRefs.current[0] = el}>Home</span>
+              <span className="pill-label-hover" ref={el => hoverLabelRefs.current[0] = el}>Home</span>
             </span>
           </Link>
         </li>
@@ -157,8 +183,8 @@ const Navbar = () => {
           >
             <span className="hover-circle" ref={el => circleRefs.current[1] = el}></span>
             <span className="label-stack">
-              <span className="pill-label">Book Our Space</span>
-              <span className="pill-label-hover">Book Our Space</span>
+              <span className="pill-label" ref={el => labelRefs.current[1] = el}>Book Our Space</span>
+              <span className="pill-label-hover" ref={el => hoverLabelRefs.current[1] = el}>Book Our Space</span>
             </span>
             <span className="dropdown-caret" aria-hidden="true">▾</span>
           </button>
@@ -173,8 +199,8 @@ const Navbar = () => {
               >
                 <span className="hover-circle" ref={el => circleRefs.current[3] = el}></span>
                 <span className="label-stack">
-                  <span className="pill-label">Rent Our Studio</span>
-                  <span className="pill-label-hover">Rent Our Studio</span>
+                  <span className="pill-label" ref={el => labelRefs.current[3] = el}>Rent Our Studio</span>
+                  <span className="pill-label-hover" ref={el => hoverLabelRefs.current[3] = el}>Rent Our Studio</span>
                 </span>
               </Link>
             </li>
@@ -187,8 +213,8 @@ const Navbar = () => {
               >
                 <span className="hover-circle" ref={el => circleRefs.current[4] = el}></span>
                 <span className="label-stack">
-                  <span className="pill-label">Podcast Shoot</span>
-                  <span className="pill-label-hover">Podcast Shoot</span>
+                  <span className="pill-label" ref={el => labelRefs.current[4] = el}>Podcast Shoot</span>
+                  <span className="pill-label-hover" ref={el => hoverLabelRefs.current[4] = el}>Podcast Shoot</span>
                 </span>
               </Link>
             </li>
@@ -201,8 +227,8 @@ const Navbar = () => {
               >
                 <span className="hover-circle" ref={el => circleRefs.current[5] = el}></span>
                 <span className="label-stack">
-                  <span className="pill-label">Model Shoot</span>
-                  <span className="pill-label-hover">Model Shoot</span>
+                  <span className="pill-label" ref={el => labelRefs.current[5] = el}>Model Shoot</span>
+                  <span className="pill-label-hover" ref={el => hoverLabelRefs.current[5] = el}>Model Shoot</span>
                 </span>
               </Link>
             </li>
@@ -215,8 +241,8 @@ const Navbar = () => {
               >
                 <span className="hover-circle" ref={el => circleRefs.current[6] = el}></span>
                 <span className="label-stack">
-                  <span className="pill-label">Green Screen Shoot</span>
-                  <span className="pill-label-hover">Green Screen Shoot</span>
+                  <span className="pill-label" ref={el => labelRefs.current[6] = el}>Green Screen Shoot</span>
+                  <span className="pill-label-hover" ref={el => hoverLabelRefs.current[6] = el}>Green Screen Shoot</span>
                 </span>
               </Link>
             </li>
@@ -227,8 +253,8 @@ const Navbar = () => {
           <a href="#contact-form" onClick={handleContactClick} onMouseEnter={() => handleEnter(2)} onMouseLeave={() => handleLeave(2)}>
             <span className="hover-circle" ref={el => circleRefs.current[2] = el}></span>
             <span className="label-stack">
-              <span className="pill-label">Contact Us</span>
-              <span className="pill-label-hover">Contact Us</span>
+              <span className="pill-label" ref={el => labelRefs.current[2] = el}>Contact Us</span>
+              <span className="pill-label-hover" ref={el => hoverLabelRefs.current[2] = el}>Contact Us</span>
             </span>
           </a>
         </li>

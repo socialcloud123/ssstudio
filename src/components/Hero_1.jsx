@@ -1,7 +1,6 @@
 import React, { lazy, Suspense, useRef, useEffect, useState, memo, useCallback } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
 const SplashCursor = lazy(() => import('./SplashCursor'));
-const ShinyText = lazy(() => import('./ShinyText'));
 
 /* =========================
    LightRays Component
@@ -486,37 +485,22 @@ useEffect(() => {
     textAlign: 'center',
   }}
 >
-  <Suspense fallback={null}>
-    <ShinyText
-      text={
-      <>
-        a Studio Floor by{" "}
-        <a
-          href="https://sripadastudios.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            fontWeight: 700,
-            textDecoration: "none",
-            color: "inherit",
-            cursor: "pointer",
-          }}
-        >
-          Sripada Studios
-        </a>
-      </>
-    }
-      speed={2}
-      delay={0}
-      color="#F5F5F3"
-      shineColor="#F5F5F3"
-      spread={120}
-      direction="left"
-      yoyo={false}
-      pauseOnHover={false}
-      disabled={false}
-    />
-  </Suspense>
+  <span style={{ color: '#F5F5F3' }}>
+    a Studio Floor by{' '}
+    <a
+      href="https://sripadastudios.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        fontWeight: 700,
+        textDecoration: 'none',
+        color: 'inherit',
+        cursor: 'pointer',
+      }}
+    >
+      Sripada Studios
+    </a>
+  </span>
 </div>
      
         </div>

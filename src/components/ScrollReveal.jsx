@@ -1,8 +1,52 @@
-import { useEffect, useRef, useMemo, memo } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef, useMemo, memo } from 'react';
+import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motion';
 
-gsap.registerPlugin(ScrollTrigger);
+const toMotionAnchor = (value) => {
+  if (value === 'top') return 'start';
+  if (value === 'bottom') return 'end';
+  if (value === 'center') return 'center';
+  return value;
+};
+
+const toMotionOffset = (position, fallback = 'end end') => {
+  if (!position || typeof position !== 'string') return fallback;
+  if (position.includes('bottom-=20%')) return 'start 0.8';
+  const parts = position.trim().split(/\s+/);
+  if (parts.length !== 2) return fallback;
+  const [first, second] = parts;
+  return `${toMotionAnchor(first)} ${toMotionAnchor(second)}`;
+};
+
+const WordReveal = memo(({
+  word,
+  index,
+  totalWords,
+  progress,
+  baseOpacity,
+  enableBlur,
+  blurStrength
+}) => {
+  const start = totalWords <= 1 ? 0 : index / totalWords;
+  const end = Math.min(start + 0.35, 1);
+  const opacity = useTransform(progress, [start, end], [baseOpacity, 1]);
+  const blur = useTransform(progress, [start, end], [blurStrength, 0]);
+  const filter = useMotionTemplate`blur(${blur}px)`;
+
+  return (
+    <motion.span
+      className="inline-block word"
+      style={{
+        opacity,
+        filter: enableBlur ? filter : undefined,
+        willChange: 'opacity, filter'
+      }}
+    >
+      {word}
+    </motion.span>
+  );
+});
+
+WordReveal.displayName = 'WordReveal';
 
 const ScrollReveal = memo(({
   children,
@@ -20,85 +64,61 @@ const ScrollReveal = memo(({
 
   const splitText = useMemo(() => {
     const text = typeof children === 'string' ? children : '';
-    return text.split(/(\s+)/).map((word, index) => {
-      if (word.match(/^\s+$/)) return word;
-      return (
-        <span className="inline-block word" key={index}>
-          {word}
-        </span>
-      );
-    });
+    return text.split(/(\s+)/);
   }, [children]);
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+  const nonSpaceWords = useMemo(
+    () => splitText.filter((token) => !token.match(/^\s+$/)),
+    [splitText]
+  );
 
-    const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
-
-    gsap.fromTo(
-      el,
-      { transformOrigin: '0% 50%', rotate: baseRotation },
-      {
-        ease: 'none',
-        rotate: 0,
-        scrollTrigger: {
-          trigger: el,
-          scroller,
-          start: 'top bottom',
-          end: rotationEnd,
-          scrub: true
-        }
-      }
-    );
-
-    const wordElements = el.querySelectorAll('.word');
-
-    gsap.fromTo(
-      wordElements,
-      { opacity: baseOpacity, willChange: 'opacity, filter' },
-      {
-        ease: 'none',
-        opacity: 1,
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: el,
-          scroller,
-          start: 'top bottom-=20%',
-          end: wordAnimationEnd,
-          scrub: true
-        }
-      }
-    );
-
-    if (enableBlur) {
-      gsap.fromTo(
-        wordElements,
-        { filter: `blur(${blurStrength}px)` },
-        {
-          ease: 'none',
-          filter: 'blur(0px)',
-          stagger: 0.05,
-          scrollTrigger: {
-            trigger: el,
-            scroller,
-            start: 'top bottom-=20%',
-            end: wordAnimationEnd,
-            scrub: true
-          }
-        }
-      );
+  const scrollTargetOptions = useMemo(() => {
+    const options = { target: containerRef };
+    if (scrollContainerRef?.current) {
+      options.container = scrollContainerRef;
     }
+    return options;
+  }, [scrollContainerRef]);
 
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength]);
+  const { scrollYProgress: rotationProgress } = useScroll({
+    ...scrollTargetOptions,
+    offset: ['start end', toMotionOffset(rotationEnd)]
+  });
+
+  const { scrollYProgress: wordsProgress } = useScroll({
+    ...scrollTargetOptions,
+    offset: [toMotionOffset('top bottom-=20%', 'start 0.8'), toMotionOffset(wordAnimationEnd)]
+  });
+
+  const rotate = useTransform(rotationProgress, [0, 1], [baseRotation, 0]);
+  let wordIndex = 0;
 
   return (
-    <h2 ref={containerRef} className={`my-5 ${containerClassName}`}>
-      <p className={`text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] font-semibold ${textClassName}`}>{splitText}</p>
-    </h2>
+    <motion.h2
+      ref={containerRef}
+      className={`my-5 ${containerClassName}`}
+      style={{ rotate, transformOrigin: '0% 50%' }}
+    >
+      <p className={`text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] font-semibold ${textClassName}`}>
+        {splitText.map((token, index) => {
+          if (token.match(/^\s+$/)) return token;
+          const currentWordIndex = wordIndex;
+          wordIndex += 1;
+          return (
+            <WordReveal
+              key={index}
+              word={token}
+              index={currentWordIndex}
+              totalWords={nonSpaceWords.length}
+              progress={wordsProgress}
+              baseOpacity={baseOpacity}
+              enableBlur={enableBlur}
+              blurStrength={blurStrength}
+            />
+          );
+        })}
+      </p>
+    </motion.h2>
   );
 });
 
