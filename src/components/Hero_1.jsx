@@ -460,20 +460,32 @@ useEffect(() => {
                     pointerEvents: 'auto',
                 }}
             >
-<video
-  ref={videoRef}
-  src="/nearby studio logo 1.webm"
-  autoPlay
-  muted
-  loop
-  playsInline
-  preload="metadata"
-  style={{
-    width: "clamp(400px, 36vw, 600px)",
-    mixBlendMode: "screen",
-    background: "transparent",
-  }}
-/>
+{isMobile ? (
+  <img
+    src="/Nearby studio_white.png"
+    alt="Nearby Studio"
+    style={{
+      width: "clamp(140px, 70vw, 200px)",
+      mixBlendMode: "screen",
+      background: "transparent",
+    }}
+  />
+) : (
+  <video
+    ref={videoRef}
+    src="/nearby studio logo 1.webm"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="metadata"
+    style={{
+      width: "clamp(400px, 36vw, 600px)",
+      mixBlendMode: "screen",
+      background: "transparent",
+    }}
+  />
+)}
             </div>
             
             {/* Bottom Text */}
