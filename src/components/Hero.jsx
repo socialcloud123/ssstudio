@@ -34,7 +34,7 @@ const Hero = memo(() => {
         await video.play()
       } catch (error) {
         document.addEventListener('click', () => {
-          video.play().catch(() => {})
+          video.play().catch(() => { })
         }, { once: true })
       }
     }
@@ -48,18 +48,18 @@ const Hero = memo(() => {
 
   return (
     <div className="hero-section" ref={sectionRef}>
-      <video 
+      <video
         ref={videoRef}
-        autoPlay 
-        muted 
-        loop 
-        playsInline 
+        autoPlay
+        muted
+        loop
+        playsInline
         className="hero-video object-contain"
         preload="none"
         webkit-playsinline="true"
       >
         {shouldLoadVideo && (
-          <source src="/Nearby studio_Studio tour 1.mp4" type="video/mp4" />
+          <source src="/Nearby Studio_Studio Tour 1.mp4" type="video/mp4" />
         )}
       </video>
     </div>
