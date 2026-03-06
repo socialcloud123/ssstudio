@@ -120,9 +120,13 @@ export default function ColorBlends({
   const pointerTargetRef = useRef(new THREE.Vector2(0, 0));
   const pointerCurrentRef = useRef(new THREE.Vector2(0, 0));
   const pointerSmoothRef = useRef(8);
+  const isInViewportRef = useRef(true);
+  const isTabVisibleRef = useRef(true);
+  const isAnimatingRef = useRef(false);
 
   useEffect(() => {
     const container = containerRef.current;
+    if (!container) return;
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
@@ -189,7 +193,14 @@ export default function ColorBlends({
       window.addEventListener('resize', handleResize);
     }
 
+    const isActive = () => isInViewportRef.current && isTabVisibleRef.current;
+
     const loop = () => {
+      if (!isActive()) {
+        isAnimatingRef.current = false;
+        rafRef.current = null;
+        return;
+      }
       const dt = clock.getDelta();
       const elapsed = clock.elapsedTime;
       material.uniforms.uTime.value = elapsed;
@@ -208,10 +219,44 @@ export default function ColorBlends({
       renderer.render(scene, camera);
       rafRef.current = requestAnimationFrame(loop);
     };
-    rafRef.current = requestAnimationFrame(loop);
+
+    const startLoop = () => {
+      if (isAnimatingRef.current || !isActive()) return;
+      isAnimatingRef.current = true;
+      rafRef.current = requestAnimationFrame(loop);
+    };
+
+    const stopLoop = () => {
+      isAnimatingRef.current = false;
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewportRef.current = Boolean(entry?.isIntersecting);
+        if (isActive()) startLoop();
+        else stopLoop();
+      },
+      { threshold: 0.01 }
+    );
+    observer.observe(container);
+
+    const handleVisibilityChange = () => {
+      isTabVisibleRef.current = document.visibilityState === 'visible';
+      if (isActive()) startLoop();
+      else stopLoop();
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    handleVisibilityChange();
+    startLoop();
 
     return () => {
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      stopLoop();
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (resizeObserverRef.current) resizeObserverRef.current.disconnect();
       else window.removeEventListener('resize', handleResize);
       geometry.dispose();

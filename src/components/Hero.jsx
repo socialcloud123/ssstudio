@@ -59,7 +59,7 @@ const Hero = memo(() => {
         webkit-playsinline="true"
       >
         {shouldLoadVideo && (
-          <source src="/Nearby Studio_Studio Tour 1.mp4" type="video/mp4" />
+          <source src="/Nearby studio_Studio tour 1.mp4" type="video/mp4" />
         )}
       </video>
     </div>

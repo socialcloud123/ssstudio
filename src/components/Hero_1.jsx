@@ -65,6 +65,9 @@ const LightRays = memo(({
     const animationIdRef = useRef(null);
     const meshRef = useRef(null);
     const cleanupFunctionRef = useRef(null);
+    const isInViewportRef = useRef(true);
+    const isTabVisibleRef = useRef(true);
+    const isAnimatingRef = useRef(false);
 
     /* =========================
        WebGL Setup
@@ -227,7 +230,14 @@ void main() {
                 uniforms.rayDir.value = dir;
             };
 
+            const isActive = () => isInViewportRef.current && isTabVisibleRef.current;
+
             const loop = (t) => {
+                if (!isActive()) {
+                    isAnimatingRef.current = false;
+                    animationIdRef.current = null;
+                    return;
+                }
                 uniforms.iTime.value = t * 0.001;
 
                 if (followMouse) {
@@ -249,12 +259,46 @@ void main() {
                 animationIdRef.current = requestAnimationFrame(loop);
             };
 
+            const startLoop = () => {
+                if (isAnimatingRef.current || !isActive()) return;
+                isAnimatingRef.current = true;
+                animationIdRef.current = requestAnimationFrame(loop);
+            };
+
+            const stopLoop = () => {
+                isAnimatingRef.current = false;
+                if (animationIdRef.current !== null) {
+                    cancelAnimationFrame(animationIdRef.current);
+                    animationIdRef.current = null;
+                }
+            };
+
+            const observer = new IntersectionObserver(
+                ([entry]) => {
+                    isInViewportRef.current = Boolean(entry?.isIntersecting);
+                    if (isActive()) startLoop();
+                    else stopLoop();
+                },
+                { threshold: 0.01 }
+            );
+            observer.observe(containerRef.current);
+
+            const handleVisibilityChange = () => {
+                isTabVisibleRef.current = document.visibilityState === 'visible';
+                if (isActive()) startLoop();
+                else stopLoop();
+            };
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+            handleVisibilityChange();
+
             updatePlacement();
             window.addEventListener('resize', updatePlacement);
-            animationIdRef.current = requestAnimationFrame(loop);
+            startLoop();
 
             cleanupFunctionRef.current = () => {
-                cancelAnimationFrame(animationIdRef.current);
+                stopLoop();
+                observer.disconnect();
+                document.removeEventListener('visibilitychange', handleVisibilityChange);
                 window.removeEventListener('resize', updatePlacement);
                 renderer.gl.getExtension('WEBGL_lose_context')?.loseContext();
                 renderer.gl.canvas.remove();

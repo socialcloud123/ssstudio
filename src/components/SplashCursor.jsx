@@ -703,15 +703,40 @@ function SplashCursor({
         initFramebuffers();
         let lastUpdateTime = Date.now();
         let colorUpdateTimer = 0.0;
+        let animationFrameId = null;
+        let isInViewport = true;
+        let isTabVisible = document.visibilityState === 'visible';
+        let isAnimating = false;
+
+        const isActive = () => isVisible && isInViewport && isTabVisible;
 
         function updateFrame() {
+            if (!isActive()) {
+                isAnimating = false;
+                animationFrameId = null;
+                return;
+            }
             const dt = calcDeltaTime();
             if (resizeCanvas()) initFramebuffers();
             updateColors(dt);
             applyInputs();
             step(dt);
             render(null);
-            requestAnimationFrame(updateFrame);
+            animationFrameId = requestAnimationFrame(updateFrame);
+        }
+
+        function startFrameLoop() {
+            if (isAnimating || !isActive()) return;
+            isAnimating = true;
+            animationFrameId = requestAnimationFrame(updateFrame);
+        }
+
+        function stopFrameLoop() {
+            isAnimating = false;
+            if (animationFrameId !== null) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
         }
 
         function calcDeltaTime() {
@@ -1029,7 +1054,7 @@ function SplashCursor({
             let posX = scaleByPixelRatio(canvasX);
             let posY = scaleByPixelRatio(canvasY);
             let color = generateColor();
-            updateFrame();
+            startFrameLoop();
             updatePointerMoveData(pointer, posX, posY, color);
             document.body.removeEventListener('mousemove', handleFirstMouseMove);
         });
@@ -1052,7 +1077,7 @@ function SplashCursor({
                 const { canvasX, canvasY } = getCanvasCoordinates(touches[i].clientX, touches[i].clientY);
                 let posX = scaleByPixelRatio(canvasX);
                 let posY = scaleByPixelRatio(canvasY);
-                updateFrame();
+                startFrameLoop();
                 updatePointerDownData(pointer, touches[i].identifier, posX, posY);
             }
             document.body.removeEventListener('touchstart', handleFirstTouchStart);
@@ -1094,7 +1119,30 @@ function SplashCursor({
             }
         });
 
-        updateFrame();
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                isInViewport = Boolean(entry?.isIntersecting);
+                if (isActive()) startFrameLoop();
+                else stopFrameLoop();
+            },
+            { threshold: 0.01 }
+        );
+        observer.observe(containerRef.current);
+
+        const handleVisibilityChange = () => {
+            isTabVisible = document.visibilityState === 'visible';
+            if (isActive()) startFrameLoop();
+            else stopFrameLoop();
+        };
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        handleVisibilityChange();
+        startFrameLoop();
+
+        return () => {
+            stopFrameLoop();
+            observer.disconnect();
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+        };
     }, [
         isVisible,
         SIM_RESOLUTION,
