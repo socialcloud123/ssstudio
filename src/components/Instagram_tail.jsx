@@ -6,19 +6,37 @@ export default function InstagramTail() {
   const fallbackPosts = [
     {
       id: '01',
-      image: '/3.png',
+      image: '/4.png',
       alt: 'Professional green screen setup',
       href: profileUrl
     },
     {
       id: '02',
-      image: '/2.png',
+      image: '/3.png',
       alt: 'Studio production lighting setup',
       href: profileUrl
     },
     {
       id: '03',
       image: '/1.png',
+      alt: 'Content creation shoot in progress',
+      href: profileUrl
+    },
+    {
+      id: '04',
+      image: '/1.png',
+      alt: 'Professional green screen setup',
+      href: profileUrl
+    },
+    {
+      id: '05',
+      image: '/2.png',
+      alt: 'Studio production lighting setup',
+      href: profileUrl
+    },
+    {
+      id: '06',
+      image: '/5.png',
       alt: 'Content creation shoot in progress',
       href: profileUrl
     }
@@ -35,7 +53,7 @@ export default function InstagramTail() {
         const data = await response.json()
         if (!Array.isArray(data?.posts) || data.posts.length === 0 || cancelled) return
 
-        const normalized = data.posts.slice(0, 3).map((post, index) => ({
+        const normalized = data.posts.slice(0, 6).map((post, index) => ({
           id: String(index + 1).padStart(2, '0'),
           image: post.image,
           alt: post.alt || `Instagram post ${index + 1}`,

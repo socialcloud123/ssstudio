@@ -41,7 +41,7 @@ export default function Podcast() {
       },
       {
         id: '03',
-        name: 'The Social Podcast - 1',
+        name: 'The Social Podcast — 1',
         set: 'Set 3 — Part A',
         target: 'Influencers & Content Creators',
         duration: '2.5 hrs',

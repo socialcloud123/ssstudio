@@ -20,6 +20,7 @@ const Podcast = lazy(() => import("./components/Podcast"));
 const Studios = lazy(() => import("./components/Studios"));
 const FashionShoot = lazy(() => import("./components/FashionShoot"));
 const GreenScreen = lazy(() => import("./components/GreenScreen"));
+const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 
 // Optimized loading fallback
 const LoadingFallback = () => (
@@ -80,6 +81,7 @@ function App() {
           <Route path="/studios" element={<Studios />} />
           <Route path="/fashionshoot" element={<FashionShoot />} />
           <Route path="/greenscreenshoot" element={<GreenScreen />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/Podcast" element={<Navigate to="/podcast" replace />} />
           <Route path="/Studios" element={<Navigate to="/studios" replace />} />
           <Route path="/FashionShoot" element={<Navigate to="/fashionshoot" replace />} />

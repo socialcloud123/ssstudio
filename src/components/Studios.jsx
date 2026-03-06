@@ -49,7 +49,13 @@ export default function Studios() {
 
       <div className="studios-grid">
         {packages[activePart].map((pkg, index) => (
-          <motion.div key={pkg.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }} className="studios-card">
+          <motion.div
+            key={pkg.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className={`studios-card ${pkg.tiers ? 'with-production' : 'without-production'}`}
+          >
             <div className="card-number">{pkg.id}</div>
             <h3 className="card-name">{pkg.name}</h3>
             {pkg.target && <div className="card-target">{pkg.target}</div>}

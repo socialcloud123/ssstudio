@@ -11,7 +11,8 @@ export default function ContactForm() {
             <div className="contact-left">
               <h1>Let&apos;s work together.</h1>
               <p>
-                Tell us about your project.<br /> We&apos;ll get back to you within 24 hours.
+                Tell us about your project.
+                <span className="mobile-line-break"> We&apos;ll get back to you within 24 hours.</span>
               </p>
             </div>
 
@@ -39,6 +40,27 @@ export default function ContactForm() {
                   <br />
                   Bengaluru, Karnataka 560010
                 </p>
+              </div>
+            </div>
+
+            <div className="contact-social-wrap">
+              <p className="contact-social-title">Connect With Us</p>
+              <div className="contact-social" aria-label="Social links">
+                <a href="https://www.instagram.com/nearbystudio_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.9 2.2a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
+                  </svg>
+                </a>
+                <a href="https://www.facebook.com/nearbystudioofficial/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M13.5 22v-8h2.9l.45-3.5H13.5V8.35c0-1.02.29-1.72 1.76-1.72H17V3.45c-.3-.04-1.32-.13-2.52-.13-2.5 0-4.22 1.53-4.22 4.35V10.5H7.5V14h2.76v8h3.24Z" />
+                  </svg>
+                </a>
+                <a href="https://www.youtube.com/@nearbystudioofficial" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21.6 7.2a2.95 2.95 0 0 0-2.08-2.08C17.68 4.6 12 4.6 12 4.6s-5.68 0-7.52.52A2.95 2.95 0 0 0 2.4 7.2 30.2 30.2 0 0 0 2 12a30.2 30.2 0 0 0 .4 4.8 2.95 2.95 0 0 0 2.08 2.08c1.84.52 7.52.52 7.52.52s5.68 0 7.52-.52a2.95 2.95 0 0 0 2.08-2.08A30.2 30.2 0 0 0 22 12a30.2 30.2 0 0 0-.4-4.8ZM10.2 15.05V8.95L15.45 12l-5.25 3.05Z" />
+                  </svg>
+                </a>
               </div>
             </div>
 
@@ -125,8 +147,13 @@ export default function ContactForm() {
                 </a>
               </span>
             </p>
-            <div className="footer-navbar-wrap">
-              <Navbar />
+            <div className="footer-nav-group">
+              <div className="footer-navbar-wrap">
+                <Navbar />
+              </div>
+              <span className="footer-privacy-text">
+                Privacy Policy
+              </span>
             </div>
           </div>
         </div>
