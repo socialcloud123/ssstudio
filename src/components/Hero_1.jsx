@@ -349,6 +349,7 @@ const Hero_1 = memo(function Hero_1() {
     const [isMobile, setIsMobile] = useState(
         () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
     );
+    const [isIOS, setIsIOS] = useState(false);
 
     useEffect(() => {
         const mediaQuery = window.matchMedia('(max-width: 767px)');
@@ -356,6 +357,10 @@ const Hero_1 = memo(function Hero_1() {
 
         // Keep state synced on mount too.
         setIsMobile(mediaQuery.matches);
+        
+        // Detect iOS
+        const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        setIsIOS(iOS);
 
         if (mediaQuery.addEventListener) {
             mediaQuery.addEventListener('change', handleChange);
@@ -417,14 +422,27 @@ const Hero_1 = memo(function Hero_1() {
     }, []);
 
     return (
-        <div
-            style={{
-                width: '100%',
-                height: '80vh',
-                position: 'relative',
-                background: '#0F0F12',
-            }}
-        >
+        <>
+            <style>{`
+                @keyframes zoomIn {
+                    0% {
+                        opacity: 0;
+                        transform: scale(0.5);
+                    }
+                    100% {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+            `}</style>
+            <div
+                style={{
+                    width: '100%',
+                    height: '80vh',
+                    position: 'relative',
+                    background: '#0F0F12',
+                }}
+            >
             {!isMobile && showCursor && (
                 <Suspense fallback={null}>
                     <SplashCursor />
@@ -460,21 +478,34 @@ const Hero_1 = memo(function Hero_1() {
                     pointerEvents: 'auto',
                 }}
             >
-                <video
-                    ref={videoRef}
-                    src="/nearby alpha logo.webm"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    fetchPriority="high"
-                    style={{
-                        width: "clamp(280px, 80vw, 600px)",
-                        mixBlendMode: "screen",
-                        background: "transparent",
-                    }}
-                />
+                {isMobile && isIOS ? (
+                    <img
+                        src="/Nearby studio_white.webp"
+                        alt="Nearby Studio"
+                        style={{
+                            width: "clamp(200px, 70vw, 300px)",
+                            mixBlendMode: "screen",
+                            background: "transparent",
+                            animation: 'zoomIn 1.5s ease-out',
+                        }}
+                    />
+                ) : (
+                    <video
+                        ref={videoRef}
+                        src="/nearby alpha logo.webm"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        fetchPriority="high"
+                        style={{
+                            width: "clamp(280px, 80vw, 600px)",
+                            mixBlendMode: "screen",
+                            background: "transparent",
+                        }}
+                    />
+                )}
             </div>
 
             {/* Bottom Text */}
@@ -504,6 +535,7 @@ const Hero_1 = memo(function Hero_1() {
                 </span>
             </div>
         </div>
+        </>
     );
 });
 
