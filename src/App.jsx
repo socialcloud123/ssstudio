@@ -42,7 +42,7 @@ const LoadingFallback = () => (
 
 function HomePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#1a1333] via-[#0f0f1f] to-black">
+    <main className="min-h-screen bg-#0f0f12">
       <Navbar />
       <Suspense fallback={<LoadingFallback />}>
         <Hero_1 />
