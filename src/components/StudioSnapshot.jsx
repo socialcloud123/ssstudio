@@ -4,22 +4,22 @@ const SplashCursor = lazy(() => import('./SplashCursor'));
 
 const StudioSnapshot = memo(() => {
   const galleryImages = [
-    '/Snapshots/Product.webp',
-    '/Snapshots/sofa.webp',
-    '/Snapshots/Green_screen.webp',
-    '/Snapshots/chair_1.webp',
-    '/Snapshots/17-1.webp',
-    '/Snapshots/Studio (1).webp',
-    '/Snapshots/Model.webp',
-    '/Snapshots/Model (2).webp',
-    '/Snapshots/chair_1.webp',
-    '/Snapshots/Content.webp',
-    '/Snapshots/Product (1).webp',
-    '/Snapshots/Studio.webp',
-    '/Snapshots/Model (1).webp',
-    '/Snapshots/Studio (2).webp',
-    '/Snapshots/Studio (3).webp',
-    '/Snapshots/Studio_setup.webp',
+    '/Snapshots1/6.jpg',
+    '/Snapshots1/2.jpg',
+    '/Snapshots1/5.jpg',
+    '/Snapshots1/9.jpg',
+    '/Snapshots1/10.jpg',
+    '/Snapshots1/11.jpg',
+    '/Snapshots1/21.jpg',
+    '/Snapshots1/13.jpg',
+    '/Snapshots1/8.jpg',
+    '/Snapshots1/4.jpg',
+    '/Snapshots1/19.jpg',
+    '/Snapshots1/7.jpg',
+    '/Snapshots1/12.jpg',
+    '/Snapshots1/1.jpg',
+    '/Snapshots1/17.jpg',
+    '/Snapshots1/15.jpg',
   ]
   const sectionRef = useRef(null)
   const [isMobile, setIsMobile] = useState(false)

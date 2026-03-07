@@ -10,29 +10,29 @@ const OurSpaces = memo(() => {
       id: '01',
       name: 'Podcast Shoots',
       description: 'Multi-format podcast recording, talk shows, interviews, reels-friendly angles.',
-      leftImg: '/Snapshots/chair.webp',
-      rightImg: '/Snapshots/chair_1.webp'
+      leftImg: '/Snapshots1/18.jpg',
+      rightImg: '/Snapshots1/9.jpg'
     },
     {
       id: '02',
       name: 'Product Photoshoots',
       description: 'Clean product frames, ecommerce-ready shots, brand creatives.',
-      leftImg: '/Snapshots/Product_4.webp',
-      rightImg: '/Snapshots/product_new_1.webp'
+      leftImg: '/Snapshots1/1.jpg',
+      rightImg: '/Snapshots1/19.jpg'
     },
     {
       id: '03',
       name: 'Model Photography',
       description: 'Fashion, portfolio shoots, campaign-ready imagery.',
-      leftImg: '/Snapshots/model_new_2.webp',
-      rightImg: '/Snapshots/Model_3.webp'
+      leftImg: '/Snapshots1/20.jpg',
+      rightImg: '/Snapshots1/2.jpg'
     },
     {
       id: '04',
       name: 'Content Creation',
       description: 'Reels, YouTube, brand videos, educational content, creator formats.',
-      leftImg: '/Snapshots/Rishab_CC.webp',
-      rightImg: '/Snapshots/6.webp'
+      leftImg: '/Snapshots1/3.jpg',
+      rightImg: '/Snapshots1/4.jpg'
     }
   ]
 
