@@ -462,7 +462,7 @@ const Hero_1 = memo(function Hero_1() {
             >
                 <video
                     ref={videoRef}
-                    src="/nearby studio logo.mp4"
+                    src="/nearby alpha logo.mp4"
                     autoPlay
                     muted
                     loop
