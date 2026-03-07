@@ -17,11 +17,19 @@ const Navbar = () => {
 
   useEffect(() => {
     const layout = () => {
-      circleRefs.current.forEach((circle, index) => {
-        if (!circle?.parentElement) return;
-        const pill = circle.parentElement;
-        const rect = pill.getBoundingClientRect();
-        const { width: w, height: h } = rect;
+      const pills = circleRefs.current
+        .map((circle, index) => {
+          if (!circle?.parentElement) return null;
+          return { circle, pill: circle.parentElement, index };
+        })
+        .filter(Boolean);
+
+      // 1. Read all layout values first (Avoid forced reflow)
+      const rects = pills.map(({ pill }) => pill.getBoundingClientRect());
+
+      // 2. Write all styles in a separate pass
+      pills.forEach(({ circle, index }, i) => {
+        const { width: w, height: h } = rects[i];
         const R = ((w * w) / 4 + h * h) / (2 * h);
         const D = Math.ceil(2 * R) + 2;
         const delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1;
@@ -112,10 +120,10 @@ const Navbar = () => {
     e.preventDefault();
     setOpen(false);
     setBookOpen(false);
-    
+
     if (location.pathname === '/') {
       // Already on home page, just scroll
-      document.getElementById('contact-form')?.scrollIntoView({ 
+      document.getElementById('contact-form')?.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -123,7 +131,7 @@ const Navbar = () => {
       // Navigate to home page first, then scroll
       navigate('/');
       setTimeout(() => {
-        document.getElementById('contact-form')?.scrollIntoView({ 
+        document.getElementById('contact-form')?.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
         });
@@ -138,7 +146,7 @@ const Navbar = () => {
       <div className="navbar-logo">
         <picture>
           <source srcSet={`${logoWhite}`} />
-          <img src={logoWhite} alt="Logo" decoding="async" loading="lazy" />
+          <img src={logoWhite} alt="Logo" width="220" height="80" decoding="async" loading="eager" />
         </picture>
       </div>
 
@@ -193,6 +201,9 @@ const Navbar = () => {
             <li>
               <Link
                 to="/studios"
+                preload="none"
+                loading="lazy"
+                onMouseOver={(e) => e.target.preload = "auto"}
                 onClick={() => { setOpen(false); setBookOpen(false); }}
                 onMouseEnter={() => handleEnter(3)}
                 onMouseLeave={() => handleLeave(3)}

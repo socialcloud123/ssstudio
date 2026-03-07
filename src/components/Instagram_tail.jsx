@@ -95,7 +95,10 @@ export default function InstagramTail() {
             <img
               src={post.image}
               alt={post.alt}
+              width="400"
+              height="400"
               loading="lazy"
+              style={{ aspectRatio: '1/1', objectFit: 'cover' }}
             />
 
             <span className="greenscreen-instagram__overlay">

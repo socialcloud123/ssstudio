@@ -25,15 +25,15 @@ const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
 
 // Optimized loading fallback
 const LoadingFallback = () => (
-  <div style={{ 
-    minHeight: '50vh', 
-    display: 'flex', 
-    alignItems: 'center', 
+  <div style={{
+    minHeight: '50vh',
+    display: 'flex',
+    alignItems: 'center',
     justifyContent: 'center',
     background: 'transparent'
   }}>
-    <div style={{ 
-      color: '#00C2A8', 
+    <div style={{
+      color: '#00C2A8',
       fontSize: '1.2rem',
       fontWeight: '600'
     }}>Loading...</div>
@@ -49,12 +49,26 @@ function HomePage() {
       </Suspense>
       <Suspense fallback={<LoadingFallback />}>
         <Hero />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
         <StudioSnapshot />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
         <Services />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
         <OurSpaces />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
         <WhyStudio />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
         <ImageGallery />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
         <CompanyInfo />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
         <ContactSection />
         <ContactForm />
       </Suspense>

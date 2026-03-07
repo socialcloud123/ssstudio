@@ -1,7 +1,8 @@
-/* reset default spacing for the page */
 body {
   margin: 0;
   padding: 0;
+  background-color: #0f0f12;
+  color: #fff;
 }
 
 .app {

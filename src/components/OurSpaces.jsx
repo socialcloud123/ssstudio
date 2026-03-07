@@ -37,28 +37,50 @@ const OurSpaces = memo(() => {
   ]
 
   useEffect(() => {
-    const handleScroll = () => {
-      const setHolders = sectionRef.current?.querySelectorAll('.set-holder')
-      if (!setHolders) return
+    const setHolders = Array.from(sectionRef.current?.querySelectorAll('.set-holder') || [])
+    if (!setHolders.length) return
 
-      setHolders.forEach((holder) => {
+    let holderData = []
+    let windowHeight = window.innerHeight
+
+    const calculatePositions = () => {
+      windowHeight = window.innerHeight
+      const scrollY = window.scrollY || window.pageYOffset
+      holderData = setHolders.map(holder => {
         const rect = holder.getBoundingClientRect()
-        const windowHeight = window.innerHeight
-        
-        const scrollProgress = Math.max(0, Math.min(1, 
-          (windowHeight - rect.top) / (windowHeight * 0.8)
+        return {
+          holder,
+          absoluteTop: rect.top + scrollY,
+          leftImg: holder.querySelector('.set-img-con.left'),
+          rightImg: holder.querySelector('.set-img-con.right')
+        }
+      })
+    }
+
+    // Initial setup and resize listener to cache dimensions
+    calculatePositions()
+    window.addEventListener('resize', calculatePositions, { passive: true })
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset
+      const updates = []
+
+      holderData.forEach((data) => {
+        const currentRectTop = data.absoluteTop - scrollY
+        const scrollProgress = Math.max(0, Math.min(1,
+          (windowHeight - currentRectTop) / (windowHeight * 0.8)
         ))
 
-        const leftImg = holder.querySelector('.set-img-con.left')
-        const rightImg = holder.querySelector('.set-img-con.right')
-
-        if (leftImg && rightImg) {
+        if (data.leftImg && data.rightImg) {
           const translateX = (1 - scrollProgress) * 40
           const rotate = (1 - scrollProgress) * -5
-
-          leftImg.style.transform = `translate3d(${translateX}vw, 0px, 0px) rotateZ(${rotate}deg)`
-          rightImg.style.transform = `translate3d(${-translateX}vw, 0px, 0px) rotateZ(${-rotate}deg)`
+          updates.push({ leftImg: data.leftImg, rightImg: data.rightImg, translateX, rotate })
         }
+      })
+
+      updates.forEach(({ leftImg, rightImg, translateX, rotate }) => {
+        leftImg.style.transform = `translate3d(${translateX}vw, 0px, 0px) rotateZ(${rotate}deg)`
+        rightImg.style.transform = `translate3d(${-translateX}vw, 0px, 0px) rotateZ(${-rotate}deg)`
       })
     }
 
@@ -72,7 +94,7 @@ const OurSpaces = memo(() => {
         const currentTransform = img.style.transform || ''
         const translateMatch = currentTransform.match(/translate3d\(([^,]+)/)
         const rotateMatch = currentTransform.match(/rotateZ\(([^)]+)/)
-        
+
         const baseTranslate = translateMatch ? translateMatch[1] : '0px'
         const baseRotate = rotateMatch ? rotateMatch[1] : '0deg'
 
@@ -88,13 +110,19 @@ const OurSpaces = memo(() => {
     const throttledScroll = throttle(handleScroll, isMobile ? 33 : 16)
     const throttledMouseMove = throttle(handleMouseMove, isMobile ? 33 : 16)
 
-    handleScroll()
+    // Need requestAnimationFrame for first frame to ensure elements are painted
+    requestAnimationFrame(() => {
+      calculatePositions();
+      handleScroll();
+    });
+
     window.addEventListener('scroll', throttledScroll, { passive: true })
     if (!isMobile) {
       window.addEventListener('mousemove', throttledMouseMove, { passive: true })
     }
-    
+
     return () => {
+      window.removeEventListener('resize', calculatePositions)
       window.removeEventListener('scroll', throttledScroll)
       if (!isMobile) {
         window.removeEventListener('mousemove', throttledMouseMove)
@@ -112,12 +140,15 @@ const OurSpaces = memo(() => {
         {spaces.map((space) => (
           <div key={space.id} className="set-holder">
             <div className="set-img-con left">
-              <img 
-                alt={space.name} 
-                className="set-img" 
+              <img
+                alt={space.name}
+                className="set-img"
                 loading="lazy"
                 decoding="async"
                 src={space.leftImg}
+                width="400"
+                height="500"
+                style={{ aspectRatio: '4/5', objectFit: 'cover' }}
               />
             </div>
 
@@ -127,12 +158,15 @@ const OurSpaces = memo(() => {
             </div>
 
             <div className="set-img-con right">
-              <img 
-                alt={space.name} 
-                className="set-img" 
+              <img
+                alt={space.name}
+                className="set-img"
                 loading="lazy"
                 decoding="async"
                 src={space.rightImg}
+                width="400"
+                height="500"
+                style={{ aspectRatio: '4/5', objectFit: 'cover' }}
               />
             </div>
           </div>

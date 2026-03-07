@@ -290,7 +290,9 @@ void main() {
             document.addEventListener('visibilitychange', handleVisibilityChange);
             handleVisibilityChange();
 
-            updatePlacement();
+            requestAnimationFrame(() => {
+                if (containerRef.current) updatePlacement();
+            });
             window.addEventListener('resize', updatePlacement);
             startLoop();
 
@@ -343,7 +345,7 @@ LightRays.displayName = 'LightRays';
    Example Usage Wrapper
 ========================= */
 
-export default memo(function App() {
+const Hero_1 = memo(function Hero_1() {
     const [isMobile, setIsMobile] = useState(
         () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
     );
@@ -390,29 +392,29 @@ export default memo(function App() {
         };
     }, [isMobile]);
 
-useEffect(() => {
-  const video = videoRef.current;
-  if (!video) return;
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
 
-  const handleLoaded = () => {
-    video.currentTime = 0;
-    video.play();
-  };
+        const handleLoaded = () => {
+            video.currentTime = 0;
+            video.play();
+        };
 
-  const handleTimeUpdate = () => {
-    if (video.currentTime >= 5) {
-      video.currentTime = 0;
-    }
-  };
+        const handleTimeUpdate = () => {
+            if (video.currentTime >= 5) {
+                video.currentTime = 0;
+            }
+        };
 
-  video.addEventListener("loadedmetadata", handleLoaded);
-  video.addEventListener("timeupdate", handleTimeUpdate);
+        video.addEventListener("loadedmetadata", handleLoaded);
+        video.addEventListener("timeupdate", handleTimeUpdate);
 
-  return () => {
-    video.removeEventListener("loadedmetadata", handleLoaded);
-    video.removeEventListener("timeupdate", handleTimeUpdate);
-  };
-}, []);
+        return () => {
+            video.removeEventListener("loadedmetadata", handleLoaded);
+            video.removeEventListener("timeupdate", handleTimeUpdate);
+        };
+    }, []);
 
     return (
         <div
@@ -421,7 +423,6 @@ useEffect(() => {
                 height: '80vh',
                 position: 'relative',
                 background: '#0F0F12',
-
             }}
         >
             {!isMobile && showCursor && (
@@ -436,7 +437,6 @@ useEffect(() => {
                 raysSpeed={isMobile ? 0.8 : 1}
                 lightSpread={isMobile ? 0.35 : 0.5}
                 rayLength={isMobile ? 3 : 1}
-                followMouse={!isMobile}
                 mouseInfluence={isMobile ? 0.4 : 0.4}
                 noiseAmount={0}
                 distortion={0}
@@ -460,61 +460,67 @@ useEffect(() => {
                     pointerEvents: 'auto',
                 }}
             >
-{isMobile ? (
-  <img
-    src="/Nearby studio_white.png"
-    alt="Nearby Studio"
-    style={{
-      width: "clamp(140px, 70vw, 200px)",
-      mixBlendMode: "screen",
-      background: "transparent",
-    }}
-  />
-) : (
-  <video
-    ref={videoRef}
-    src="/nearby studio logo 1.webm"
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="metadata"
-    style={{
-      width: "clamp(400px, 36vw, 600px)",
-      mixBlendMode: "screen",
-      background: "transparent",
-    }}
-  />
-)}
+                {isMobile ? (
+                    <img
+                        src="/Nearby studio_white.png"
+                        alt="Nearby Studio"
+                        width="200"
+                        height="100"
+                        style={{
+                            width: "clamp(140px, 70vw, 200px)",
+                            height: "auto",
+                            aspectRatio: "2/1",
+                            mixBlendMode: "screen",
+                            background: "transparent",
+                        }}
+                    />
+                ) : (
+                    <video
+                        ref={videoRef}
+                        src="/nearby studio without bg.webm"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        fetchPriority="high"
+                        style={{
+                            width: "clamp(400px, 36vw, 600px)",
+                            mixBlendMode: "screen",
+                            background: "transparent",
+                        }}
+                    />
+                )}
             </div>
-            
+
             {/* Bottom Text */}
-<div
-  style={{
-    position: 'absolute',
-    bottom: '20px',
-    width: '100%',
-    textAlign: 'center',
-  }}
->
-  <span style={{ color: '#F5F5F3' }}>
-    a Studio Floor by{' '}
-    <a
-      href="https://sripadastudios.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        fontWeight: 700,
-        textDecoration: 'none',
-        color: 'inherit',
-        cursor: 'pointer',
-      }}
-    >
-      Sripada Studios
-    </a>
-  </span>
-</div>
-     
+            <div
+                style={{
+                    position: 'absolute',
+                    bottom: '20px',
+                    width: '100%',
+                    textAlign: 'center',
+                }}
+            >
+                <span style={{ color: '#F5F5F3' }}>
+                    a Studio Floor by{' '}
+                    <a
+                        href="https://sripadastudios.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            fontWeight: 700,
+                            textDecoration: 'none',
+                            color: 'inherit',
+                            cursor: 'pointer',
+                        }}
+                    >
+                        Sripada Studios
+                    </a>
+                </span>
+            </div>
         </div>
     );
 });
+
+export default Hero_1;

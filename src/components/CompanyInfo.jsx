@@ -84,7 +84,7 @@ function CompanyInfo() {
           >
             {shouldLoadVideo && (
               <source
-                src="/nearby studio logo 1.mp4"
+                src="/nearby outro final.mp4"
                 type="video/mp4"
               />
             )}

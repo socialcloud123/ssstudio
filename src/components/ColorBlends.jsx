@@ -1,5 +1,7 @@
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import { useEffect, useRef, useState } from 'react';
+
+// Three.js will be loaded dynamically to avoid blocking the initial paint
+let THREE_LIB = null;
 
 const MAX_COLORS = 8;
 
@@ -117,14 +119,40 @@ export default function ColorBlends({
   const resizeObserverRef = useRef(null);
   const rotationRef = useRef(rotation);
   const autoRotateRef = useRef(autoRotate);
-  const pointerTargetRef = useRef(new THREE.Vector2(0, 0));
-  const pointerCurrentRef = useRef(new THREE.Vector2(0, 0));
+  const pointerTargetRef = useRef(null);
+  const pointerCurrentRef = useRef(null);
   const pointerSmoothRef = useRef(8);
   const isInViewportRef = useRef(true);
   const isTabVisibleRef = useRef(true);
   const isAnimatingRef = useRef(false);
 
+  const [isLoaded, setIsLoaded] = useState(!!THREE_LIB);
+
   useEffect(() => {
+    const loadThree = async () => {
+      try {
+        if (!THREE_LIB) {
+          THREE_LIB = await import('three');
+        }
+        setIsLoaded(true);
+      } catch (err) {
+        console.error("Failed to load Three.js", err);
+      }
+    };
+    loadThree();
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded && THREE_LIB && !pointerTargetRef.current) {
+      pointerTargetRef.current = new THREE_LIB.Vector2(0, 0);
+      pointerCurrentRef.current = new THREE_LIB.Vector2(0, 0);
+    }
+  }, [isLoaded]);
+
+  useEffect(() => {
+    if (!isLoaded || !THREE_LIB) return;
+    const THREE = THREE_LIB;
+
     const container = containerRef.current;
     if (!container) return;
     const scene = new THREE.Scene();
@@ -214,8 +242,10 @@ export default function ColorBlends({
       const cur = pointerCurrentRef.current;
       const tgt = pointerTargetRef.current;
       const amt = Math.min(1, dt * pointerSmoothRef.current);
-      cur.lerp(tgt, amt);
-      material.uniforms.uPointer.value.copy(cur);
+      if (cur && tgt) {
+        cur.lerp(tgt, amt);
+        material.uniforms.uPointer.value.copy(cur);
+      }
       renderer.render(scene, camera);
       rafRef.current = requestAnimationFrame(loop);
     };
@@ -266,12 +296,12 @@ export default function ColorBlends({
         container.removeChild(renderer.domElement);
       }
     };
-  }, [frequency, mouseInfluence, noise, parallax, scale, speed, transparent, warpStrength]);
+  }, [isLoaded]);
 
   useEffect(() => {
     const material = materialRef.current;
     const renderer = rendererRef.current;
-    if (!material) return;
+    if (!material || !isLoaded || !THREE_LIB) return;
 
     rotationRef.current = rotation;
     autoRotateRef.current = autoRotate;
@@ -284,6 +314,7 @@ export default function ColorBlends({
     material.uniforms.uNoise.value = noise;
 
     const toVec3 = hex => {
+      const THREE = THREE_LIB;
       const h = hex.replace('#', '').trim();
       const v =
         h.length === 3
@@ -303,6 +334,7 @@ export default function ColorBlends({
     material.uniforms.uTransparent.value = transparent ? 1 : 0;
     if (renderer) renderer.setClearColor(0x000000, transparent ? 0 : 1);
   }, [
+    isLoaded,
     rotation,
     autoRotate,
     speed,

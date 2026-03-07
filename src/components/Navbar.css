@@ -23,6 +23,7 @@
 /* Logo */
 .navbar-logo img {
   height: 35px;
+  width: auto;
   transform: translateY(5%) translateX(5%);
 }
 

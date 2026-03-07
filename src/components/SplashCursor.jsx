@@ -747,9 +747,21 @@ function SplashCursor({
             return dt;
         }
 
+        let cachedCanvasWidth = window.innerWidth;
+        let cachedCanvasHeight = window.innerHeight;
+
+        const handleCanvasResize = () => {
+            if (canvas) {
+                cachedCanvasWidth = canvas.clientWidth;
+                cachedCanvasHeight = canvas.clientHeight;
+            }
+        };
+        window.addEventListener('resize', handleCanvasResize);
+        handleCanvasResize();
+
         function resizeCanvas() {
-            let width = scaleByPixelRatio(canvas.clientWidth);
-            let height = scaleByPixelRatio(canvas.clientHeight);
+            let width = scaleByPixelRatio(cachedCanvasWidth);
+            let height = scaleByPixelRatio(cachedCanvasHeight);
             if (canvas.width !== width || canvas.height !== height) {
                 canvas.width = width;
                 canvas.height = height;
@@ -1142,6 +1154,7 @@ function SplashCursor({
             stopFrameLoop();
             observer.disconnect();
             document.removeEventListener('visibilitychange', handleVisibilityChange);
+            window.removeEventListener('resize', handleCanvasResize);
         };
     }, [
         isVisible,
