@@ -460,37 +460,21 @@ const Hero_1 = memo(function Hero_1() {
                     pointerEvents: 'auto',
                 }}
             >
-                {isMobile ? (
-                    <img
-                        src="/Nearby studio_white.png"
-                        alt="Nearby Studio"
-                        width="200"
-                        height="100"
-                        style={{
-                            width: "clamp(140px, 70vw, 200px)",
-                            height: "auto",
-                            aspectRatio: "2/1",
-                            mixBlendMode: "screen",
-                            background: "transparent",
-                        }}
-                    />
-                ) : (
-                    <video
-                        ref={videoRef}
-                        src="/nearby studio without bg.webm"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="auto"
-                        fetchPriority="high"
-                        style={{
-                            width: "clamp(400px, 36vw, 600px)",
-                            mixBlendMode: "screen",
-                            background: "transparent",
-                        }}
-                    />
-                )}
+                <video
+                    ref={videoRef}
+                    src="/nearby studio without bg.webm"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    fetchPriority="high"
+                    style={{
+                        width: "clamp(280px, 80vw, 600px)",
+                        mixBlendMode: "screen",
+                        background: "transparent",
+                    }}
+                />
             </div>
 
             {/* Bottom Text */}
